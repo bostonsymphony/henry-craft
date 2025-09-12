@@ -1,0 +1,64 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
+.dropdown {
+  background: #fff;
+  box-shadow: var(--root-box-shadow-med);
+  padding: 1.5rem;
+  position: absolute;
+  width: max-content;
+  max-width: 320px;
+  z-index: 1;
+
+  transition: opacity var(--root-ease-out-moderate);
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  &__link,
+  &__button {
+    background: #0000;
+    border: 0;
+    color: var(--accent-color);
+    display: block;
+    font-weight: 700;
+    padding: .5rem 0;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__list {
+    display: grid;
+  }
+
+  &__button {
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &.-toRight {
+    left: 100%;
+    top: -.75rem;
+    padding-top: .75rem;
+  }
+
+  &.-center {
+    left: 50%;
+    translate: -50%;
+  }
+  &.-rightAligned {
+    right: 0;
+  }
+
+  @include at(md) {
+    max-width: 744px;
+  }
+
+  @include at(lg) {
+    max-width: 1300px;
+  }
+}

@@ -57,7 +57,7 @@ fieldLayouts:
             fieldUid: 69705774-001e-4d43-b76b-77eef5713301 # Resource Types
             handle: null
             includeInCards: false
-            instructions: 'Resource types to pull from if 3 resources aren''t selected above.'
+            instructions: "Resource types to pull from if 3 resources aren't selected above."
             label: null
             providesThumbs: false
             required: false

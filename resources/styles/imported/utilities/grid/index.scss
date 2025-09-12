@@ -1,0 +1,24 @@
+@use "cell";
+
+.grid {
+  --columns: 1;
+  --gap: var(--root-gap, 16px);
+
+  display: grid;
+  gap: var(--gap);
+  grid: auto / [wide-start main-start] repeat(var(--columns), 1fr) [main-end wide-end];
+
+  > * {
+    min-width: 0;
+  }
+
+  @for $i from 2 through 12 {
+    &.-columns-#{$i} {
+      --columns: #{$i};
+    }
+  }
+
+  &.-tight {
+    row-gap: 0;
+  }
+}

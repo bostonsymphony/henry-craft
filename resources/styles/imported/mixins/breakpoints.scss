@@ -1,0 +1,109 @@
+@use "sass:map";
+@use "sass:math";
+@use "sass:meta";
+
+/**
+ * Default breakpoints. Make sure to set setBreakpoints when changing these.
+ */
+$breakpoints: (
+  sm: 320px,
+  md: 744px,
+  lg: 1300px
+) !default;
+
+/**
+ * Handles both changing $breakpoints as well as defining the CSS properties for
+ * the breakpoints. Usage:
+ *
+ * @param $breakpoints  map of breakpoints, with the keys being used as the
+ *                      breakpoint names. If not specified, use the global
+ *                      $breakpoints value.
+ * Usage:
+ *
+ *     @include setBreakpoints(( sm: 320px, md: 744px));
+ *
+ * or
+ *
+ *     $breakpoints: ( sm: 320px, md: 744px ); 
+ *     @include setBreakpoints;
+ *
+ */
+@mixin setBreakpoints($breakpoints: $breakpoints) {
+  $breakpoints: $breakpoints !global;
+
+  @each $breakpoint, $value in $breakpoints {
+    --root-breakpoint-#{$breakpoint}: #{math.div($value, $value * 0 + 1)};
+  }
+}
+
+/**
+ * Media query/breakpoint mixin. It also has a shorter alias at().
+ *
+ *  @param $breakpoint  Either the name of a configured breakpoint or an
+ *                      arbitrary size.
+ *  @param $property    Property to test against the breakpoint (default:
+ *                      min-width.)
+ * Usage:
+ *
+ *     @include at(lg) {
+ *       padding: 48px;
+ *     }
+ *
+ */
+@mixin breakpoint($breakpoint, $property: min-width) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $breakpoint: map.get($breakpoints, $breakpoint);
+  }
+  @media screen and (#{$property}: #{$breakpoint}) {
+    @content;
+  }
+}
+
+/**
+ * Alias for breakpoint().
+ */
+@mixin at($breakpoint, $property: min-width) {
+  @include breakpoint($breakpoint, $property) {
+    @content;
+  }
+}
+
+/**
+ * Container query mixin. It also has a shorter alias in().
+ *
+ * @param $name      Optional name for the container.
+ * @param $size      Size for this query.
+ * @param $property  Property to test against the size. (default: min-width.)
+
+ * Usage:
+ *
+ *     @include in(column, 420px) {
+ *         padding: 32px;
+ *     }
+ * 
+ * or
+ *
+ *     @include in(420px) {
+ *         padding: 32px;
+ *     }
+ *
+ */
+@mixin container($name, $size: null, $property: min-width) {
+  @if meta.type-of($name) == 'number' {
+    $size: $name;
+    $name: null;
+  }
+  
+  @container #{$name} (#{$property}: #{$size}) {
+    @content;
+  }
+}
+
+/**
+ * Alias for container().
+ */
+@mixin in($size, $name: null, $property: min-width) {
+  @include container($size, $name, $property) {
+    @content;
+  }
+}

@@ -1,0 +1,97 @@
+@use "sass:math";
+
+/**
+ * Returns a calc() formula for REMs that fluidly scale from $size-sm to
+ * $size-lg. all parameters MUST NOT have units.
+ *
+ * @param $size-sm  Minimum size, size at sm breakpoint.
+ * @param $size-md  Optional size at md breakpoint.
+ * @param $size-lg  Maximum size, size at lg breakpoint.
+ *
+ * Usage:
+ *
+ *     .heading {
+ *       font-size: #{fluid-rems(1, 2, 3)};
+ *     }
+ *
+ * or
+ *
+ *     .heading {
+ *       font-size: #{fluid-rems(1, 3)};
+ *     }
+ *
+ */
+@function fluid-rems($size-sm, $size-md, $size-lg: null) {
+  @if ($size-lg == null) {
+    @return calc(#{$size-sm * 1rem} + var(--fluid-rem-sm-lg) * #{$size-md - $size-sm});
+  } @else {
+    @return calc(#{$size-sm * 1rem} + var(--fluid-rem-sm-md) * #{$size-md - $size-sm} + var(--fluid-rem-md-lg) * #{$size-lg - $size-md});
+  }
+}
+
+/**
+ * Returns a calc() formula for pixels that fluidly scale from $size-sm to
+ * $size-lg. All parameters MUST NOT have units.
+ *
+ * @param $size-sm  Minimum size, size at sm breakpoint.
+ * @param $size-md  Optional size at md breakpoint.
+ * @param $size-lg  Maximum size, size at lg breakpoint.
+ *
+ * Usage:
+ *
+ *     .heading {
+ *       padding: #{fluid-pxs(16, 32, 40)} 0;
+ *     }
+ *
+ * or
+ *
+ *     .heading {
+ *       padding: #{fluid-pxs(16, 40)} 0;
+ *     }
+ *
+ */
+@function fluid-pxs($size-sm, $size-md, $size-lg: null) {
+  @if $size-lg == null {
+    @return calc(#{$size-sm * 1px} + var(--fluid-sm-lg) * #{$size-md - $size-sm});
+  } @else {
+    @return calc(#{$size-sm * 1px} + var(--fluid-sm-md) * #{$size-md - $size-sm} + var(--fluid-md-lg) * #{$size-lg - $size-md});
+  }
+}
+
+:root {
+  /**
+   * Internal CSS property for fluid-rems. Scales from 0px to 1rem between the
+   * sm and md breakpoints.
+   */
+  --fluid-rem-sm-md: clamp(0px, (100vw - 1px * var(--root-breakpoint-sm)) * 16 / (var(--root-breakpoint-md) - var(--root-breakpoint-sm)), 1rem);
+
+  /**
+   * Internal CSS property for fluid-rems. Scales from 0px to 1rem between the
+   * md and lg breakpoints.
+   */
+  --fluid-rem-md-lg: clamp(0px, (100vw - 1px * var(--root-breakpoint-md)) * 16 / (var(--root-breakpoint-lg) - var(--root-breakpoint-md)), 1rem);
+
+  /**
+   * Internal CSS property for fluid-rems. Scales from 0px to 1rem between the
+   * sm and lg breakpoints.
+   */
+  --fluid-rem-sm-lg: clamp(0px, (100vw - 1px * var(--root-breakpoint-sm)) * 16 / (var(--root-breakpoint-lg) - var(--root-breakpoint-sm)), 1rem);
+
+  /**
+   * Internal CSS property for fluid-pxs. Scales from 0px to 1px between the
+   * sm and md breakpoints.
+   */
+  --fluid-sm-md: clamp(0px, (100vw - 1px * var(--root-breakpoint-sm)) / (var(--root-breakpoint-md) - var(--root-breakpoint-sm)), 1px);
+
+  /**
+   * Internal CSS property for fluid-pxs. Scales from 0px to 1px between the
+   * md and lg breakpoints.
+   */
+  --fluid-md-lg: clamp(0px, (100vw - 1px * var(--root-breakpoint-md)) / (var(--root-breakpoint-lg) - var(--root-breakpoint-md)), 1px);
+
+  /**
+   * Internal CSS property for fluid-pxs. Scales from 0px to 1px between the
+   * sm and lg breakpoints.
+   */
+  --fluid-sm-lg: clamp(0px, (100vw - 1px * var(--root-breakpoint-sm)) / (var(--root-breakpoint-lg) - var(--root-breakpoint-sm)), 1px);
+}

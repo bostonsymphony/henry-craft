@@ -1,0 +1,155 @@
+/**
+ * Base styles
+ */
+
+/**
+ * Importing modern-normalize for minimal, base styles.
+ */
+@use 'modern-normalize';
+
+/**
+ * Use the defined CSS properties;
+ */
+html {
+  color: var(--root-color);
+  font-family: var(--root-font-family);
+  font-size: var(--root-font-size);
+  line-height: var(--root-line-height);
+  interpolate-size: allow-keywords;
+  -webkit-text-size-adjust: 100%;
+}
+
+/**
+ * Set accent-color for native elements that use it.
+ */
+button,
+input,
+optgroup,
+progress,
+select,
+textarea {
+  accent-color: var(--accent-color);
+}
+
+/**
+ * Default paragraph margin, and allow breaks in words if absolutely necessary but avoid it.
+ */
+p {
+  margin: 0 0 2rem;
+  overflow-wrap: break-word;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Set default sizing for media elements.
+ */
+canvas,
+img,
+picture,
+svg,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+/**
+ * Disable double-tap to zoom on interactive elements to avoid confusion.
+ */
+a[href],
+area,
+button,
+input,
+label[for],
+select,
+summary,
+textarea,
+[tabindex]:not([tabindex*="-"]) {
+  touch-action: manipulation;
+}
+
+/**
+ * Default to changing the cursor for all buttons.
+ */
+button {
+  cursor: pointer;
+}
+
+
+/**
+ * Increase margin below block elements and paragraphs before block elements
+ */
+blockquote,
+dl,
+hr,
+ol,
+picture,
+pre,
+table,
+ul,
+p:has(+ :where(blockquote, hr, ol, picture, pre, table, ul)) {
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+address {
+  font-style: normal;
+  line-height: 1.25;
+  margin-bottom: .5em;
+}
+
+/**
+ * Base <blockquote>
+ */
+blockquote {
+  box-shadow: 4px 0 var(--accent-color-200) inset;
+  margin-left: 1.5em;
+  margin-right: 0;
+  padding-left: 1.5em;
+
+  cite {
+    display: block;
+    font-style: normal;
+    margin-bottom: 1em;
+  }
+}
+
+/**
+ * Base <dialog>
+ */
+dialog {
+  border-radius: 1rem;
+  border: 0;
+  box-shadow: var(--root-box-shadow-med);
+  color: var(--root-color);
+  padding: 1.5rem 2rem;
+  max-width: 36rem;
+  inset: 0;
+}
+
+/**
+ * Base <hr>
+ */
+hr {
+  border: 4px solid var(--accent-color);
+  max-width: 8rem;
+}
+
+/**
+ * Base <code>
+ */
+code {
+  background: var(--accent-color-50);
+  box-shadow: 0 0 0 2px var(--accent-color-50);
+}
+
+/**
+ * Base <pre>
+ */
+pre {
+  color: var(--accent-color);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}

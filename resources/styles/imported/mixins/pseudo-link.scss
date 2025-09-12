@@ -1,0 +1,11 @@
+@mixin pseudo-link($z: false, $pseudo: after) {
+  &::#{$pseudo} {
+    content: '';
+    inset: 0;
+    position: absolute;
+
+    @if $z {
+      z-index: #{$z};
+    }
+  }
+}

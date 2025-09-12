@@ -1,0 +1,174 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
+.hero {
+  $b: &;
+
+  background: var(--accent-color);
+  color: var(--accent-color-contrast);
+  position: relative;
+  z-index: 0;
+
+  &__bg {
+    container-type: size;
+    display: grid;
+    grid-area: 1 / wide / 2;
+    overflow: hidden;
+
+    > *,
+    &::before,
+    &::after {
+      grid-area: 1 / 1;
+    }
+
+    + #{$b}__content {
+      grid-row: 1 / 2;
+    }
+
+    img { 
+      max-height: 100cqh;
+      width: 100%;
+      object-fit: cover;
+    }
+
+
+    &.-fade::after {
+      background: radial-gradient(
+        circle farthest-side at 50% 25%,
+        #0000 35vw,
+        #0002 45vw,
+        #0004
+      );
+      content: '';
+      z-index: 1;
+
+      @include at(md) {
+        background: radial-gradient(
+          circle farthest-side at calc(50vw + min(25vw, 325px)),
+          #0004 min(15vw, 195px),
+          #0008 min(25vw, 325px),
+          #000c
+        );
+      }
+    }
+
+    &.-vignette::after {
+      background: radial-gradient(
+        ellipse closest-side at 50% 35%,
+        #0002 40vw,
+        #0004
+      );
+      content: '';
+      z-index: 1;
+
+      @include at(md) {
+        background: radial-gradient(
+          ellipse at center,
+          #0004 40%,
+          #000c 80%
+        );
+      }
+    }
+
+    &.-split::after {
+      content: '';
+      z-index: 1;
+
+      @include at(md) {
+        background: linear-gradient(to right, #0008 50%, #0000 calc(50% + 1px));
+      }
+    }
+
+    &.-colorize::before {
+      content: '';
+      background: var(--accent-color);
+      mix-blend-mode: color;
+      z-index: 1;
+    }
+
+    &.-multiply {
+      background: white;
+      &::before {
+        content: '';
+        background: var(--accent-color);
+        mix-blend-mode: multiply;
+        z-index: 1;
+      }
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid: auto / subgrid;
+    gap: 1rem var(--root-gap);
+    align-items: center;
+    z-index: 1;
+
+    > :first-child:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+
+  // Natural content order for mobile
+  &__image {
+    order: 1;
+  }
+  &__testimonial {
+    order: 2;
+  }
+  &__media {
+    order: 3;
+  }
+  &__text {
+    order: 4;
+    padding: 2rem 0;
+  }
+  &__cta {
+    order: 5;
+  }
+
+  &__text,
+  &__image,
+  &__media,
+  &__cta,
+  &__testimonial {
+    @include at(md) {
+      order: unset;
+      grid-column: span var(--span, 1);
+    }
+  }
+
+  @include at(md) {
+    --columns: 2;
+  }
+
+  &.-padded {
+    padding: 5rem 0;
+
+    #{$b}__text {
+      padding: 0;
+    }
+  }
+
+  &.-bleed {
+    #{$b}__content {
+      grid-column: main / wide;
+
+      > :nth-child(2) {
+        grid-column: span 2;
+      }
+    }
+  }
+
+  &.-center {
+    #{$b}__content {
+      justify-items: center;
+      text-align: center;
+    }
+    #{$b}__text {
+      padding: 4rem 0;
+      max-width: fluid-rems(40, 50);
+      justify-items: center;
+    }
+  }
+}

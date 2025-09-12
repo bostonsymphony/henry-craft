@@ -1,0 +1,32 @@
+.accent-color-scale {
+  --size: 1.5em;
+  font-size: 1.5em;
+  background:
+    linear-gradient(var(--accent-color-50) 100%, tan) 0 / 10%,
+    linear-gradient(var(--accent-color-100) 100%, tan) 10% / 10%,
+    linear-gradient(var(--accent-color-200) 100%, tan) 20% / 10%,
+    linear-gradient(var(--accent-color-300) 100%, tan) 30% / 10%,
+    linear-gradient(var(--accent-color-400) 100%, tan) 40% / 10%,
+    linear-gradient(var(--accent-color-500) 100%, tan) 50% / 10%,
+    linear-gradient(var(--accent-color-600) 100%, tan) 60% / 10%,
+    linear-gradient(var(--accent-color-700) 100%, tan) 70% / 10%,
+    linear-gradient(var(--accent-color-800) 100%, tan) 80% / 10%,
+    linear-gradient(var(--accent-color-900) 100%, tan) 90% / 10%,
+    linear-gradient(var(--accent-color-950) 100%, tan) 100% / 10%;
+  background-repeat: no-repeat;
+  display: inline grid;
+  height: 1.5em;
+  width: 16.5em;
+}
+
+.placeholder {
+  aspect-ratio: 1;
+  --placeholder-color: rgb(from var(--accent-color) r g b / .2);
+  border: 2px solid var(--placeholder-color);
+  background: linear-gradient(to top right, #0000 calc(50% - 2px), var(--placeholder-color), #0000 calc(50% + 2px)),
+    linear-gradient(to top left, #0000 calc(50% - 2px), var(--placeholder-color), #0000 calc(50% + 2px))
+    rgb(from var(--accent-color) r g b / .1);
+  align-content: center;
+  text-align: center;
+  color: var(--accent-color);
+}

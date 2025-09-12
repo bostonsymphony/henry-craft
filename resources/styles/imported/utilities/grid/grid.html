@@ -1,0 +1,73 @@
+<div class="grid">
+    <div style="background:#00f2">
+        <code>.grid</code> defaults to one column.
+    </div>
+</div>
+
+<div class="grid -columns-2">
+    <div style="background:#00f2">You can
+        change this by adding a modifier: <code>.-columns-N</code>.
+    </div>
+</div>
+
+<div class="grid -columns-3">
+    <div class="cell -span-2" style="background:#00f2">
+        You can use <code>.cell.-span-N</code> as a utility to span columns.
+    </div>
+</div>
+
+<div class="grid -columns-3">
+    <div class="cell -right" style="background:#00f2">
+        You can use <code>.cell.-right</code> to right align an element.
+    </div>
+</div>
+
+<div class="grid -columns-12">
+    <div class="cell -span-4 -center" style="background: #0f02">
+        4 middle cells
+    </div>
+</div>
+
+<div class="grid -columns-9">
+    <div class="cell -span-5 -center" style="background:#00f2">
+        You can use <code>.cell.-center-N</code> to center an element, as best as it can.
+    </div>
+</div>
+
+<h5>Examples</h5>
+
+<section class="section accent-primary container">
+  <div class="grid -columns-2">
+    <div class="cell section__content placeholder" style="aspect-ratio: 634 / 368"></div>
+    <div class="cell section__content -prioritize">
+      <h3>This section is grid -columns-2.</h3>
+      <p>
+        Al of the layout for these sections are being done using .grid and .cell. 
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section accent-secondary container">
+  <div class="grid -columns-3">
+    <div class="cell -span-2 section__content -prioritize">
+      <h3>This shows how to do two-thirds content.</h3>
+      <p>Mauris euismod sit amet dolor vel vehicula. Nulla lacinia augue sem, accumsan luctus nunc facilisis Duis ex libero, auctor a semper in, condimentum sit amet enim. Vestibulum et consectetur arcu. <a href="#">Nam nunc justo,</a> varius id metus eu praesent dictum sit amet quam efficitur placerat. </p>
+    </div>
+    <div class="cell section__content placeholder" style="aspect-ratio: 634 / 368"></div>
+  </div>
+</section>
+
+<section class="section accent-tertiary container">
+  <div class="grid -columns-4">
+    <div class="cell -center -span-2 section__content -prioritize">
+      <h3>And here's an example centering the content.</h3>
+      <p>Mauris euismod sit amet dolor vel vehicula. Nulla lacinia augue sem, accumsan luctus nunc facilisis Duis ex libero, auctor a semper in, condimentum sit amet enim. Vestibulum et consectetur arcu. <a href="#">Nam nunc justo,</a> varius id metus eu praesent dictum sit amet quam efficitur placerat. </p>
+      <div class="actions">
+        <a class="button -outline" href="#">Learn More</a>
+        <a class="button -accent-primary" href="#">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
