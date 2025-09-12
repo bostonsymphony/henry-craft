@@ -1,0 +1,10 @@
+<div class="container">
+    <p-dismissable class="banner" name="banner{{ alert.id }}" v-slot="{ close }">
+        <div class="banner__content">
+            {{ alert.alertContent }}
+            <button class="banner__close" @click="close">
+                <svg class="icon accent-white -heavy" viewBox="0 0 18 18"><use href="/main-icons-sprite.svg#close" /></svg>
+            </button>
+        </div>
+    </p-dismissable>
+</div>

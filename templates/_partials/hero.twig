@@ -1,0 +1,63 @@
+{% import "/_macros" as macros %}
+
+{% if hero is defined and hero is instance of('craft\\elements\\db\\MatrixBlockQuery') %}
+    {% if hero.count > 0 %}
+        {% set hero = hero.one %}
+    {% else %}
+        {% set hero = false %}
+    {% endif %}
+{% endif %}
+
+{% if hero is defined and hero %}
+    {# set falsy defaults to simplify null checks #}
+    {% set hero = {
+        image: null,
+        heroEyebrow: null,
+        heroHeadline: null,
+        heroSubheadline: null,
+        heroContent: null,
+        CTA: null
+    }|merge(hero) %}
+
+    {% set background = null %}
+    {% if hero['background'] is defined and hero.background|length %}
+        {% set background = hero.background.value %}
+    {% endif %}
+
+    <section class="section container hero {{ background }}">
+        <div class="hero__content">
+            <div class="hero__text">
+                {% if hero.heroEyebrow %}
+                    <div class="eyebrow {{ (not background) ? 'accent-primary' : 'accent-white' }}">{{ hero.heroEyebrow }}</div>
+                {% endif %}
+
+                <h1 class="hero__heading">{{ hero.heroHeadline|default(entry.title) }}</h1>
+                 
+                {% if hero.heroContent %}
+                    <p class="hero__introduction">
+                        {{ hero.heroContent|striptags('<br><strong><b><em><i><del><span>')|raw }}
+                    </p>
+                {% endif %}
+                {% if hero.ctaLink is defined and hero.ctaLink|length %}
+                    <div class="actions">
+                        {{ macros.renderLink (hero.ctaLink, { class: 'button' })}}
+                    </div>
+                {% endif %}
+            </div>
+            {% if hero.image|length %}
+                <div class="hero__image">
+                    {{ macros.responsiveImage(hero.image.one, { pictureClass: 'hero__asset' }) }}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% else %}
+    <section class="section container hero accent-primary">
+        <div class="hero__content">
+            <header class="section__header">
+                <h1 class="section__heading">{{ entry.title }}</h1>
+            </header>
+        </div>
+    </section>
+{% endif %}

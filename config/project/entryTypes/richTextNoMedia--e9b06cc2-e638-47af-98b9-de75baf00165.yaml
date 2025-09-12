@@ -1,0 +1,38 @@
+color: purple
+fieldLayouts:
+  a41a8bf7-9596-483f-ba98-110deb562d53:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-05-16T14:25:51+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 37581c39-ebd0-4472-aa61-c2f51a891535 # Content (No Media)
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: Content
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5a0b3f4d-cec5-4550-8b64-a91492cec592
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 15a0ef65-45ad-4409-9c8e-dd86be7683ae
+        userCondition: null
+handle: richTextNoMedia
+hasTitleField: false
+icon: null
+name: 'Rich Text'
+showSlugField: false
+showStatusField: false
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

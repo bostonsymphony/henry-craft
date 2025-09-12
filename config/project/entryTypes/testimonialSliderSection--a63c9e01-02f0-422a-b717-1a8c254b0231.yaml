@@ -1,0 +1,78 @@
+color: blue
+fieldLayouts:
+  adcccf35-575b-4fe9-a234-0fb72923e7d1:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-05-19T15:09:44+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 3984cd0f-a133-49ff-94d0-63730cf1bf51 # Headline
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1699a34c-9986-441c-a06f-a25c96247db3
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-19T15:09:44+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b4fd5d6c-8267-43f3-bfed-8defac06c057 # Testimonial Slides
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9def8205-92bf-4d29-8359-eae67adcb497
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 8bb431b0-1a0a-46f1-b0f0-67666181d012
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-05-19T15:09:44+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a7b59ddf-b06d-4b04-8d73-c52609ae95d3 # Anchor
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6751c6cc-a7b5-4ae3-a07e-c7039b534a70
+            userCondition: null
+            warning: null
+            width: 100
+        name: Settings
+        uid: 37a5cc06-1d8e-4c4f-a398-d94b7a0f933e
+        userCondition: null
+handle: testimonialSliderSection
+hasTitleField: false
+icon: null
+name: 'Testimonial Slider'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

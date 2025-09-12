@@ -1,0 +1,85 @@
+color: null
+fieldLayouts:
+  51d6435e-382a-4933-b348-820e0d0b0de5:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-05-06T17:15:56+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 0a717abd-3ba5-4579-9018-38b7dec1e21c
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-06T17:17:36+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: dd58c3c0-4afc-4b83-a606-73c8bc282d99 # Image
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 002ecd79-2d83-439f-83a3-17b43ba8f35a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-09T15:33:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 5a53a4fd-6824-4729-9a20-006558d3e221 # Link
+            handle: null
+            includeInCards: false
+            instructions: 'Fill in link to create a CTA'
+            label: 'CTA Link'
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 1c9e7fd7-6795-4977-8600-fb2900439a51
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 0a52980a-eea8-4dd2-9f22-f4b41e9b3812
+        userCondition: null
+handle: ctaCardBlock
+hasTitleField: true
+icon: null
+name: 'CTA Card'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

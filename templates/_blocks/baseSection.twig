@@ -1,0 +1,45 @@
+{% import "/_macros" as macros %}
+
+{% if block is defined and block %}
+
+    {% set numColumns = block.children.count %}
+    {% set numColumnsClass = macros.numberToWord(numColumns) ~ "Column" %}
+    {% set columnSlugsClass = macros.columnsSlug(block) %}
+
+    {% set background = null %}
+    {% if block['background'] is defined and block.background|length %}
+        {% set background = block.background.value %}
+    {% endif %}
+
+    <section class="section container basicSection -{{ block.type }} {{ numColumns > 1 ? "-#{numColumnsClass}" : "" }} -{{ columnSlugsClass }} {{ background }}"
+        {{ block.anchor ? 'id="#' ~ block.anchor ~ "'" : ''}}
+    >
+        {% block header %}
+            {% if block.eyebrow or block.headline %}
+                {% include "/_partials/sectionHeader" %}
+            {% endif %}
+        {% endblock %}
+
+        {% block content %}
+        
+        {% endblock %}
+
+        {% block conclusion %}
+            {# {% if block.sectionConclusion is not empty or block.sectionCTA %} #}
+            {% if block.ctaLink and block.ctaLink.value|length %}
+                <div class="section__footer">
+                    {# {% if block.sectionConclusion %}
+                        <div class="section__conclusion">
+                            {{ block.sectionConclusion }}
+                        </div>
+                    {% endif %} #}
+                    {% if block.ctaLink %}
+                        <div class="section__actions">
+                            {{ macros.renderLink (block.ctaLink, { class: 'section__action button -primary' })}}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    </section>
+{% endif %}

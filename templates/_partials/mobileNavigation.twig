@@ -1,0 +1,91 @@
+<nav class="siteHeader__mobileNav mobileNavigation">
+    <p-openable class="mobileNavigation__menu button -circle -ghost" label="menu">
+        <template #toggle>
+            <svg class="button__icon icon"><use href="/main-icons-sprite.svg#bars" /></svg>
+        </template>
+        <template v-slot="{ click }">
+            <ul class="mobileNavigation__list">
+                {% for navItem in primaryNavigation.topNavItems.all %}
+                    {% set navEntry = navItem.topNavEntry.one ?? null %}
+                    <li class="mobileNavigation__item">
+                        {% if navEntry.children.level(2).count %}
+                            <p-openable class="mobileNavigation__button" name="submenu">
+                                <template #toggle>
+                                    {{ navEntry.title }}
+                                    <svg class="icon"><use href="/main-icons-sprite.svg#chevron-right" /></svg>
+                                </template>
+                                <template v-slot="{ click }">
+                                    <div class="mobileNavigation__pane">
+                                        <div class="mobileNavigation__title">
+                                            <div class="mobileNavigation__actions">
+                                                <button class="button -circle -ghost" @click.stopPropagation="click" tabindex="-1">
+                                                    <svg class="icon"><use href="/main-icons-sprite.svg#chevron-left" /></svg>
+                                                </button>
+                                            </div>
+                                        {{ navEntry.title }}
+                                        </div>
+
+                                        <ul class="mobileNavigation__list" v-directionals>
+                                            {% for subNavItem in navEntry.children.level(2) %}
+                                                {% if subNavItem.children.count() %}
+                                                    <p-openable>
+                                                        <template #toggle>
+                                                            {% if subNavItem.ctaLink and subNavItem.ctaLink.value %}
+                                                                <a href="{{ subNavItem.ctaLink.value }}">{{ subNavItem.title }}</a>
+                                                            {% else %}
+                                                                {{ subNavItem.title }}
+                                                            {% endif %}
+                                                            <svg class="icon"><use href="/main-icons-sprite.svg#chevron-right" /></svg>
+                                                        </template>
+                                                        <template v-slot="{ click }">
+                                                            <div class="mobileNavigation__pane">
+                                                                <div class="mobileNavigation__title">
+                                                                    <div class="mobileNavigation__actions">
+                                                                      <button class="button -circle -ghost" @click.stopPropagation="click" tabindex="-1">
+                                                                        <svg class="icon"><use href="/main-icons-sprite.svg#chevron-left" /></svg>
+                                                                      </button>
+                                                                    </div>
+                                                                    {{ subNavItem.title }}
+                                                                </div>
+
+                                                                <ul class="mobileNavigation__list" v-directionals>
+                                                                    {% for subSubNavItem in subNavItem.children.level(3) %}
+                                                                        {% if subSubNavItem.ctaLink and subSubNavItem.ctaLink.value %}
+                                                                            <li class="mobileNavigation__item">
+                                                                                <a href="{{ subSubNavItem.ctaLink.value }}" class="mobileNavigation__link">{{ subSubNavItem.title }}</a>
+                                                                            </li>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </div>
+                                                        </template>
+                                                    </p-openable>
+                                                {% else %}
+                                                    {% if subNavItem.ctaLink and subNavItem.ctaLink.value %}
+                                                        <a href="{{ subNavItem.ctaLink.value }}">{{ subNavItem.title }}</a>
+                                                    {% else %}
+                                                        {{ subNavItem.title }}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </template>
+                            </p-openable>
+                        {% else %}
+                            {% if navEntry.ctaLink and navEntry.ctaLink.url %}
+                                <a href="{{ navEntry.ctaLink.url }}" 
+                                    {{ item.generalToggleOff ? ' target="_new"' }} 
+                                    class="mobileNavigation__link">
+                                {{ navEntry.title }}
+                                </a>
+                            {% else %}
+                                {{ navEntry.title }}
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </template>
+    </p-openable>
+</nav>

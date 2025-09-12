@@ -1,0 +1,222 @@
+dateModified: 1747847835
+email:
+  fromEmail: info@imarc.com
+  fromName: 'Padstone Craft 5'
+  transportType: craft\mail\transportadapters\Sendmail
+fs:
+  images:
+    hasUrls: true
+    name: Images
+    settings:
+      path: '@webroot/images'
+    type: craft\fs\Local
+    url: /images
+  resources:
+    hasUrls: true
+    name: Resources
+    settings:
+      path: '@webroot/resources'
+    type: craft\fs\Local
+    url: /resources
+meta:
+  __names__:
+    0df95f6f-3e7a-4765-84de-aa8585234118: 'Rich Text' # Rich Text
+    0e0a0c15-2d54-4a63-b4ae-29b75916437e: Navigation # Navigation
+    0e078940-3caa-4bc2-84d3-c91c225cb26d: 'Full Bio' # Full Bio
+    0f24b2a8-d45a-4614-b908-6c6ed9230147: 'CTA Links' # CTA Links
+    1a4b6ea7-240d-4c7c-86ab-ce16b55afc24: Image # Image
+    1d7fd420-3fd4-4dc0-afca-1833e0d9a05c: 'SEOMatic Fields' # SEOMatic Fields
+    2b4abe74-65a4-4e1f-a224-ab97e43e54d9: 'Column Span' # Column Span
+    2d21b5d6-ed3b-489e-adb0-784f084e0537: Pages # Pages
+    3b057048-977f-4c40-ba97-63d84a65f907: 'Shared Blocks' # Shared Blocks
+    3e4455cb-a3c6-4a1f-aece-f5b32088a23e: 'Additional Footer Code' # Additional Footer Code
+    3f694951-45bb-48bb-8b85-e0d8634e227c: Background # Background
+    4a38a2c5-4173-4e7c-9c4d-de781a64d071: 'No Media' # No Media
+    4d061e2c-2f20-41b2-9e12-d11cb1fded64: 'Resource Topics' # Resource Topics
+    4f264f7a-a063-4e9a-824d-4ba8018a6c27: 'Utility Nav Entry' # Utility Nav Entry
+    5a53a4fd-6824-4729-9a20-006558d3e221: Link # Link
+    5c34e4ac-c379-4915-ae75-4016817fe223: 'CTA Card' # CTA Card
+    6a005e55-a63c-448a-824a-d719b3f55f46: Events # Events
+    6a91581a-a1ff-430b-bbeb-32b131747531: Video # Video
+    6bbbf1c9-7abf-470b-aefc-dd2290683a72: 'Fake Tag Group' # Fake Tag Group
+    6d180003-5ba0-4422-bebb-53f81069962e: '404 Page' # 404 Page
+    07ed78bd-f9e2-4563-a544-52dfa027178e: Alert # Alert
+    8a9cd262-8604-45fd-a48d-b11f4d398ba7: 'Press Mention' # Press Mention
+    8b3d1977-ab5a-4ca6-94cb-685acdef3921: 'Navigation Link' # Navigation Link
+    8d9c514a-a4e4-41ce-9b73-4425594f2885: 'Logo Grid' # Logo Grid
+    9a6122b0-6a00-4c79-958a-465d2e6549bd: 'Nav Type' # Nav Type
+    9affc2aa-55c3-4990-97df-9e714b7bf551: 'Top Nav Entry' # Top Nav Entry
+    9c45b436-5b6e-489c-b3cd-4c442876d973: 'Blog Categories' # Blog Categories
+    21a3840e-e64f-472b-93e4-69935cee15e0: 'CTA Card' # CTA Card
+    22dea229-207d-41ba-8a31-13eea8c38a5c: 'Media Section' # Media Section
+    24c6e880-c3d7-42a7-b883-a8cc4e6ae3a3: 'Callout Section' # Callout Section
+    37bd2e2c-ad20-4890-921c-d205d7db4424: 'Image Card' # Image Card
+    45adbb6c-4095-4a69-b61a-fc7bcc0a73cc: 'CTA Link' # CTA Link
+    48e60b07-4a40-446c-9d1a-b8255c2830f6: 'Footer Navigation' # Footer Navigation
+    52ff5c36-e87c-4674-8f10-76565b13abdf: Padstone # Padstone
+    77f762ab-419d-47e9-8b43-63754dafa72f: 'Call To Action' # Call To Action
+    82fc6643-49ce-461f-b55b-af4e57933421: Code # Code
+    89dec5ed-967b-4adc-96f4-990fe7f52da5: 'Breadcrumb Title' # Breadcrumb Title
+    091ba845-021e-4b45-af8f-923cd0b13154: 'Blog Articles' # Blog Articles
+    95bdff49-0896-47d2-86bc-9fd95e4ab8c5: 'Blog Categories' # Blog Categories
+    101d77f8-2e5b-44d4-9689-c44463856e1b: 'Hero Subheadline' # Hero Subheadline
+    117e786c-b219-4920-ac84-48665d61a724: 'Contact Page' # Contact Page
+    200bbebe-f7e1-4fbd-ba8a-6e07e14b4c8e: 'CTA Text' # CTA Text
+    341a7fb3-3ede-4a66-8e32-25c38b986f8a: 'Event Start Date' # Event Start Date
+    352d2732-3ef7-46b2-9f97-a9ca5d1d41c0: 'Top Navigation Item' # Top Navigation Item
+    377e43f5-bfc9-462f-a0db-51f020707423: 'Background Image' # Background Image
+    458fef22-7128-4c44-80db-51f83af8dc3e: 'Hero Content' # Hero Content
+    507a966d-0b69-4f8e-9d31-31b6528b14a0: Images # Images
+    521b80c9-0597-4ac3-b521-5e25290be644: 'Team Page' # Team Page
+    524e948c-591f-4e9e-a275-77e3e0709b86: Person # Person
+    0526dbf2-583a-4dc9-83f5-f5888101378b: Event # Event
+    0587c309-76fe-4928-9be3-cb2980b7908c: 'Content Designer' # Content Designer
+    656e0885-03be-47ab-8531-be346ddbfc62: 'Resource with Detail Page' # Resource with Detail Page
+    850e8e38-809a-494d-b643-efd7ff7c48e6: 'Media Sub Blocks' # Media Sub Blocks
+    880ea67a-2b41-468b-b4af-0e2799aee9b3: 'Public/Sorting Date' # Public/Sorting Date
+    976d4ccf-4988-4c36-968c-53f396dce7f2: 'Blog Article' # Blog Article
+    1734b2b5-03f5-435f-a92a-5b5e6125f9bc: Abstract # Abstract
+    3546d0c2-4446-4f19-beb3-1e460aa375df: Eyebrow # Eyebrow
+    3644b740-3500-418e-a08f-7e66e4a2b99e: 'Show Breadcrumbs' # Show Breadcrumbs
+    3984cd0f-a133-49ff-94d0-63730cf1bf51: Headline # Headline
+    4536b6f0-b762-4abc-b6d1-a918619f8b4d: Testimonial # Testimonial
+    6695f59b-2131-411b-9ed2-35f957256c1a: 'Event End Date' # Event End Date
+    8457c80e-39d8-4db2-8a6e-184dbf407cbe: Alerts # Alerts
+    8678d5b0-ebe6-4da8-9111-e5ccf5c13386: 'General Toggle Off' # General Toggle Off
+    8943bafd-8aa6-4449-8d82-21f319461410: 'Service Unavailable Page' # Service Unavailable Page
+    35753bc4-1fe5-4dab-9b39-969e168d2c68: 'Alert Content' # Alert Content
+    37581c39-ebd0-4472-aa61-c2f51a891535: 'Content (No Media)' # Content (No Media)
+    56554df0-f81a-4c6a-b023-706d2789eaa9: Video # Video
+    89839c0a-8c2a-4ef9-900f-709a4c4b77c1: 'Shared Blocks' # Shared Blocks
+    99552cc7-97e5-47f7-8587-b78478eed6fc: 'Top Navigation Items' # Top Navigation Items
+    115744a1-512d-495b-ba38-959ebed6cec4: 'Job Title' # Job Title
+    307187bf-968f-42da-b579-dbc76b7a9fa6: 'Shared Section' # Shared Section
+    678939a0-3ca0-4044-b263-e25151ebb1df: 'Additional Header Code' # Additional Header Code
+    798877d5-1c6b-43b0-94a9-203780a1b39f: 'Related Resources' # Related Resources
+    866793e8-8646-486d-95c2-24ad883f46a7: 'Sub Blocks' # Sub Blocks
+    5217297d-5931-41b9-a7a4-a797bb339952: Logos # Logos
+    69705774-001e-4d43-b76b-77eef5713301: 'Resource Types' # Resource Types
+    75857680-696a-4d59-a666-5a8b8091a36c: 'Direct Link' # Direct Link
+    a4a2b151-58b8-4935-a0ac-f0dc8216e02d: Card # Card
+    a5dace26-0a0c-4f88-a4ad-63c74c424a5e: 'Blog Page' # Blog Page
+    a7b59ddf-b06d-4b04-8d73-c52609ae95d3: Anchor # Anchor
+    a63c9e01-02f0-422a-b717-1a8c254b0231: 'Testimonial Slider' # Testimonial Slider
+    ab4da4c8-eed9-4c18-9a65-6cad926fcd59: Resources # Resources
+    adcddd0f-78ee-4ed7-bd80-ee4a2ebf8094: 'Blog Authors' # Blog Authors
+    ae7af0c4-5df7-45d3-aa71-3888882dd594: 'News Article' # News Article
+    af012389-66c1-47b3-ac35-1880759c37c5: Homepage # Homepage
+    b017369d-2ebc-4b60-8af4-d1777deb0450: 'Press Mention URL' # Press Mention URL
+    b4fd5d6c-8267-43f3-bfed-8defac06c057: 'Testimonial Slides' # Testimonial Slides
+    b5a971d7-f1e3-40aa-8c6d-3a9e633ca90a: 'Two Column Section' # Two Column Section
+    b96a3c34-e3b4-46ee-9bfe-c53406033bf0: Card # Card
+    bd4fb97b-3b89-49bc-9fdb-c20917cb6776: 'Featured Image' # Featured Image
+    bda4be51-a390-429b-856f-8ebd7905b00a: 'Hero Eyebrow' # Hero Eyebrow
+    bda481fe-9876-436b-80ba-07294176972e: Cards # Cards
+    c0144003-4e0b-4e16-8a3e-85fab98c9798: 'Nav Link' # Nav Link
+    c2f04b66-544d-449f-a4de-c5605f121afd: 'Team Member' # Team Member
+    c5febe1f-c523-44a4-894a-81eb0ea96691: 'Primary Navigation' # Primary Navigation
+    c7e04c91-15c1-4081-8d31-44ae7bf6eae9: 'Navigation Item' # Navigation Item
+    c46e2b3b-387a-4540-9120-ab0a15b0bbae: Homepage # Homepage
+    c59ecd1c-c856-4983-96da-bbbac954eab0: 'Basic Page' # Basic Page
+    c76d791f-6a12-4609-94f8-66f12eb848fd: Quote # Quote
+    c98b12f3-a5c4-4329-b13c-d59e97981978: Team # Team
+    c164bcf4-0226-4e9f-bfe0-ca08ad8056b5: Full # Full
+    c42320a8-209b-458c-a104-5cb1015f0efc: Author # Author
+    ca4795d4-4ac1-46d8-8a30-dea2b3369723: 'News Page' # News Page
+    cb8e727f-8cfd-4234-a8aa-3e11420418cb: 'Resource Types' # Resource Types
+    d6c3cdc6-9af4-4a8e-9008-56fc71426603: 'Padstone Craft 5' # Padstone Craft 5
+    d26a5c7a-435f-4562-91fe-d168201e7bed: 'Footer Navigation Items' # Footer Navigation Items
+    d41feaed-9c5d-41dc-9629-8e9af1b89cbf: Authors # Authors
+    d56b297b-0f38-4dee-abc3-57498c544f41: Hero # Hero
+    d4966cae-3474-4ee8-92bd-7d511f1758d4: 'Standard Hero' # Standard Hero
+    d69400d5-37c7-48ef-b143-e25cccdda2ac: Simple # Simple
+    dab85477-9d74-4135-9cd2-a0e109e07314: Subheadline # Subheadline
+    dc246a2f-01d9-4061-b2a1-bc1e6b6edf94: 'Card Section' # Card Section
+    dccf2895-2f61-4bbe-8ac6-bf389ab04527: 'Simple (No Links)' # Simple (No Links)
+    dd58c3c0-4afc-4b83-a606-73c8bc282d99: Image # Image
+    de18a008-1675-459b-bc1e-5f684096b0c2: 'Resource Topics' # Resource Topics
+    e9b06cc2-e638-47af-98b9-de75baf00165: 'Rich Text' # Rich Text
+    e49eee72-0b33-43a2-81d6-31fb4ab32346: 'Alt Text' # Alt Text
+    e70de5ea-2588-4113-a125-ccc9a4d5a9d2: 'Utility Nav' # Utility Nav
+    e737c446-0085-4bd6-b343-2d4c9e9f312e: 'Resources Page' # Resources Page
+    eed094b2-cdd9-4163-8ca6-fca978f404ad: 'Shared Sections' # Shared Sections
+    eeef2caa-117b-428d-9f03-adb34907baec: 'Link Text' # Link Text
+    f155fe39-4c36-418a-829b-8e9bfcd3fa1d: 'Event Location' # Event Location
+    f8914d2d-ddd0-4141-ba2d-c28214f54b2a: 'News Articles' # News Articles
+    fa15f698-a1ed-4140-9c8d-02eac44b66b4: 'Navigation Group' # Navigation Group
+    fb82e0a6-3ed1-4972-9882-da2431a7788b: Resources # Resources
+    fcee80e9-4667-40be-9381-e2994ff56dc0: 'Hero Headline' # Hero Headline
+    ff11a7ef-4804-4699-9e26-f9d531a7e760: Content # Content
+plugins:
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0.0
+  codefield:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  contact-form:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  contact-form-honeypot:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  element-api:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  entry-toc:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  expanded-singles:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  feed-me:
+    edition: standard
+    enabled: true
+    schemaVersion: 5.1.1
+  field-manager:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  pickture:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  regex-field:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  retour:
+    edition: standard
+    enabled: true
+    licenseKey: CBA04ZCERGIMDHG32R27BO9X
+    schemaVersion: 3.0.12
+  seomatic:
+    edition: standard
+    enabled: true
+    licenseKey: ZRUZFKQ48F1MB4CZKMZIIHQU
+    schemaVersion: 3.0.13
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: Padstone
+  retryDuration: null
+  schemaVersion: 5.7.0.3
+  timeZone: America/New_York
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

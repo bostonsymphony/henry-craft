@@ -1,0 +1,31 @@
+columnSuffix: null
+handle: mediaSubBlocks
+instructions: null
+name: 'Media Sub Blocks'
+searchable: false
+settings:
+  createButtonLabel: 'New Media'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 1a4b6ea7-240d-4c7c-86ab-ce16b55afc24 # Image
+    -
+      __assoc__:
+        -
+          - uid
+          - 6a91581a-a1ff-430b-bbeb-32b131747531 # Video
+  includeTableView: false
+  maxEntries: 1
+  minEntries: 1
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

@@ -1,0 +1,30 @@
+columnSuffix: null
+handle: blockContent
+instructions: null
+name: Content
+searchable: false
+settings:
+  availableTransforms: ''
+  availableVolumes:
+    - 507a966d-0b69-4f8e-9d31-31b6528b14a0 # Images
+  characterLimit: null
+  ckeConfig: c164bcf4-0226-4e9f-bfe0-ca08ad8056b5 # Full
+  createButtonLabel: null
+  defaultTransform: null
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 976d4ccf-4988-4c36-968c-53f396dce7f2 # Blog Article
+  fullGraphqlData: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups: '*'
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

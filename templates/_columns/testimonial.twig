@@ -1,0 +1,21 @@
+<blockquote class="testimonial">
+    <svg class="testimonial__icon icon accent-primary" role="presentation">
+        <use href="/main-icons-sprite.svg#quote" />
+    </svg>
+    <div class="testimonial__content">
+        {{ block.quote }}
+    </div>
+    <footer class="testimonial__footer">
+        {% if block.image|length %}
+            <div class="testimonial__citationPhotoWrapper">
+                {{ macros.responsiveImage(block.image.one, { imgClass: 'testimonial__citationPhoto' }) }}
+            </div>
+        {% endif %}
+        <cite class="testimonial__citation">
+            {{ block.person }}
+            <span class="testimonial__citationTitle">
+                {{ block.jobTitle }}
+            </span>
+        </cite>
+    </footer>
+</blockquote>

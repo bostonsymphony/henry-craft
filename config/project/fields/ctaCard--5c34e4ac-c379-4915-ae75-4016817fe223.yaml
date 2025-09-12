@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: ctaCard
+instructions: null
+name: 'CTA Card'
+searchable: false
+settings:
+  createButtonLabel: 'New CTA card'
+  defaultIndexViewMode: cards
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 21a3840e-e64f-472b-93e4-69935cee15e0 # CTA Card
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

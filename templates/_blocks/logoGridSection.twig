@@ -1,0 +1,17 @@
+{% import "/_macros" as macros %}
+
+{% extends "/_blocks/baseSection" %}
+
+{% block content %}
+
+<div class="logoCloud">
+    <div class="logoCloud__logos">
+        {% for icon in block.logos.all() %}
+            <div class="logoCloud__logo">
+                {{ macros.responsiveImage(icon, { pictureClass: 'logoCloud__img' }) }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

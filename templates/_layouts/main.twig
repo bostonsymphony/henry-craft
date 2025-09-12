@@ -1,0 +1,83 @@
+{% import "/_macros" as macros %}
+{% apply spaceless %}
+    {% if bodyClasses is not defined %}
+        {% set bodyClasses = [] %}
+    {% endif %}
+
+    {% if section is defined %}
+        {% set bodyClasses = bodyClasses|merge([section|kebab]) %}
+    {% else %}
+        {% set section = '' %}
+    {% endif %}
+{% endapply %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {{ craft.vite.script("resources/js/index.js") }}
+
+        {% if entry is defined and entry.headerCode %}
+            {{ entry.headerCode|raw }}
+        {% endif %}
+    </head>
+    <body class="{{ bodyClasses|join(' ') }}" >
+
+        <div id="app">
+            <header class="siteHeader container">
+                <div class="siteHeader__content">
+                    <a class="siteHeader__logo" href="/">
+                        {#
+                            {{ macros.responsiveImage(
+                                    craft.assets({ volume: 'images', title: 'Padstone Logo' }).one,
+                                    { transform: { height: 48, width: 96, mode: 'fit' } }
+                                    ) }}
+                        #}
+                        <svg viewBox="0 0 300 133" xmlns="http://www.w3.org/2000/svg" fill="#8000ff">
+                            <rect width="300" height="133"/>
+                            <text x="150" y="80" text-anchor="middle" font-size="32px" fill="white">{{ siteName }}</text>
+                        </svg>
+                    </a>
+
+                    <nav class="siteHeader__utilityNav navigation">
+                        <ul class="navigation__list">
+                            {% for navItem in utilityNav.utilityNavEntry.all %}
+                                <li class="navigation__item"><a class="navigation__link" href="{{ navItem.ctaLink.url }}">{{ navItem.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+
+                    <div class="siteHeader__search search">
+                          <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M232.49,215.51,185,168a92.12,92.12,0,1,0-17,17l47.53,47.54a12,12,0,0,0,17-17ZM44,112a68,68,0,1,1,68,68A68.07,68.07,0,0,1,44,112Z"></path></svg>
+                          <input class="search__input input" type="search" placeholder="Search">
+                    </div>
+
+                    {% include "/_partials/navigation" %}
+
+                    {% include "/_partials/mobileNavigation" %}
+
+                </div>
+            </header>
+
+
+            <main role="main">
+
+                {% for alert in craft.entries.section('alerts').all() %}
+                    {% include "/_partials/alert" with { alert: alert } %}
+                {% endfor %}
+
+                {% block content %}{% endblock %}
+
+            </main>
+
+            {% include "/_partials/footer" %}
+
+        </div>
+
+        {% if entry is defined and entry.footerCode %}
+            {{ entry.footerCode|raw }}
+        {% endif %}
+
+    </body>
+</html>

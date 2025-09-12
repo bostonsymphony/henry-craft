@@ -1,0 +1,10 @@
+{% import "/_macros" as macros %}
+
+{% if block.blockContentNoMedia|length %}
+    <div class="section__content">
+        {{ block.blockContentNoMedia }}
+    </div>
+{% endif %}
+<div class="actions">
+    {{ macros.renderLink (block.ctaLink, { class: 'button' })}}
+</div>
