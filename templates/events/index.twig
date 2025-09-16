@@ -1,0 +1,11 @@
+
+{% import "/_macros" as macros %}
+{% set section = 'home' %}
+{% extends "_layouts/main" %}
+{% block content %}
+
+<div class="calendar" >
+  <calendar index-name="performances_local"></calendar>
+</div>
+
+{% endblock %}
