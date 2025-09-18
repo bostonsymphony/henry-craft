@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: footerColumns
+instructions: null
+name: 'Footer Columns'
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - b9887631-08f6-49cc-aa6f-0838021677d5 # Footer Column
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: 50
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: cards
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

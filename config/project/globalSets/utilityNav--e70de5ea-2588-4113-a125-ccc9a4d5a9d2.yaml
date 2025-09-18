@@ -1,13 +1,15 @@
 fieldLayouts:
   c473ba4c-9da6-4173-a843-b1092de9d779:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-05-07T17:02:34+00:00'
+            dateAdded: '2025-09-17T17:28:08+00:00'
+            editCondition: null
             elementCondition: null
-            fieldUid: 4f264f7a-a063-4e9a-824d-4ba8018a6c27 # Utility Nav Entry
+            fieldUid: 99552cc7-97e5-47f7-8587-b78478eed6fc # Navigation Items
             handle: null
             includeInCards: false
             instructions: null
@@ -16,7 +18,24 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: bcc02c8a-77f3-474e-8377-77b183dce0aa
+            uid: afd02e2d-256e-4ba1-a350-57ab71daa00d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-09-18T18:44:18+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b8de7e52-c709-400c-ad47-80b544073417 # Logos with Links
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: 'Underwriter Links'
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 112b554d-1fe4-4e99-8e58-6d8eec48d5a2
             userCondition: null
             warning: null
             width: 100
@@ -24,5 +43,5 @@ fieldLayouts:
         uid: 60b57368-f394-4a34-814d-39a2aa497e48
         userCondition: null
 handle: utilityNav
-name: 'Utility Nav'
+name: 'Footer Utility Nav'
 sortOrder: 3

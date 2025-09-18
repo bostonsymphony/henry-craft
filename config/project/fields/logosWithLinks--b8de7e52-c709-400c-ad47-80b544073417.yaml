@@ -1,25 +1,29 @@
 columnSuffix: null
-handle: navLink
+handle: logosWithLinks
 instructions: null
-name: 'Nav Link'
+name: 'Logos with Links'
 searchable: false
 settings:
   createButtonLabel: null
   defaultIndexViewMode: cards
+  enableVersioning: false
   entryTypes:
     -
       __assoc__:
         -
           - uid
-          - c7e04c91-15c1-4081-8d31-44ae7bf6eae9 # Navigation Item
+          - 62914363-0465-4dbe-9846-2dd28c618817 # Logo with Link
+        -
+          - group
+          - General
   includeTableView: false
-  maxEntries: 1
+  maxEntries: null
   minEntries: null
-  pageSize: null
+  pageSize: 50
   propagationKeyFormat: null
   propagationMethod: all
   showCardsInGrid: false
-  viewMode: blocks
+  viewMode: cards
 translationKeyFormat: null
 translationMethod: site
 type: craft\fields\Matrix

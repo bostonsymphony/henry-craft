@@ -14,8 +14,16 @@ options:
           target: _blank
         label: 'Open in a new tab'
         mode: manual
+  style:
+    definitions:
+      -
+        classes:
+          - '-gray'
+        element: p
+        name: 'Gray text'
 toolbar:
   - heading
+  - style
   - '|'
   - numberedList
   - bulletedList

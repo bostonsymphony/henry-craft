@@ -10,7 +10,9 @@ settings:
   ckeConfig: 4a38a2c5-4173-4e7c-9c4d-de781a64d071 # No Media
   createButtonLabel: null
   defaultTransform: null
+  expandEntryButtons: false
   fullGraphqlData: true
+  parseEmbeds: false
   purifierConfig: null
   purifyHtml: true
   showUnpermittedFiles: false

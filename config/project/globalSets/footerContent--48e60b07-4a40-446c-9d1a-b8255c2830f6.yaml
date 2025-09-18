@@ -1,32 +1,32 @@
 fieldLayouts:
-  014ddd99-77a7-4955-91d9-ce04f130e3a7:
+  3029a860-09a3-4562-9ce4-2e8580d699ef:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-09-16T17:55:18+00:00'
+            dateAdded: '2025-09-17T17:13:07+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: b017f5cc-01aa-4798-b11f-6ffa8126dc06 # Site Tagline
+            fieldUid: 3b057048-977f-4c40-ba97-63d84a65f907 # Shared Blocks
             handle: null
             includeInCards: false
-            instructions: null
+            instructions: 'Shared footer blocks that will apper on every page'
             label: null
             providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ccd11d78-5553-455b-bdc3-2bd29fa20b2a
+            uid: 0c7e2e71-825e-43fe-bf57-51208184f0ea
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-05-06T17:17:58+00:00'
+            dateAdded: '2025-09-17T18:05:35+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 99552cc7-97e5-47f7-8587-b78478eed6fc # Navigation Items
+            fieldUid: dda90ee5-34f1-4059-82b8-e83b9a32b0c9 # Footer Columns
             handle: null
             includeInCards: false
             instructions: null
@@ -35,13 +35,13 @@ fieldLayouts:
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ccbb84cc-429a-4953-8522-fd55b952efff
+            uid: 4ab1f14e-cc13-47de-9963-339d010c4ebc
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 25a2aebb-4c5f-456e-b22c-beeb4aab3a9f
+        uid: 08ec1209-3049-4e39-9d53-da610da5d938
         userCondition: null
-handle: primaryNavigation
-name: 'Primary Navigation'
-sortOrder: 1
+handle: footerContent
+name: 'Footer Content'
+sortOrder: 2

@@ -12,6 +12,7 @@
 {% set srcset = asset.getSrcset(sizes) %}
 {% do asset.setTransform(transform|merge({ format: 'webp' })) %}
 {% set webpSrcset = asset.getSrcset(sizes) %}
+{% set alt = alt ?? asset.alt %}
 
 <picture class="{{ pictureClass }}">
     <source data-sizes="auto" data-srcset="{{ webpSrcset }}" type="image/webp" />
@@ -19,6 +20,6 @@
         src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="{{ asset.height }}" width="{{ asset.width }}"></svg>'
         class="lazyload {{ imgClass }}"
         data-sizes="auto"
-        srcset="{{ srcset }}" alt="{{ asset.alt }}"
+        srcset="{{ srcset }}" alt="{{ alt }}"
     />
 </picture>

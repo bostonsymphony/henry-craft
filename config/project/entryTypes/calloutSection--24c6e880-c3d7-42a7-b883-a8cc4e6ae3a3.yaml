@@ -1,6 +1,8 @@
 color: rose
+description: null
 fieldLayouts:
   6f4fac81-ff10-4e1b-8c25-b4b48dde7724:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -57,19 +59,19 @@ fieldLayouts:
             warning: null
             width: 100
           -
-            dateAdded: '2025-05-19T17:35:16+00:00'
+            dateAdded: '2025-09-17T17:06:23+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 0f24b2a8-d45a-4614-b908-6c6ed9230147 # CTA Links
+            fieldUid: 5a53a4fd-6824-4729-9a20-006558d3e221 # Link
             handle: null
             includeInCards: false
             instructions: null
-            label: null
+            label: 'CTA Button'
             providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: c0df7d8a-9398-4c1e-b561-2778b018846b
+            uid: ad1cad3a-c116-4cc5-8e63-d36b84777b1f
             userCondition: null
             warning: null
             width: 100

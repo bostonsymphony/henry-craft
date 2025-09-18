@@ -3,6 +3,7 @@ node_modules
 storage
 vendor
 web/cpresources
+web/images
 .aider*
 .env
 

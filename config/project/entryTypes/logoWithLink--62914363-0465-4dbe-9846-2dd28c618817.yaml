@@ -1,47 +1,57 @@
+color: null
+description: null
 fieldLayouts:
-  014ddd99-77a7-4955-91d9-ce04f130e3a7:
+  50e5f4eb-6656-4fb5-b44b-77f8b9d1ced3:
     cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
-            dateAdded: '2025-09-16T17:55:18+00:00'
+            dateAdded: '2025-09-18T18:43:10+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: b017f5cc-01aa-4798-b11f-6ffa8126dc06 # Site Tagline
+            fieldUid: dd58c3c0-4afc-4b83-a606-73c8bc282d99 # Image
             handle: null
             includeInCards: false
             instructions: null
-            label: null
+            label: Logo
             providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ccd11d78-5553-455b-bdc3-2bd29fa20b2a
+            uid: 83fa7ad7-e051-4759-9ee4-5d578d18dd2e
             userCondition: null
             warning: null
             width: 100
           -
-            dateAdded: '2025-05-06T17:17:58+00:00'
+            dateAdded: '2025-09-18T18:43:10+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 99552cc7-97e5-47f7-8587-b78478eed6fc # Navigation Items
+            fieldUid: 5a53a4fd-6824-4729-9a20-006558d3e221 # Link
             handle: null
             includeInCards: false
-            instructions: null
+            instructions: 'The label will be used as the alt text, or if left blank the asset alt text will be used'
             label: null
             providesThumbs: false
             required: false
             tip: null
             type: craft\fieldlayoutelements\CustomField
-            uid: ccbb84cc-429a-4953-8522-fd55b952efff
+            uid: af240094-e174-4f2e-b83e-e5acd8c5c895
             userCondition: null
             warning: null
             width: 100
         name: Content
-        uid: 25a2aebb-4c5f-456e-b22c-beeb4aab3a9f
+        uid: 6259af30-53b9-4011-b496-8412b4ffc777
         userCondition: null
-handle: primaryNavigation
-name: 'Primary Navigation'
-sortOrder: 1
+handle: logoWithLink
+hasTitleField: false
+icon: null
+name: 'Logo with Link'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

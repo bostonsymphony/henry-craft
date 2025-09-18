@@ -1,101 +1,82 @@
 {% import "/_macros" as macros %}
 
 <footer class="siteFooter container">
+    {% for sharedBlock in footerContent.sharedBlocks.all() %}
+        {{ macros.renderAllBlocks(sharedBlock.contentDesigner) }}
+    {% endfor %}
     <div class="siteFooter__content">
-
-        <aside class="siteFooter__info">
-            <a href="/" class="siteFooter__logo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="siteFooter__logo" width="36" height="44" viewBox="3 1 18 22" stroke-width="1" stroke="currentColor" fill="none">
-                    <path d="M6 17.6l-2 -1.1v-2.5" />
-                    <path d="M4 10v-2.5l2 -1.1" />
-                    <path d="M10 4.1l2 -1.1l2 1.1" />
-                    <path d="M18 6.4l2 1.1v2.5" />
-                    <path d="M20 14v2.5l-2 1.12" />
-                    <path d="M14 19.9l-2 1.1l-2 -1.1" />
-                    <line x1="12" y1="12" x2="14" y2="10.9" />
-                    <line x1="18" y1="8.6" x2="20" y2="7.5" />
-                    <line x1="12" y1="12" x2="12" y2="14.5" />
-                    <line x1="12" y1="18.5" x2="12" y2="21" />
-                    <path d="M12 12l-2 -1.12" />
-                    <line x1="6" y1="8.6" x2="4" y2="7.5" />
-                </svg>
-                <div class="siteFooter__siteName">{{ siteName }}</div>
+        <ul class="footer__brands">
+        <li class="footer__brands-item">
+            <a href="/" class="footer__brands-link" aria-label="BSO">
+            <svg class="logo__bso"><use xlink:href="#bso-logo"></use></svg>
             </a>
-        </aside>
+        </li>
+        <li class="footer__brands-item">
+            <a href="/tanglewood" class="footer__brands-link" aria-label="Tanglewood">
+            <svg class="logo__tanglewood"><use xlink:href="#tanglewood-logo"></use></svg>
+            </a>
+        </li>
+        <li class="footer__brands-item">
+            <a href="/pops" class="footer__brands-link" aria-label="Pops">
+            <svg class="logo__pops"><use xlink:href="#pops-logo"></use></svg>
+            </a>
+        </li>
+        <li class="footer__brands-item">
+            <a href="/symphony-hall" class="footer__brands-link" aria-label="Symphony Hall">
+            <svg class="logo__symphonyhall"><use xlink:href="#symphonyhall-logo"></use></svg>
+            </a>
+        </li>
+        </ul>
+        <div class="footer__primary">
+            <div class="footer__col-large">
+                <h2 class="footer__header">Contact</h2>
+                <div class="footer__contact">
+                <div class="footer__contact-col">
+                    {% for column in footerContent.footerColumns.all() %}
+                        <div class="footer__section">
+                            {% if column.title %}
+                                <h3 class="footer__subhead">{{ column.title }}</h3>
+                            {% endif %}
+                            {% if column.blockContentNoMedia %}
+                                <p class="footer__basic-text">
+                                    {{ column.blockContentNoMedia|striptags('<em><i><strong><a><br>')|raw }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>  
+            </div>
+        </div>
 
-        <nav class="siteFooter__navigation sitemap">
-            <ul class="sitemap__list">
-                {% for navItem in footerNavigation.footerNavItems.all %}
-                    <div class="sitemap__item">
-                        {% if navItem.ctaLink and navItem.ctaLink.value %}
-                            {{ macros.renderLink(navItem.ctaLink, { class: 'sitemap__heading' }) }}
-                        {% else %}
-                            <div class="sitemap__heading">{{ navItem.title }}</div>
-                        {% endif %}
-                        
-                        {% if navItem.children.count %}
-                            <ul class="sitemap__sublist">
-                                 {% for subNavItem in navItem.children.level(2) %}
-                                    <li>
-                                        {% if subNavItem.children.count() %}
-                                            {% if subNavItem.ctaLink and subNavItem.ctaLink.value %}
-                                                {{ macros.renderLink(subNavItem.ctaLink, { class: 'sitemap__heading' }) }}
-                                            {% else %}
-                                                <div class="sitemap__heading">{{ subNavItem.title }}</div>
-                                            {% endif %}
-                                            <ul class="sitemap__subsublist">
-                                                {% for subSubNavItem in subNavItem.children.level(3) %}
-                                                    {% if subSubNavItem.ctaLink and subSubNavItem.ctaLink.value %}
-                                                        <li>
-                                                            <a href="{{ subSubNavItem.ctaLink.value }}">{{ subSubNavItem.title }}</a>
-                                                        </li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </ul>
-                                        {% else %}
-                                            {% if subNavItem.ctaLink and subNavItem.ctaLink.value %}
-                                                {{ macros.renderLink(subNavItem.ctaLink, { class: 'sitemap__heading' }) }}
-                                            {% else %}
-                                                {{ subNavItem.title }}
-                                            {% endif %}
-                                        {% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
+        
+
+        <div class="footer__secondary">
+            <div class="footer__secondary-links">
+                <span>©{{ "now"|date("Y") }} BSO.org</span>
+                {% for navItem in utilityNav.navItems.all %}
+                    {% set navEntry = navItem.ctaLink ?? null %}
+                    {% if navEntry %}
+                        <a href="{{ navEntry.url }}"{{ navEntry.target ? ' target="' ~ navEntry.target ~ '"'}} >{{ navEntry.label }}</a>
+                    {% endif %}
                 {% endfor %}
-            </ul>
-        </nav>
+                
+            </div>
 
-        <nav class="siteFooter__social actions">
-            <a class="button -square -ghost" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-                </svg>
-            </a>
+            <div class="footer__sponsor">
+                <span>Underwritten By</span>
 
-            <a class="button -square -ghost" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="16" height="16" rx="4" />
-                  <circle cx="12" cy="12" r="3" />
-                  <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-                </svg>
-            </a>
-
-            <a class="button -square -ghost" href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="32" height="32" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
-                </svg>
-            </a>
-        </nav>
-
-        <nav class="siteFooter__utility">
-            <div class="siteFooter__copyright">© {{ "now"|date('Y') }} Padstone. Padstone is an open source project built by <a href="https://www.imarc.com/">Imarc.</a></div>
-
-            <a href="#">privacy policy</a>
-            <a href="#">legal</a>
-        </nav>
-    </div>
+                {% for logo in utilityNav.logosWithLinks.all %}
+                    {% if logo.ctaLink and logo.ctaLink.label %}
+                        <a href="{{ logo.ctaLink.url }}" class="footer__sponsor-link">
+                    {% endif %}
+                    {% if logo.image|length %}
+                          {{ macros.responsiveImage(logo.image.one, { alt: logo.ctaLink.label ?: logo.image.one.alt }) }}
+                    {% endif %}
+                    {% if logo.ctaLink and logo.ctaLink.label %}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div> 
+        </div>
 
 </footer>
