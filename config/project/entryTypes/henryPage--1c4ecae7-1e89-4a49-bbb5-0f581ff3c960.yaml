@@ -1,0 +1,127 @@
+color: null
+description: null
+fieldLayouts:
+  f42bc75b-020b-497a-b391-e50c4fbfca31:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-09-23T13:47:53+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: fedb5a61-3799-419b-98cb-d5536885d3f4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-09-23T13:52:42+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: d56b297b-0f38-4dee-abc3-57498c544f41 # Hero
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ee914e48-4053-40a3-86d8-be0cc2f30479
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-09-23T13:49:31+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ff11a7ef-4804-4699-9e26-f9d531a7e760 # Content
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f22a2930-2e37-45c3-8cc2-ff2ff7207ed6
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 4d40d210-4a1e-4552-9bc0-f8dff519ba8f
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-09-23T13:52:42+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 1d7fd420-3fd4-4dc0-afca-1833e0d9a05c # SEOMatic Fields
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 027ad39f-029e-4307-a0aa-32ba3265bcb4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-09-23T13:52:42+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 678939a0-3ca0-4044-b263-e25151ebb1df # Additional Header Code
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8a98776f-6ff4-493d-9d92-29fe9e188970
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: 2bce0792-e341-472b-85cb-e574e20f3861
+        userCondition: null
+handle: henryPage
+hasTitleField: true
+icon: null
+name: 'HENRY Page'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
