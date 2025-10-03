@@ -28,16 +28,7 @@
             <header class="siteHeader container">
                 <div class="siteHeader__content">
                     <a class="siteHeader__logo" href="/">
-                        {#
-                            {{ macros.responsiveImage(
-                                    craft.assets({ volume: 'images', title: 'Padstone Logo' }).one,
-                                    { transform: { height: 48, width: 96, mode: 'fit' } }
-                                    ) }}
-                        #}
-                        <svg viewBox="0 0 300 133" xmlns="http://www.w3.org/2000/svg" fill="#8000ff">
-                            <rect width="300" height="133"/>
-                            <text x="150" y="80" text-anchor="middle" font-size="32px" fill="white">{{ primaryNavigation.siteTagline }}</text>
-                        </svg>
+                        Performance History Search
                     </a>
 
                     {% include "/_partials/navigation" %}
