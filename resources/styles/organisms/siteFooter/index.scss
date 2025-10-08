@@ -100,14 +100,13 @@
   }
 
   &__sponsor {
+    display:flex;
+    justify-content: flex-end;
+    gap: 2rem;
     @include at(md) {
       grid-column-start:3;
       grid-column-end:5;
     }
-    
-    display:flex;
-    justify-content: flex-end;
-    gap: 2rem;
   }
 
   &__subhead {
