@@ -10,8 +10,8 @@
    * Typography
    */
 
-  --root-font-family: initial;
-  --root-font-family-heading: initial;
+  --root-font-family: Aeonik;
+  --root-font-family-heading: Aeonik;
 
   --root-font-size-h1: #{fluid-rems(    2,   2.5,    3)};
   --root-font-size-h2: #{fluid-rems(  1.5,     2,  2.5)};
@@ -50,11 +50,17 @@
   --color-blue-700: #003D99;
   --color-aqua: #00CCCC;
   --color-aqua-700: #009999;
+  --color-dark-blue: #14284E;
+  --color-white: #ffffff;
+  --color-mid-blue: #12305A;
+  --color-light-gray: #F5F5F5;
+  --color-turquoise: #01ABE6;
+  --color-black:#000000;
 
   /**
    * Default accent color.
    */
-  --accent-color: var(--color-purple);
+  --accent-color: var(--color-dark-blue);
 
   /**
    * Primary text color.
@@ -170,4 +176,33 @@
   //
   // Configure other --root- properties here.
   //
+
+  @font-face {
+    font-family: Aeonik;
+    src: url('/fonts/aeonik/aeonik-regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Aeonik;
+    src: url('/fonts/aeonik/aeonik-regular-italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Aeonik;
+    src: url('/fonts/aeonik/aeonik-bold.woff') format('woff');
+    font-weight: 700;
+    font-style: bold;
+  }
+
+  @font-face {
+    font-family: Aeonik;
+    src: url('/fonts/aeonik/aeonik-bold-italic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+  }
+
 }

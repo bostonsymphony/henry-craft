@@ -1,82 +1,58 @@
 {% import "/_macros" as macros %}
 
-<footer class="siteFooter container">
-    {% for sharedBlock in footerContent.sharedBlocks.all() %}
-        {{ macros.renderAllBlocks(sharedBlock.contentDesigner) }}
-    {% endfor %}
-    <div class="siteFooter__content">
-        <ul class="footer__brands">
-        <li class="footer__brands-item">
-            <a href="/" class="footer__brands-link" aria-label="BSO">
-            <svg class="logo__bso"><use xlink:href="#bso-logo"></use></svg>
-            </a>
-        </li>
-        <li class="footer__brands-item">
-            <a href="/tanglewood" class="footer__brands-link" aria-label="Tanglewood">
-            <svg class="logo__tanglewood"><use xlink:href="#tanglewood-logo"></use></svg>
-            </a>
-        </li>
-        <li class="footer__brands-item">
-            <a href="/pops" class="footer__brands-link" aria-label="Pops">
-            <svg class="logo__pops"><use xlink:href="#pops-logo"></use></svg>
-            </a>
-        </li>
-        <li class="footer__brands-item">
-            <a href="/symphony-hall" class="footer__brands-link" aria-label="Symphony Hall">
-            <svg class="logo__symphonyhall"><use xlink:href="#symphonyhall-logo"></use></svg>
-            </a>
-        </li>
-        </ul>
-        <div class="footer__primary">
-            <div class="footer__col-large">
-                <h2 class="footer__header">Contact</h2>
-                <div class="footer__contact">
-                <div class="footer__contact-col">
-                    {% for column in footerContent.footerColumns.all() %}
-                        <div class="footer__section">
-                            {% if column.title %}
-                                <h3 class="footer__subhead">{{ column.title }}</h3>
-                            {% endif %}
-                            {% if column.blockContentNoMedia %}
-                                <p class="footer__basic-text">
-                                    {{ column.blockContentNoMedia|striptags('<em><i><strong><a><br>')|raw }}
-                                </p>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>  
-            </div>
-        </div>
 
+{% for sharedBlock in footerContent.sharedBlocks.all() %}
+    {{ macros.renderAllBlocks(sharedBlock.contentDesigner) }}
+{% endfor %}
+
+<footer class="siteFooter container">
+    
+    <div class="siteFooter__content -main">
+        {% for column in footerContent.footerColumns.all() %}
+            <div class="siteFooter__col {{ loop.first == 1 ? '-first' }}">
+                {% if column.title %}
+                    <h3 class="siteFooter__subhead">{{ column.title }}</h3>
+                {% endif %}
+                {% if column.blockContentNoMedia %}
+                    <div class="siteFooter__text">
+                        {{ column.blockContentNoMedia|raw }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %} 
+    </div>
         
 
-        <div class="footer__secondary">
-            <div class="footer__secondary-links">
-                <span>©{{ "now"|date("Y") }} BSO.org</span>
+    <div class="siteFooter__content">
+        <div class="siteFooter__secondary">
+            <ul>
+                <li><span>©<strong>{{ "now"|date("Y") }} BSO.org</strong></span></li>
                 {% for navItem in utilityNav.navItems.all %}
                     {% set navEntry = navItem.ctaLink ?? null %}
                     {% if navEntry %}
-                        <a href="{{ navEntry.url }}"{{ navEntry.target ? ' target="' ~ navEntry.target ~ '"'}} >{{ navEntry.label }}</a>
+                        <li><a href="{{ navEntry.url }}"{{ navEntry.target ? ' target="' ~ navEntry.target ~ '"'}} >{{ navEntry.label }}</a></li>
                     {% endif %}
                 {% endfor %}
-                
-            </div>
-
-            <div class="footer__sponsor">
-                <span>Underwritten By</span>
-
-                {% for logo in utilityNav.logosWithLinks.all %}
-                    {% if logo.ctaLink and logo.ctaLink.label %}
-                        <a href="{{ logo.ctaLink.url }}" class="footer__sponsor-link">
-                    {% endif %}
-                    {% if logo.image|length %}
-                          {{ macros.responsiveImage(logo.image.one, { alt: logo.ctaLink.label ?: logo.image.one.alt }) }}
-                    {% endif %}
-                    {% if logo.ctaLink and logo.ctaLink.label %}
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </div> 
+            </ul>
+            
         </div>
 
+        <div class="siteFooter__sponsor">
+            <div>Underwritten by</div>
+
+            {% for logo in utilityNav.logosWithLinks.all %}
+                {% if logo.ctaLink and logo.ctaLink.label %}
+                    <a href="{{ logo.ctaLink.url }}" class="siteFooter__sponsor-link">
+                {% endif %}
+                {% if logo.image|length %}
+                        {{ macros.responsiveImage(logo.image.one, { 
+                            alt: logo.ctaLink and logo.ctaLink.label ? logo.ctaLink.label : logo.image.one.alt,
+                            pictureClass: "siteFooter__logo" }) }}
+                {% endif %}
+                {% if logo.ctaLink and logo.ctaLink.label %}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div> 
+    </div>
 </footer>

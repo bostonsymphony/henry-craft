@@ -1,4 +1,4 @@
-dateModified: 1758635562
+dateModified: 1759757262
 email:
   fromEmail: info@imarc.com
   fromName: 'Padstone Craft 5'
@@ -114,6 +114,7 @@ meta:
     c2f04b66-544d-449f-a4de-c5605f121afd: 'Team Member' # Team Member
     c5febe1f-c523-44a4-894a-81eb0ea96691: 'Primary Navigation' # Primary Navigation
     c7e04c91-15c1-4081-8d31-44ae7bf6eae9: 'Navigation Item' # Navigation Item
+    c21d6d80-e3a9-497f-ae5a-e82aafd261a6: 'Global Hero' # Global Hero
     c46e2b3b-387a-4540-9120-ab0a15b0bbae: Homepage # Homepage
     c59ecd1c-c856-4983-96da-bbbac954eab0: 'Basic Page' # Basic Page
     c76d791f-6a12-4609-94f8-66f12eb848fd: Quote # Quote

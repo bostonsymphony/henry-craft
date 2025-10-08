@@ -2,32 +2,54 @@
 
 .siteFooter {
   $b: &;
+  background-color: var(--color-black);
+  padding:5rem 0;
+
+  &__col {
+    &.-first {
+      @include at(md) {
+        grid-column-start: 2;
+      }
+      
+    }
+  }
 
   &__content {
     display: grid;
     gap: var(--gap);
-    grid: "info" "social" "nav" "utility";
+    grid-template-columns: 1fr;
 
     @include at(md) {
-      grid: "logo address" auto
-            "social contact"
-            "nav nav"
-            "utility utility"
-            / auto 1fr;
+      // grid: "logo address" auto
+      //       "social contact"
+      //       "nav nav"
+      //       "utility utility"
+      //       / auto 1fr;
     }
     @include at(lg) {
-      grid: "info nav     nav   " auto
-            "info social  social" auto
-            "info utility utility" auto
-            / 1fr 1fr 1fr;
+      // grid: "info nav     nav   " auto
+      //       "info social  social" auto
+      //       "info utility utility" auto
+      //       / 1fr 1fr 1fr;
+     grid-template-columns: repeat(4, 1fr);
+     grid-template-rows: 1fr auto;
+    }
+
+    a {
+      color:var(--color-white);
+    }
+
+    &.-main {
+      border-bottom: 1px solid var(--color-gray-500);
     }
   }
 
   &__logo {
-    svg {
-      width: min(100%, 301px);
-      height: auto;
-    }
+    max-width:10rem;
+    // svg {
+    //   width: 50%;
+    //   height: auto;
+    // }
   }
 
   &__info {
@@ -63,6 +85,56 @@
 
     @include at(lg) {
       justify-self: start;
+    }
+  }
+
+  &__secondary {
+    @include at(md) {
+      grid-column-start:1;
+      grid-column-end:3;
+    }
+    ul {
+      display:flex;
+      gap: 1rem;
+    }
+  }
+
+  &__sponsor {
+    @include at(md) {
+      grid-column-start:3;
+      grid-column-end:5;
+    }
+    
+    display:flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+
+  &__subhead {
+    font-size:3rem;
+    color: var(--color-white);
+    border-bottom: 1px solid var(--color-turquoise);
+  }
+
+  &__text {
+    color: var(--color-white);
+    font-size: 1.15rem;
+    padding-top: 1rem;
+    .-gray {
+      color: var(--color-gray-500);
+    }
+    h4 {
+      color: var(--color-turquoise);
+      margin: 1rem 0;
+    }
+    p {
+      font-family: Aeonik;
+      padding:0;
+      margin:0;
+      &.-gray {
+        margin: 0.5rem 0;
+        line-height:1.15rem;
+      }
     }
   }
 

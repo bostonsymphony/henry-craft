@@ -2,8 +2,8 @@
 
 :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6) {
   --accent-color: var(--heading-color, var(--root-color-headings));
-  color: var(--accent-color);
-  font-family: var(--root-font-family-heading);
+  color: var(--color-dark-blue);
+  font-family: Aeonik;
   font-weight: 700;
   line-height: 1.125;
   margin: 0 0 1rem;

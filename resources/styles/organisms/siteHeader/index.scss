@@ -2,13 +2,22 @@
 
 .siteHeader {
   padding: var(--gap) 0;
+  background-color:var(--color-dark-blue);
 
   &__content {
+    color:var(--color-white);
     display: grid;
     grid: "logo search mobile-nav" auto / auto 1fr auto;
     align-items: center;
     gap: 0 var(--gap);
     position: relative;
+    font-family: 'Aeonik';
+    //font-weight: bold;
+    font-size: 1.15rem;
+    a {
+      color:var(--color-white);
+    }
+    
   }
 
   &__logo {
@@ -43,9 +52,12 @@
 
   @include at(md) {
     &__content {
-      grid: "logo utility-nav search" auto
-            "primary-nav primary-nav primary-nav" auto
-            / auto 1fr auto;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      // grid: "logo utility-nav search" auto
+      //       "primary-nav primary-nav primary-nav" auto
+      //       / auto 1fr auto;
+      
     }
 
     &__primaryNav,
@@ -61,10 +73,12 @@
 
   @include at(lg) {
     &__content {
-      grid: "logo utility-nav search" auto
-            "logo spacer spacer" auto
-            "logo primary-nav primary-nav" auto
-            / auto 1fr auto;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      // grid: "logo utility-nav search" auto
+      //       "logo spacer spacer" auto
+      //       "logo primary-nav primary-nav" auto
+      //       / auto 1fr auto;
     }
   }
 }

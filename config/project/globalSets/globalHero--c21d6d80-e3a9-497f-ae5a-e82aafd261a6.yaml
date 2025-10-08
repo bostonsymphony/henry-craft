@@ -1,0 +1,39 @@
+fieldLayouts:
+  6ff93c93-a132-47c0-bd6b-273906e39933:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-10-06T13:27:42+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: fcee80e9-4667-40be-9381-e2994ff56dc0 # Hero Headline
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ceba29f9-b791-40b0-b577-36144a749470
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-10-06T13:26:42+00:00'
+            dismissible: false
+            elementCondition: null
+            style: tip
+            tip: "BSO's brand logos will show below the global hero"
+            type: craft\fieldlayoutelements\Tip
+            uid: 61fc106d-6bb5-4727-ab4a-09448c0f3176
+            userCondition: null
+        name: Content
+        uid: a51ee6b8-1a28-45b8-a7a7-2d1ca6e3c652
+        userCondition: null
+handle: globalHero
+name: 'Global Hero'
+sortOrder: 2

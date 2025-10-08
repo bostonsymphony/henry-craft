@@ -2,18 +2,19 @@
   $b: &;
 
   align-items: center;
-  background-color: var(--accent-color);
-  border-radius: 3em;
-  border: var(--root-border-width) solid var(--accent-color);
-  color: var(--accent-color-text);
+  background-color: var(--color-turquoise);
+  border-radius: 0.25em;
+  border: var(--root-border-width) solid var(--color-turquoise);
+  color: var(--color-dark-blue);
   cursor: pointer;
   display: inline flex;
   font-weight: 700;
   gap: 1em;
   line-height: 1;
-  padding: calc(1em - var(--root-border-width)) calc(2em - var(--root-border-width));
+  padding: 1rem;
   text-decoration: none;
   transition: background var(--root-ease-out-fast), border-color var(--root-ease-out-fast);
+  height: 70%;
 
   &__icon {
     width: 1em;
@@ -29,8 +30,8 @@
   &:hover,
   &:active {
     color: #fff;
-    background-color: var(--accent-color-700);
-    border-color: var(--accent-color-700);
+    background-color: var(--color-mid-blue);
+    border-color: var(--color-mid-blue);
   }
 
   &[aria-disabled="true"],

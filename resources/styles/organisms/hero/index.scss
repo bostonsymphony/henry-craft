@@ -96,6 +96,33 @@
     }
   }
 
+  &__brands {
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    @include at(md) {
+      gap: 5rem;
+    }
+    width:100%;
+    .logo {
+      width:100%;
+      height:3rem;
+      padding: .6rem .4rem .4rem;
+      @include at(lg) {
+        width:70%;
+        height:4rem;
+      }
+      color:var(--color-white); 
+      
+    }
+    a svg {
+      transition: transform .5s cubic-bezier(.19,1,.22,1);
+    }
+  }
+
   &__content {
     display: grid;
     grid: auto / subgrid;
@@ -113,6 +140,28 @@
   &__image {
     order: 1;
   }
+
+  &__heading{
+    color:var(--color-white);
+    font-size: 2.5rem;
+  }
+
+  &__logos {
+    border-top: 1px solid var(--color-gray-600);
+    display:none;
+    @include at(md) {
+      display:grid;
+    }
+    
+  }
+
+  &__mobileLogos {
+    border-top: 1px solid var(--color-gray-600);
+    display:grid;
+    @include at(md) {
+      display:none;
+    }
+  }
   &__testimonial {
     order: 2;
   }
@@ -121,7 +170,7 @@
   }
   &__text {
     order: 4;
-    padding: 2rem 0;
+    padding: 2rem 0 0 0;
   }
   &__cta {
     order: 5;

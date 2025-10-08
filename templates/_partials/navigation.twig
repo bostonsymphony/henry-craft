@@ -6,7 +6,7 @@
             {% set navEntry = navItem.ctaLink ?? null %}
             {% if navEntry %}
                 <li class="navigation__item">
-                    <a href="{{ navEntry.url }}"{{ navEntry.target ? ' target="' ~ navEntry.target ~ '"'}} >{{ navEntry.label }}</a> | 
+                    <a href="{{ navEntry.url }}"{{ navEntry.target ? ' target="' ~ navEntry.target ~ '"'}} >{{ navEntry.label }}</a>
                 </li>
             {% endif %}
         {% endfor %}

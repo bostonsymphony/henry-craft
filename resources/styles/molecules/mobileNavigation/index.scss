@@ -4,6 +4,7 @@
   &__pane {
     background: #fff;
     box-shadow: var(--root-box-shadow-med);
+    color: var(--color-dark-blue);
     inset: 0 4.5rem 0 0;
     overflow-x: auto;
     position: fixed;
@@ -51,13 +52,26 @@
     gap: .5rem;
   }
 
-  &__button,
-  &__link {
+  &__button {
     padding: 1rem .5rem 1rem 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: var(--accent-color);
+    &.-ghost {
+      background:var(--color-white);
+    }
+  }
+
+  &__link {
+    padding: 1rem .5rem 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      color: var(--color-dark-blue);
+    }
+    
   }
 
   &__list > li {

@@ -27,11 +27,11 @@
         <div id="app">
             <header class="siteHeader container">
                 <div class="siteHeader__content">
-                    <a class="siteHeader__logo" href="/">
-                        Performance History Search
+                    <div> <a href="/">
+                        {{ primaryNavigation.siteTagline }}
                     </a>
-
-                    {% include "/_partials/navigation" %}
+                    </div>
+                    <div>{% include "/_partials/navigation" %}</div>
 
                     {% include "/_partials/mobileNavigation" %}
 

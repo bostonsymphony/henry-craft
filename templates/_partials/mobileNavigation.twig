@@ -1,22 +1,24 @@
 <nav class="siteHeader__mobileNav mobileNavigation">
-    <p-openable class="mobileNavigation__menu button -circle -ghost" label="menu">
+    <p-openable class="mobileNavigation__button button -circle -ghost" label="menu">
         <template #toggle>
             <svg class="button__icon icon"><use href="/main-icons-sprite.svg#bars" /></svg>
         </template>
         <template v-slot="{ click }">
-            <ul class="mobileNavigation__list">
-                {% for navItem in primaryNavigation.navItems.all %}
-                    <li class="mobileNavigation__item">
-                        {% if navItem.ctaLink and navItem.ctaLink.url %}
-                            <a href="{{ navItem.ctaLink.url }}" 
-                                {{  navItem.ctaLink.target ? ' target="' ~ navItem.ctaLink.target ~ '"' }} 
-                                class="mobileNavigation__link">
-                            {{ navItem.ctaLink.label }}
-                            </a>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="mobileNavigation__pane" v-scrolllock>
+                <ul class="mobileNavigation__list">
+                    {% for navItem in primaryNavigation.navItems.all %}
+                        <li class="mobileNavigation__item">
+                            {% if navItem.ctaLink and navItem.ctaLink.url %}
+                                <a href="{{ navItem.ctaLink.url }}" 
+                                    {{  navItem.ctaLink.target ? ' target="' ~ navItem.ctaLink.target ~ '"' }} 
+                                    class="mobileNavigation__link">
+                                {{ navItem.ctaLink.label }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </template>
     </p-openable>
 </nav>
