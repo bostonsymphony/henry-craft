@@ -5,11 +5,12 @@ import vitrine from '@imarc/vitrine'
 export default defineConfig({
   build: {
     manifest: true,
+    outDir: 'web/dist',
+    assetsDir: '.',
     rollupOptions: {
       input: [
         './resources/styles/index.scss',
         './resources/js/index.js',
-        './public/main-icons-sprite.svg',
       ],
     },
   },
