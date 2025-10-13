@@ -1,8 +1,8 @@
 import { createApp, defineAsyncComponent } from 'vue'
 import directionals from './directives/vDirectionals.js'
 import scrolllock from './directives/vScrolllock.js'
-import Calendar from 'henry-search/js/components/Calendar.vue'
-import Search from 'henry-search/js/components/Search.vue'
+//import Calendar from 'henry-search/js/components/Calendar.vue'
+import { Search } from 'henry-search'
 
 // Necessary for Craft vite plugin
 import '../styles/index.scss'
@@ -21,7 +21,6 @@ createApp({
         PYouTube: defineAsyncComponent(() => import('./components/PYouTube.vue')),
 
         ElementCollection: defineAsyncComponent(() => import('./components/ElementCollection.vue')),
-        Calendar,
         Search
     },
     directives: {
