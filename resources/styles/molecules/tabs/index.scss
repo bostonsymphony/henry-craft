@@ -16,33 +16,39 @@
   $b: &;
 
   &__tablist {
+    background-color: #FBF4EF;
     display: flex;
     justify-content: space-between;
     gap: .5rem;
     overflow: clip;
 
     @include at(sm) {
-      border: solid var(--color-gray-300);
-      border-width: 0 0 2px;
-      gap: 2rem;
+      gap: 1rem;
       justify-content: start;
+      padding: 2rem 80px;
     }
 
     @include at(md) {
-      gap: 3rem;
+      gap: 2rem;
     }
+
+    @include at(lg) {
+      padding: 2rem 80px 0 140px;
+    }
+
   }
 
   &__button {
     background: #0000;
     border: 0;
 
-    color: inherit;
+    color: var(--color-turquoise);
     cursor: pointer;
     display: none;
     font: inherit;
     white-space: nowrap;
     outline-offset: 2px;
+    font-size: 1.5rem;
     transition:
       color var(--root-duration-fast) var(--root-ease-out),
       --tab__button-box-shadow var(--root-duration-fast) var(--root-ease-out);
@@ -50,25 +56,32 @@
 
     @include at(sm) {
       display: block;
-      box-shadow: 0 var(--tab__button-box-shadow) var(--accent-color) inset;
+      box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
       padding: 0 0 8px;
 
       &:hover {
         --tab__button-box-shadow: -2px;
         box-shadow: 0 var(--tab__button-box-shadow) var(--accent-color-400) inset;
-        color: var(--color-gray-900);
+        color: var(--color-dark-blue);
       }
     }
 
     &.-selected {
       display: block;
-      --tab__button-box-shadow: -8px;
-      color: var(--color-gray-900);
+      --tab__button-box-shadow: -4px;
+      color: var(--color-dark-blue);
     }
   }
 
   &__panel {
-    padding: 1rem 0;
+    
+    
+
+  }
+
+  &__content {
+    display:  grid;
+    grid-template-columns: 25% 75%;
   }
 
   &__prev,

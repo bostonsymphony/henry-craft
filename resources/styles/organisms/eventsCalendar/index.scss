@@ -28,13 +28,28 @@
     // }
   }
 
+  &__resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    &.-even {
+      background-color: #F5F5F5;
+    }
+    &.-odd {
+
+    }
+  }
+  &__artistGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   &__topSection {
     background-color: #FBF4EF;
     display: flex;
     align-items: flex-start;
     gap: 2rem;
     grid-column: 1 / span 2;
-    padding: 2rem 20px;
+
     width: 100%;
     box-sizing: border-box;
 
@@ -1512,6 +1527,10 @@
     &:hover {
       background: #e5e5e5 !important;
     }
+  }
+
+  .tabs {
+    grid-column: 1 / span 2;
   }
 }
 
