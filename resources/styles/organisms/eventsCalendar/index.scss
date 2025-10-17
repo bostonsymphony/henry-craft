@@ -28,6 +28,11 @@
     // }
   }
 
+  &__resultsHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__resultsGrid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -203,6 +208,8 @@
 
   &__filterRail {
     grid-column-start: 1;
+    padding-right: 2rem;
+    padding-top: 3rem;
     background-color:#ffffff;
     @media screen and (min-width: 768px) {
       padding-left: 80px;
@@ -567,6 +574,8 @@
 
    &__results {
     grid-column-start: 2;
+    padding-top:3rem;
+    padding-right:140px;
    }
 
    &__radioInput {

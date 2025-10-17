@@ -1,0 +1,19 @@
+
+{% import "/_macros" as macros %}
+{% if not performanceId %}
+{% endif %}
+{% set section = 'home' %}
+{% extends "_layouts/main" %}
+{% block content %}
+
+
+
+
+    <div class="details" >
+        <search-detail
+                performance-id="{{ performanceId }}"
+                index-name="archived_performances">
+            </search-detail>
+    </div>
+
+{% endblock %}
