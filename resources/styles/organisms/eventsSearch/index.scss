@@ -1,4 +1,4 @@
-.eventsCalendar {
+.eventsSearch {
   // Ensure full width in responsive design mode
   width: 100%;
   max-width: 100%;
@@ -37,7 +37,7 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     &.-even {
-      background-color: #F5F5F5;
+      background-color: var(--color-light-gray);
     }
     &.-odd {
 
@@ -49,7 +49,7 @@
   }
 
   &__topSection {
-    background-color: #FBF4EF;
+    background-color: var(--color-light-gold);
     display: flex;
     align-items: flex-start;
     gap: 2rem;
@@ -370,7 +370,7 @@
         }
 
         .dp__action_cancel {
-          background: #f5f5f5 !important;
+          background: var(--color-light-gray) !important;
           color: #333 !important;
           border: 1px solid #ddd !important;
 
@@ -477,7 +477,7 @@
   }
 
   &__activeFilterItem {
-    background-color: #f5f5f5;
+    background-color: var(--color-light-gray);
     border-radius: 4px;
     padding: .25rem .5rem;
   }
@@ -891,7 +891,7 @@
 
   // Results by Date View
   &__resultsByDate {
-    .eventsCalendar__eventImage {
+    .eventsSearch__eventImage {
       width: 222px;
       height: 139px;
       margin-left: 0;
@@ -901,7 +901,7 @@
       }
     }
 
-    .eventsCalendar__eventTitle {
+    .eventsSearch__eventTitle {
       font-size: 18px;
 
       @media screen and (min-width: 1070px) {
@@ -909,9 +909,9 @@
       }
     }
 
-    .eventsCalendar__eventDate,
-    .eventsCalendar__eventVenue,
-    .eventsCalendar__eventActions {
+    .eventsSearch__eventDate,
+    .eventsSearch__eventVenue,
+    .eventsSearch__eventActions {
       font-size: var(--font-size-1);
 
       @media screen and (min-width: 1070px) {
@@ -919,14 +919,14 @@
       }
     }
 
-    .eventsCalendar__eventCard {
+    .eventsSearch__eventCard {
       @media screen and (min-width: 1070px) {
         grid-template-columns: 1fr 2fr 1fr;
         grid-template-areas: "status content image";
       }
     }
 
-    .eventsCalendar__eventDetails {
+    .eventsSearch__eventDetails {
       margin-top: .5rem;
 
       @media screen and (min-width: 1070px) {
@@ -937,7 +937,7 @@
 
   // Results by Event View
   &__resultsByEvent {
-    .eventsCalendar__eventImage {
+    .eventsSearch__eventImage {
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -950,7 +950,7 @@
       }
     }
 
-    .eventsCalendar__eventImg {
+    .eventsSearch__eventImg {
       height: auto;
       aspect-ratio: 16 / 10;
 
@@ -960,7 +960,7 @@
       }
     }
 
-    .eventsCalendar__eventTitle {
+    .eventsSearch__eventTitle {
       font-size: var(--font-size-3);
 
       @media screen and (min-width: 1070px) {
@@ -968,7 +968,7 @@
       }
     }
 
-    .eventsCalendar__eventDetails {
+    .eventsSearch__eventDetails {
       margin-top: 1rem;
 
       @media screen and (min-width: 1070px) {
@@ -976,9 +976,9 @@
       }
     }
 
-    .eventsCalendar__eventDate,
-    .eventsCalendar__eventVenue,
-    .eventsCalendar__eventActions {
+    .eventsSearch__eventDate,
+    .eventsSearch__eventVenue,
+    .eventsSearch__eventActions {
       font-size: var(--font-size-2);
 
       @media screen and (min-width: 1070px) {
@@ -986,8 +986,8 @@
       }
     }
 
-    .eventsCalendar__eventCard {
-      .eventsCalendar__eventMeta {
+    .eventsSearch__eventCard {
+      .eventsSearch__eventMeta {
         display: none;
       }
 
@@ -1334,7 +1334,7 @@
             transition: all 0.2s;
 
             &:hover {
-              background: #f5f5f5;
+              background: var(--color-light-gray);
               border-color: #999;
             }
           }
@@ -1426,7 +1426,7 @@
   }
 
   // Desktop dropdown checkbox styles (matching mobile modal)
-  // .eventsCalendar__checkbox {
+  // .eventsSearch__checkbox {
   //   margin: 0 12px 0 0 !important;
   //   flex-shrink: 0;
   //   width: 20px !important;
@@ -1454,21 +1454,21 @@
   // }
 
   // Desktop venue dropdown styles
-  .eventsCalendar__selectOption--venue {
+  .eventsSearch__selectOption--venue {
     display: flex;
     align-items: center;
     gap: 12px;
 
-    .eventsCalendar__venueInfo {
+    .eventsSearch__venueInfo {
       flex: 1;
     }
 
-    .eventsCalendar__venueName {
+    .eventsSearch__venueName {
       display: block;
       font-weight: 500;
     }
 
-    .eventsCalendar__venueCity {
+    .eventsSearch__venueCity {
       display: block;
       font-size: 14px;
       color: #686F73;
@@ -1477,23 +1477,23 @@
   }
 
   // Desktop ensemble dropdown styles
-  .eventsCalendar__selectOption--ensemble {
+  .eventsSearch__selectOption--ensemble {
     display: flex;
     align-items: center;
     gap: 12px;
 
-    span:not(.eventsCalendar__selectCount) {
+    span:not(.eventsSearch__selectCount) {
       flex: 1;
     }
   }
 
   // Make dropdown menus span across both venue and ensemble filters
-  .eventsCalendar__filtersRow {
+  .eventsSearch__filtersRow {
     position: relative;
   }
 
-  .eventsCalendar__filterGroup--venue,
-  .eventsCalendar__filterGroup--ensemble {
+  .eventsSearch__filterGroup--venue,
+  .eventsSearch__filterGroup--ensemble {
     .vs__dropdown-menu {
       position: absolute;
       left: 0;
@@ -1511,14 +1511,14 @@
   }
 
   // Ensure the ensemble dropdown menu aligns to the left edge of the filters row
-  .eventsCalendar__filterGroup--ensemble {
+  .eventsSearch__filterGroup--ensemble {
     .vs__dropdown-menu {
       // Position the ensemble dropdown to start from the venue filter position
       left: calc(-100% - 1rem); // Move left by the width of venue filter + gap
     }
   }
 
-  // Modal styles moved outside .eventsCalendar scope
+  // Modal styles moved outside .eventsSearch scope
 
   // Ensure modal button styles are applied globally
   .event__buy-button-wrapper {
@@ -1529,7 +1529,7 @@
   }
 
   .event__buy-button--secondary {
-    background: #F5F5F5 !important;
+    background: var(--color-light-gray) !important;
     color: #333 !important;
     border: 1px solid #ddd !important;
 
@@ -1543,7 +1543,7 @@
   }
 }
 
-/* Filter modal styles - outside eventsCalendar scope since modals are in document.body */
+/* Filter modal styles - outside eventsSearch scope since modals are in document.body */
 .eventsModal .filterModal__items {
   display: flex;
   flex-direction: column;
@@ -1616,7 +1616,7 @@
 }
 
 // Desktop positioning for date picker to span across Date and Venue inputs
-.eventsCalendar__filterGroup--date {
+.eventsSearch__filterGroup--date {
   @media (min-width: 769px) {
     position: relative;
   }
@@ -1711,7 +1711,7 @@
   }
 
   &.dp__action_cancel {
-    background: #F5F5F5 !important;
+    background: var(--color-light-gray) !important;
     color: #333 !important;
     border: none !important;
     font-weight: 400 !important;
