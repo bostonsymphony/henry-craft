@@ -4,6 +4,15 @@
   padding: var(--gap) 0;
   background-color:var(--color-dark-blue);
 
+    @include at(sm) {
+      padding: 2rem 4rem;
+    }
+
+    @include at(lg) {
+      padding: 2rem 4rem 2rem 8rem;
+    }
+
+
   &__content {
     color:var(--color-white);
     display: grid;

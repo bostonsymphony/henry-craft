@@ -2,6 +2,7 @@ import { createApp, defineAsyncComponent } from 'vue'
 import directionals from './directives/vDirectionals.js'
 import scrolllock from './directives/vScrolllock.js'
 import { Search, SearchDetail } from 'henry-search'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 // Necessary for Craft vite plugin
 import '../styles/index.scss'

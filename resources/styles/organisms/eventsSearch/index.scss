@@ -1,8 +1,13 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
 .eventsSearch {
   // Ensure full width in responsive design mode
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+
+
+  
 
   &__boxLabel {
     align-items: center;
@@ -59,7 +64,7 @@
     box-sizing: border-box;
 
     @media screen and (min-width: 768px) {
-      padding: 2rem 80px;
+      padding: 2rem 4rem;
     }
 
     @media screen and (max-width: 768px) {
@@ -68,7 +73,7 @@
     }
 
     @media screen and (min-width: 1070px) {
-      padding: 2rem 80px 2rem 140px;
+      padding: 2rem 4rem 2rem 8rem;
     }
   }
 
@@ -189,20 +194,20 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       "search search search"
-      "date venue ensemble";
+      "date date button";
 
     @media screen and (min-width: 768px) {
       grid-template-columns: 1fr 1fr;
       grid-template-areas:
       "search search"
       "date date"
-      "venue ensemble";
+      "button button";
     }
 
     @media screen and (min-width: 1070px) {
-      grid-template-columns: 1fr 200px 200px 200px;
+      grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 1fr) 18rem;
       grid-template-areas:
-      "search date venue ensemble";
+      "search date button";
     }
   }
 
@@ -221,7 +226,7 @@
     }
 
     @media screen and (min-width: 1070px) {
-      padding-left: 140px;
+      padding-left: 8rem;
     }
   }
 
@@ -449,6 +454,13 @@
     grid-area: filters;
   }
 
+  .ais-RangeInput {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-content: space-around;
+  }
+
   &__filtersArea {
     grid-area: filters;
     border-top: 1px solid #D3D0CD;
@@ -575,7 +587,7 @@
    &__results {
     grid-column-start: 2;
     padding-top:3rem;
-    padding-right:140px;
+    padding-right:8rem;
    }
 
    &__radioInput {
@@ -1626,7 +1638,7 @@
       position: absolute !important;
       left: 0 !important;
       top: calc(100% + .5rem)  !important;
-      width: calc(200% + 1rem) !important;
+      //width: calc(200% + 1rem) !important;
       z-index: 1000 !important;
     }
 

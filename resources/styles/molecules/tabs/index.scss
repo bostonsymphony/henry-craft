@@ -25,7 +25,7 @@
     @include at(sm) {
       gap: 1rem;
       justify-content: start;
-      padding: 2rem 80px;
+      padding: 2rem 4rem;
     }
 
     @include at(md) {
@@ -33,7 +33,7 @@
     }
 
     @include at(lg) {
-      padding: 2rem 80px 0 140px;
+      padding: 2rem 4rem 0 8rem;
     }
 
   }

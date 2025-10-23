@@ -51,6 +51,7 @@
     "dependencies": {
         "@imarc/pronto": "^2.0.0-rc.6",
         "@vitejs/plugin-vue": "^5.2.3",
+        "@vuepic/vue-datepicker": "^11.0.3",
         "@vueuse/core": "^11.0.0",
         "henry-search": "file:../henry-search",
         "vue": "^3.5.13"

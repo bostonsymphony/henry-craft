@@ -1,15 +1,33 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
 .section {
   --accent-color: #fff;
 
   row-gap: 16px;
   padding: 5rem 0;
-  background: var(--accent-color);
-  color: var(--accent-color-text);
 
   &.hero {
     padding: 0;
     background-color:var(--color-mid-blue);
     color:var(--color-white);
+
+     @include at(sm) {
+        padding: 2rem 4rem;
+      }
+
+    @include at(lg) {
+      padding: 2rem 4rem 2rem 8rem;
+    }
+
+    &.hero__logos {
+      @include at(sm) {
+        padding: 1rem 4rem;
+      }
+
+      @include at(lg) {
+        padding: 1rem 4rem 1rem 8rem;
+      }
+    }
   }
 }
 
