@@ -25,6 +25,8 @@
     "nystudio107/craft-retour": "^5.0.2",
     "nystudio107/craft-seomatic": "^5.1.1",
     "nystudio107/craft-vite": "^5.0.1",
+    "php-http/curl-client": "^2.3",
+    "typesense/typesense-php": "^5.1",
     "verbb/expanded-singles": "^3.0.0",
     "verbb/field-manager": "^4.0.2",
     "vlucas/phpdotenv": "^5.4.0"
@@ -41,7 +43,8 @@
   "config": {
     "allow-plugins": {
       "craftcms/plugin-installer": true,
-      "yiisoft/yii2-composer": true
+      "yiisoft/yii2-composer": true,
+      "php-http/discovery": true
     },
     "sort-packages": true,
     "optimize-autoloader": true,
