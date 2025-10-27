@@ -11,7 +11,7 @@
 
   &::before {
     content: '';
-    background: var(--accent-color-contrast);
+    background: var(--color-dark-blue);
     /* Using mask as this is the only way to make the color of the checkmark dynamic */
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M18 8L9.75 16.25L6 12.5' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
     display: none;
@@ -32,12 +32,13 @@
 
   &.-checked,
   &:checked {
-    background: var(--accent-color-600);
-    border-color: var(--accent-color-600);
+    // background: var(--color-dark-blue);
+    // border-color: var(--accent-color-600);
 
-    &::before {
-      display: block;
-    }
+    // &::before {
+    //   display: block;
+    //   background: var(--color-gray-200);
+    // }
 
     @media (any-hover: hover) and (any-pointer: fine) {
       &:hover {
