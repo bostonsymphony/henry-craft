@@ -61,6 +61,12 @@
     &.-ghost {
       background:var(--color-white);
     }
+    &.button {
+      height: 1.5rem;
+    }
+    .icon {
+      --icon-color: var(--color-white);
+    }
   }
 
   &__link {

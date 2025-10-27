@@ -10,8 +10,9 @@
     padding: 0;
     background-color:var(--color-mid-blue);
     color:var(--color-white);
+    padding: 1rem 1.5rem;
 
-     @include at(sm) {
+     @include at(md) {
         padding: 2rem 4rem;
       }
 
@@ -20,7 +21,7 @@
     }
 
     &.hero__logos {
-      @include at(sm) {
+      @include at(md) {
         padding: 1rem 4rem;
       }
 

@@ -4,7 +4,8 @@
   padding: var(--gap) 0;
   background-color:var(--color-dark-blue);
 
-    @include at(sm) {
+    padding: 1rem 1.5rem;
+    @include at(md) {
       padding: 2rem 4rem;
     }
 
@@ -21,8 +22,13 @@
     gap: 0 var(--gap);
     position: relative;
     font-family: 'Aeonik';
-    //font-weight: bold;
-    font-size: 1.15rem;
+    font-weight: bold;
+    font-size: 0.875rem;
+    @include at(md) {
+      font-size: 1.15rem;
+      font-weight: normal;
+    }
+    
     a {
       color:var(--color-white);
     }

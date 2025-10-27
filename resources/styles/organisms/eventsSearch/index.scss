@@ -62,7 +62,8 @@
 
     width: 100%;
     box-sizing: border-box;
-
+    
+    padding: 1rem 1.5rem;
     @media screen and (min-width: 768px) {
       padding: 2rem 4rem;
     }
@@ -78,6 +79,10 @@
   }
 
   &__header {
+    display: none;
+    @include at(md) {
+      display:inline;
+    }
     flex-shrink: 0;
     min-width: 200px;
     margin-bottom: .5rem;
@@ -126,6 +131,9 @@
 
      .ais-SearchBox-input {
        font-size: var(--font-size-2);
+       color: var(--color-gray-100);
+       font-style: italic;
+       font-weight: 100;
        width: 90%;
        height: 100%;
        background-color: #FDF9F7;
