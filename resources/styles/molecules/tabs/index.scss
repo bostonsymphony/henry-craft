@@ -96,7 +96,11 @@
 
   &__content {
     display:  grid;
-    grid-template-columns: 25% 75%;
+    //grid-template-columns: 25% 75%;
+    transition: grid-template-columns 400ms;
+    &.closed {
+      grid-template-columns: 0% 100%;
+    }
   }
 
   &__prev,

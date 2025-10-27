@@ -21,17 +21,32 @@
     margin: 1rem 0;
     height: 10rem;
     overflow-y: scroll;
-    // input[type=checkbox] {
-    //   border: thin solid #AFAFAF;
-    //   background-color: var(--color-white);
-    //   border-radius: 0;
-    //   height: 1rem;
-    //   width: 1rem;
-    // }
-    // input[type=checkbox]:checked {
-    //   color:#AFAFAF;
-    // }
+    input[type=checkbox] {
+      border: thin solid #AFAFAF;
+      background-color: var(--color-white);
+      border-radius: 0;
+      height: 1rem;
+      width: 1rem;
+    }
+    input[type=checkbox]:checked {
+      color:#AFAFAF;
+    }
   }
+
+  &__filterToggleOn {
+    display: none;
+    margin-right: 1rem;
+    transition: display 400ms;
+    &.closed {
+      display: inline;
+    }
+  }
+
+  // &__hits {
+  //   .closed {
+  //     width: 100%;
+  //   }
+  // }
 
   &__resultsHeader {
     display: flex;
@@ -48,6 +63,17 @@
 
     }
   }
+
+  &__resultsSort {
+    font-weight: 100;
+    font-size: 1.1rem;
+  }
+
+  &__resultsTitle {
+    display: flex;
+    align-items: baseline;
+  }
+
   &__artistGrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -140,10 +166,11 @@
        border: none;
        outline: none;
        &.-filter {
-          width: 100%;
-          border: none;
           background-color:#ffffff;
+          border: none;
           color:var(--color-dark-blue);
+          font-style: normal;
+          width: 100%;
        }
        &.-filter::placeholder {
         color:#AFAFAF;
@@ -219,11 +246,32 @@
     }
   }
 
+  &__filterHeader {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__filterToggle {
+    display: flex;
+    padding: 0.5rem 0;
+    .label {
+      padding-left: 0.5rem;
+    }
+  }
+
   &__filterRail {
     grid-column-start: 1;
     padding-right: 2rem;
     padding-top: 3rem;
     background-color:#ffffff;
+    transition: width 400ms, padding-left 400ms;
+    width: 26rem;
+    &.closed {
+      width: 0;
+      padding-left: 6rem;
+    }
     @media screen and (min-width: 768px) {
       padding-left: 80px;
     }
@@ -236,6 +284,12 @@
     @media screen and (min-width: 1070px) {
       padding-left: 8rem;
     }
+  }
+
+  &__filterWrapper {
+    display: grid;
+    overflow: hidden;
+    
   }
 
   &__filterGroup {
@@ -422,6 +476,12 @@
 
     &--ensemble {
       grid-area: ensemble;
+    }
+
+    .button {
+      padding: 0;
+      height: 100%;
+      width: 100%;
     }
   }
 
@@ -1751,4 +1811,8 @@
 
 .dp__action_row {
   border-top: 1px solid #D6D6D6 !important;
+}
+
+.dp__input_icon {
+  --dp-icon-color: var(--color-dark-blue);
 }
