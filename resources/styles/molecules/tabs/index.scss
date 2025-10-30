@@ -96,10 +96,13 @@
 
   &__content {
     display:  grid;
-    //grid-template-columns: 25% 75%;
+    //grid-template-columns: minmax(0, 25%) auto;
     transition: grid-template-columns 400ms;
+    &.open { 
+      grid-template-columns: max(25%) auto;
+    }
     &.closed {
-      grid-template-columns: 0% 100%;
+      grid-template-columns: 0% 1fr;
     }
   }
 
