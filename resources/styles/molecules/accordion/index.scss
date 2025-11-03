@@ -31,6 +31,10 @@
     &__heading {
         margin: 0;
         padding: .25rem 1rem .25rem 0;
+        &.-thin {
+            font-weight: 100;
+            color: var(--color-med-gray);
+        }
     }
     
     &__iconWrapper {

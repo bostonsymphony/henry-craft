@@ -124,7 +124,7 @@ class CsvExportController extends Controller
                         $row[4] = "";
                         $row[5] = "";
                         
-                        if ($works) {
+                        if ($works && $refinementList) {
                             foreach ($works as $work) {
                                 if ($work && is_array($work)) {
                                     $flatArray = $this->flatten($work, "work");
@@ -142,31 +142,34 @@ class CsvExportController extends Controller
                                     }
                                 }
                             }
-                            foreach ($shownWorks as $work) {
-                               
-                                if (array_key_exists('artist', $work)) {
-                                    foreach ($work['artist'] as $artist) {
-                                        if ($artist['artist_role'] == "Conductor") {
-                                            $row[3] = $artist['artist_name'];
-                                        } else {
-                                            if ($row[5] != "") {
-                                                $row[5] .= "; ";
-                                            }
-                                            $row[5] .= $artist['artist_name'] . " / " . $artist['artist_role'];
+                        } elseif ($works) {
+                            $shownWorks = $works;
+                        }
+                        foreach ($shownWorks as $work) {
+                            
+                            if (array_key_exists('artist', $work)) {
+                                foreach ($work['artist'] as $artist) {
+                                    if ($artist['artist_role'] == "Conductor") {
+                                        $row[3] = $artist['artist_name'];
+                                    } else {
+                                        if ($row[5] != "") {
+                                            $row[5] .= "; ";
                                         }
-                                    }
-                                    if (array_key_exists('composer', $work)) {
-                                        $row[4] = $work['composer'];
-                                    }
-                                    if (array_key_exists('title', $work)) {
-                                        if ($row[4] != "") {
-                                            $row[4] .= " / ";
-                                        }
-                                        $row[4] .= $work['title'];
+                                        $row[5] .= $artist['artist_name'] . " / " . $artist['artist_role'];
                                     }
                                 }
+                                if (array_key_exists('composer', $work)) {
+                                    $row[4] = $work['composer'];
+                                }
+                                if (array_key_exists('title', $work)) {
+                                    if ($row[4] != "") {
+                                        $row[4] .= " / ";
+                                    }
+                                    $row[4] .= $work['title'];
+                                }
                             }
-                        } 
+                        }
+                       
                         if ($row[3] == "" && array_key_exists('conductor', $event) && $event['conductor']) {
                             $row[3] = implode("; ", $event['conductor']);
                         }
