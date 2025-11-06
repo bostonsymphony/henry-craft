@@ -2,11 +2,47 @@
     &__breadCrumb {
         background-color: var(--color-light-gold);
     }
+    &__cell {
+        padding: 1rem;
+        border-right: thin solid var(--color-gray-200);
+        color: var(--color-dark-blue);
+        font-weight: bold;
+        font-size: 0.9rem;
+        &.-even {
+            background-color: var(--color-light-gray);
+        }
+        &.-odd {
 
+        }
+        &.-first {
+            border-left: thin solid var(--color-gray-200);
+        }
+        &.-header {
+            border-top: thin solid var(--color-gray-200);
+            border-bottom: thin solid var(--color-gray-200);
+            font-weight:100;
+            color: var(--color-gray-400);
+        }
+        &.-last {
+            border-bottom: thin solid var(--color-gray-200);
+        }
+        //.workInfo {
+            display:grid;
+            grid-template-rows: auto;
+            .infoItem {
+                min-height: 3rem;
+            }
+        //}
+    }
     &__dataTitle {
         font-weight: 100;
         color: var(--color-dark-gray);
     }
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
     &__header {
         border-bottom: 1px solid var(--color-light-gray);
         h3 {
@@ -45,13 +81,7 @@
         .composer {
             grid-area: "composer";
         }
-        .workInfo {
-            display:grid;
-            grid-template-rows: auto;
-            .infoItem {
-                min-height: 3rem;
-            }
-        }
+        
         
     }
 
