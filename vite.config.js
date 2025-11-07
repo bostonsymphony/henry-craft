@@ -3,43 +3,44 @@ import vue from '@vitejs/plugin-vue'
 import vitrine from '@imarc/vitrine'
 
 export default defineConfig({
-  build: {
-    manifest: true,
-    outDir: 'web/dist',
-    assetsDir: '.',
-    rollupOptions: {
-      input: [
-        './resources/styles/index.scss',
-        './resources/js/index.js',
-      ],
+    build: {
+        manifest: true,
+        outDir: 'web/dist',
+        assetsDir: '.',
+        rollupOptions: {
+            input: [
+                './resources/styles/index.scss',
+                './resources/js/index.js',
+            ],
+        },
     },
-  },
-  plugins: [
-    vue(),
-    vitrine({
-      basePaths: [
+    plugins: [
+        vue(),
+        vitrine({
+            basePaths: [
 
-        /**
+                /**
          * This should be set to the base directory for your front end files.
          */
-        'resources',
-      ],
-      includes: [
-        /**
+                'resources',
+            ],
+            outDir: 'web/dist',
+            includes: [
+                /**
          * These are the entry points to include. These will also need to get
          * included into your project.
          */
-        '/resources/js/index.js',
-      ],
-    }),
-  ],
-  resolve: {
-    alias: {
-      'vue': 'vue/dist/vue.esm-bundler.js'
-    }
-  },
-  server: {
-    cors: true,
-    origin: 'https://padstone.imarc.io'
-  }
+                '/resources/js/index.js',
+            ],
+        }),
+    ],
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.esm-bundler.js',
+        }
+    },
+    server: {
+        cors: true,
+        origin: 'https://padstone.imarc.io'
+    },
 })
