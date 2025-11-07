@@ -1,11 +1,31 @@
-.eventsCalendar {
+@use "@imarc/pronto/resources/styles/imported" as *;
+
+.eventsSearch {
   // Ensure full width in responsive design mode
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
 
+  &__actions {
+    display:flex;
+    flex-wrap: nowrap;
+  }
+
+  &__actionButtons {
+    border-left: thin solid var(--color-gray-400);
+    height: 1.75rem;
+    padding-left: .25rem;
+  }
+
+  &__actionIcon {
+    background-color: var(--color-light-gray);
+    padding: 10px;
+    border-radius: 1rem;
+    margin: 0 .5rem;
+  }
+
   &__boxLabel {
-    align-items: center;
+    align-items: top;
     display: grid;
     grid-template-columns: 10% 80% 10%;
     padding-bottom: .5rem;
@@ -14,32 +34,109 @@
 
   &__checkBoxes {
     margin: 1rem 0;
-    height: 10rem;
-    overflow-y: scroll;
-    // input[type=checkbox] {
-    //   border: thin solid #AFAFAF;
-    //   background-color: var(--color-white);
-    //   border-radius: 0;
-    //   height: 1rem;
-    //   width: 1rem;
-    // }
-    // input[type=checkbox]:checked {
-    //   color:#AFAFAF;
-    // }
+    max-height: 10rem;
+    overflow-y: auto;
+    input[type=checkbox] {
+      border: thin solid var(--color-dark-blue);
+      // background-color: var(--color-white);
+      border-radius: 0;
+      height: 1rem;
+      width: 1rem;
+      
+    }
+    .-boxChecked {
+      background-color: var(--color-turquoise);
+      border: thin solid var(--color-turqoise);
+      &::before {
+        display: block;
+        background: var(--color-gray-200);
+      }
+    }
+  }
+
+  &__clearFilters {
+    font-weight: 100;
+    font-size: 1.15rem;
+    color: var(--color-med-gray);
+  }
+
+  
+  &__filterToggleOn {
+    display: none;
+    margin-right: 1rem;
+    transition: display 400ms;
+    &.closed {
+      display: inline;
+    }
+  }
+
+  &__resultCell {
+    padding: 1rem;
+    border-right: thin solid var(--color-gray-200);
+    color: var(--color-dark-blue);
+    font-weight: bold;
+    font-size: 0.9rem;
+    &.-even {
+      background-color: var(--color-light-gray);
+    }
+    &.-odd {
+
+    }
+    &.-first {
+      border-left: thin solid var(--color-gray-200);
+    }
+    &.-header {
+      border-top: thin solid var(--color-gray-200);
+      border-bottom: thin solid var(--color-gray-200);
+      font-weight:100;
+      color: var(--color-gray-400);
+    }
+    &.-last {
+      border-bottom: thin solid var(--color-gray-200);
+    }
+  }
+
+  &__resultsHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    
+  }
+
+  &__resultsSort {
+    font-weight: 100;
+    font-size: 1.1rem;
+    margin-right: .5rem;
+  }
+
+  &__resultsTitle {
+    display: flex;
+    align-items: baseline;
+    //width: 75%;
+  }
+
+  &__artistGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   &__topSection {
-    background-color: #FBF4EF;
+    background-color: var(--color-light-gold);
     display: flex;
     align-items: flex-start;
     gap: 2rem;
     grid-column: 1 / span 2;
-    padding: 2rem 20px;
+
     width: 100%;
     box-sizing: border-box;
-
+    
+    padding: 1rem 1.5rem;
     @media screen and (min-width: 768px) {
-      padding: 2rem 80px;
+      padding: 2rem 4rem;
     }
 
     @media screen and (max-width: 768px) {
@@ -48,11 +145,15 @@
     }
 
     @media screen and (min-width: 1070px) {
-      padding: 2rem 80px 2rem 140px;
+      padding: 2rem 4rem 2rem 8rem;
     }
   }
 
   &__header {
+    display: none;
+    @include at(md) {
+      display:inline;
+    }
     flex-shrink: 0;
     min-width: 200px;
     margin-bottom: .5rem;
@@ -97,20 +198,30 @@
        gap: .5rem;
        height: 100%;
        width: 100%;
+       .ais-SearchBox-reset {
+        display:none;
+       }
      }
 
      .ais-SearchBox-input {
        font-size: var(--font-size-2);
-       width: 90%;
+       color: var(--color-dark-blue);
+       font-style: italic;
+       font-weight: 100;
+       width: 100%;
        height: 100%;
        background-color: #FDF9F7;
        border: none;
        outline: none;
+       &::placeholder {
+        color: var(--color-gray-100);
+       }
        &.-filter {
-          width: 100%;
-          border: none;
           background-color:#ffffff;
+          border: none;
           color:var(--color-dark-blue);
+          font-style: normal;
+          width: 100%;
        }
        &.-filter::placeholder {
         color:#AFAFAF;
@@ -169,26 +280,49 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       "search search search"
-      "date venue ensemble";
+      "date date button";
 
     @media screen and (min-width: 768px) {
       grid-template-columns: 1fr 1fr;
       grid-template-areas:
       "search search"
       "date date"
-      "venue ensemble";
+      "button button";
     }
 
     @media screen and (min-width: 1070px) {
-      grid-template-columns: 1fr 200px 200px 200px;
+      grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 1fr) 18rem;
       grid-template-areas:
-      "search date venue ensemble";
+      "search date button";
+    }
+  }
+
+  &__filterHeader {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__filterToggle {
+    display: flex;
+    padding: 0.5rem 0;
+    .label {
+      padding-left: 0.5rem;
     }
   }
 
   &__filterRail {
     grid-column-start: 1;
+    padding-right: 2rem;
+    padding-top: 3rem;
     background-color:#ffffff;
+    transition: width 400ms, padding-left 400ms;
+    width: 26rem;
+    &.closed {
+      width: 0;
+      padding-left: 6rem;
+    }
     @media screen and (min-width: 768px) {
       padding-left: 80px;
     }
@@ -199,8 +333,14 @@
     }
 
     @media screen and (min-width: 1070px) {
-      padding-left: 140px;
+      padding-left: 8rem;
     }
+  }
+
+  &__filterWrapper {
+    display: grid;
+    overflow: hidden;
+    
   }
 
   &__filterGroup {
@@ -348,7 +488,7 @@
         }
 
         .dp__action_cancel {
-          background: #f5f5f5 !important;
+          background: var(--color-light-gray) !important;
           color: #333 !important;
           border: 1px solid #ddd !important;
 
@@ -388,6 +528,12 @@
     &--ensemble {
       grid-area: ensemble;
     }
+
+    .button {
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   &__filtersControls {
@@ -424,7 +570,19 @@
   }
 
   .ais-CurrentRefinements {
+    border-top: thin solid var(--color-gray-200);
     grid-area: filters;
+  }
+
+  .ais-CurrentRefinements--noRefinement {
+    border: none;
+  }
+
+  .ais-RangeInput {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-content: space-around;
   }
 
   &__filtersArea {
@@ -439,12 +597,19 @@
     grid-template-columns: 1fr auto;
     gap: 0.5rem;
     align-items: center;
+    
+    padding-top: 1rem;
+  }
+
+  &__activeTitle {
+    //grid-column: 1/span 2;
+    font-weight: bold;
   }
 
   &__activeFiltersList {
     display: flex;
-    flex-direction: column;
     gap: .75rem;
+    margin-bottom: 1rem;
   }
 
   &__activeFiltersItems {
@@ -455,12 +620,15 @@
   }
 
   &__activeFilterItem {
-    background-color: #f5f5f5;
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-blue);
+    font-weight: 100;
     border-radius: 4px;
     padding: .25rem .5rem;
   }
 
   &__activeFilterRemove {
+    color: var(--color-dark-blue);
     .eventLocation {
       margin-left: 0.25rem;
     }
@@ -552,6 +720,12 @@
 
    &__results {
     grid-column-start: 2;
+    padding-top:3rem;
+    padding-right:4rem;
+    transition: padding-left 400ms;
+    &.closed {
+      padding-left: 8rem;
+    }
    }
 
    &__radioInput {
@@ -867,7 +1041,7 @@
 
   // Results by Date View
   &__resultsByDate {
-    .eventsCalendar__eventImage {
+    .eventsSearch__eventImage {
       width: 222px;
       height: 139px;
       margin-left: 0;
@@ -877,7 +1051,7 @@
       }
     }
 
-    .eventsCalendar__eventTitle {
+    .eventsSearch__eventTitle {
       font-size: 18px;
 
       @media screen and (min-width: 1070px) {
@@ -885,9 +1059,9 @@
       }
     }
 
-    .eventsCalendar__eventDate,
-    .eventsCalendar__eventVenue,
-    .eventsCalendar__eventActions {
+    .eventsSearch__eventDate,
+    .eventsSearch__eventVenue,
+    .eventsSearch__eventActions {
       font-size: var(--font-size-1);
 
       @media screen and (min-width: 1070px) {
@@ -895,14 +1069,14 @@
       }
     }
 
-    .eventsCalendar__eventCard {
+    .eventsSearch__eventCard {
       @media screen and (min-width: 1070px) {
         grid-template-columns: 1fr 2fr 1fr;
         grid-template-areas: "status content image";
       }
     }
 
-    .eventsCalendar__eventDetails {
+    .eventsSearch__eventDetails {
       margin-top: .5rem;
 
       @media screen and (min-width: 1070px) {
@@ -913,7 +1087,7 @@
 
   // Results by Event View
   &__resultsByEvent {
-    .eventsCalendar__eventImage {
+    .eventsSearch__eventImage {
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -926,7 +1100,7 @@
       }
     }
 
-    .eventsCalendar__eventImg {
+    .eventsSearch__eventImg {
       height: auto;
       aspect-ratio: 16 / 10;
 
@@ -936,7 +1110,7 @@
       }
     }
 
-    .eventsCalendar__eventTitle {
+    .eventsSearch__eventTitle {
       font-size: var(--font-size-3);
 
       @media screen and (min-width: 1070px) {
@@ -944,7 +1118,7 @@
       }
     }
 
-    .eventsCalendar__eventDetails {
+    .eventsSearch__eventDetails {
       margin-top: 1rem;
 
       @media screen and (min-width: 1070px) {
@@ -952,9 +1126,9 @@
       }
     }
 
-    .eventsCalendar__eventDate,
-    .eventsCalendar__eventVenue,
-    .eventsCalendar__eventActions {
+    .eventsSearch__eventDate,
+    .eventsSearch__eventVenue,
+    .eventsSearch__eventActions {
       font-size: var(--font-size-2);
 
       @media screen and (min-width: 1070px) {
@@ -962,8 +1136,8 @@
       }
     }
 
-    .eventsCalendar__eventCard {
-      .eventsCalendar__eventMeta {
+    .eventsSearch__eventCard {
+      .eventsSearch__eventMeta {
         display: none;
       }
 
@@ -1264,17 +1438,17 @@
   &__pagination {
     margin-top: 2rem;
     display: flex;
-    justify-content: center;
-    padding: 0 20px;
+    justify-content: space-between;
+    //padding: 0 20px;
 
-    @media screen and (min-width: 768px) {
-      padding: 0 80px;
-    }
+    // @media screen and (min-width: 768px) {
+    //   padding: 0 80px;
+    // }
 
-    @media screen and (min-width: 1070px) {
-      margin-left: 60px;
-      padding: 0 80px;
-    }
+    // @media screen and (min-width: 1070px) {
+    //   margin-left: 60px;
+    //   padding: 0 80px;
+    // }
   }
 
   &__paginationComponent {
@@ -1310,7 +1484,7 @@
             transition: all 0.2s;
 
             &:hover {
-              background: #f5f5f5;
+              background: var(--color-light-gray);
               border-color: #999;
             }
           }
@@ -1402,7 +1576,7 @@
   }
 
   // Desktop dropdown checkbox styles (matching mobile modal)
-  // .eventsCalendar__checkbox {
+  // .eventsSearch__checkbox {
   //   margin: 0 12px 0 0 !important;
   //   flex-shrink: 0;
   //   width: 20px !important;
@@ -1430,21 +1604,21 @@
   // }
 
   // Desktop venue dropdown styles
-  .eventsCalendar__selectOption--venue {
+  .eventsSearch__selectOption--venue {
     display: flex;
     align-items: center;
     gap: 12px;
 
-    .eventsCalendar__venueInfo {
+    .eventsSearch__venueInfo {
       flex: 1;
     }
 
-    .eventsCalendar__venueName {
+    .eventsSearch__venueName {
       display: block;
       font-weight: 500;
     }
 
-    .eventsCalendar__venueCity {
+    .eventsSearch__venueCity {
       display: block;
       font-size: 14px;
       color: #686F73;
@@ -1453,23 +1627,23 @@
   }
 
   // Desktop ensemble dropdown styles
-  .eventsCalendar__selectOption--ensemble {
+  .eventsSearch__selectOption--ensemble {
     display: flex;
     align-items: center;
     gap: 12px;
 
-    span:not(.eventsCalendar__selectCount) {
+    span:not(.eventsSearch__selectCount) {
       flex: 1;
     }
   }
 
   // Make dropdown menus span across both venue and ensemble filters
-  .eventsCalendar__filtersRow {
+  .eventsSearch__filtersRow {
     position: relative;
   }
 
-  .eventsCalendar__filterGroup--venue,
-  .eventsCalendar__filterGroup--ensemble {
+  .eventsSearch__filterGroup--venue,
+  .eventsSearch__filterGroup--ensemble {
     .vs__dropdown-menu {
       position: absolute;
       left: 0;
@@ -1487,14 +1661,14 @@
   }
 
   // Ensure the ensemble dropdown menu aligns to the left edge of the filters row
-  .eventsCalendar__filterGroup--ensemble {
+  .eventsSearch__filterGroup--ensemble {
     .vs__dropdown-menu {
       // Position the ensemble dropdown to start from the venue filter position
       left: calc(-100% - 1rem); // Move left by the width of venue filter + gap
     }
   }
 
-  // Modal styles moved outside .eventsCalendar scope
+  // Modal styles moved outside .eventsSearch scope
 
   // Ensure modal button styles are applied globally
   .event__buy-button-wrapper {
@@ -1505,7 +1679,7 @@
   }
 
   .event__buy-button--secondary {
-    background: #F5F5F5 !important;
+    background: var(--color-light-gray) !important;
     color: #333 !important;
     border: 1px solid #ddd !important;
 
@@ -1513,9 +1687,13 @@
       background: #e5e5e5 !important;
     }
   }
+
+  .tabs {
+    grid-column: 1 / span 2;
+  }
 }
 
-/* Filter modal styles - outside eventsCalendar scope since modals are in document.body */
+/* Filter modal styles - outside eventsSearch scope since modals are in document.body */
 .eventsModal .filterModal__items {
   display: flex;
   flex-direction: column;
@@ -1588,7 +1766,7 @@
 }
 
 // Desktop positioning for date picker to span across Date and Venue inputs
-.eventsCalendar__filterGroup--date {
+.eventsSearch__filterGroup--date {
   @media (min-width: 769px) {
     position: relative;
   }
@@ -1598,7 +1776,7 @@
       position: absolute !important;
       left: 0 !important;
       top: calc(100% + .5rem)  !important;
-      width: calc(200% + 1rem) !important;
+      //width: calc(200% + 1rem) !important;
       z-index: 1000 !important;
     }
 
@@ -1683,7 +1861,7 @@
   }
 
   &.dp__action_cancel {
-    background: #F5F5F5 !important;
+    background: var(--color-light-gray) !important;
     color: #333 !important;
     border: none !important;
     font-weight: 400 !important;
@@ -1703,4 +1881,8 @@
 
 .dp__action_row {
   border-top: 1px solid #D6D6D6 !important;
+}
+
+.dp__input_icon {
+  --dp-icon-color: var(--color-dark-blue);
 }

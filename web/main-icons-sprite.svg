@@ -97,5 +97,17 @@
     <path fill="var(--icon-color, currentColor)" d="M192 512s192-208 192-320C384 86 298 0 192 0S0 86 0 192C0 304 192 512 192 512zm0-384a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"></path>
   </symbol>
 
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="bars"><path fill="var(--icon-color, currentColor)" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" id="bars">
+    <path fill="var(--icon-color, currentColor)" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+  </symbol>
+
+  <symbol width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="filter">
+    <rect width="24" height="24" rx="4" fill="#01ABE6"/>
+    <path d="M6 7.25H18.8864" stroke="white" stroke-linecap="round"/>
+    <path d="M6 12.5681H18.8864" stroke="white" stroke-linecap="round"/>
+    <path d="M6 17.75H18.8864" stroke="white" stroke-linecap="round"/>
+    <circle cx="8.72709" cy="17.9544" r="1.54545" fill="#01ABE6" stroke="white"/>
+    <circle cx="14.8633" cy="12.5" r="1.54545" fill="#01ABE6" stroke="white"/>
+    <circle cx="10.7725" cy="7.04545" r="1.54545" fill="#01ABE6" stroke="white"/>
+</symbol>
 </svg>

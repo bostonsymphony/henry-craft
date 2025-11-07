@@ -16,59 +16,94 @@
   $b: &;
 
   &__tablist {
+    background-color: #FBF4EF;
     display: flex;
     justify-content: space-between;
     gap: .5rem;
     overflow: clip;
 
-    @include at(sm) {
-      border: solid var(--color-gray-300);
-      border-width: 0 0 2px;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+      
+
+    // @include at(sm) {
+      
+      
+    // }
+
+    @include at(md) {
       gap: 2rem;
+      padding: 2rem 4rem;
       justify-content: start;
     }
 
-    @include at(md) {
-      gap: 3rem;
+    @include at(lg) {
+      padding: 2rem 4rem 0 8rem;
     }
+
   }
 
   &__button {
     background: #0000;
     border: 0;
 
-    color: inherit;
+    color: var(--color-turquoise);
     cursor: pointer;
     display: none;
     font: inherit;
     white-space: nowrap;
     outline-offset: 2px;
+    font-size: 1rem;
+    font-weight: 200;
+    @include at(md) {
+      font-size: 1.5rem;
+    }
+    
     transition:
       color var(--root-duration-fast) var(--root-ease-out),
       --tab__button-box-shadow var(--root-duration-fast) var(--root-ease-out);
 
 
-    @include at(sm) {
+    @include at(md) {
       display: block;
-      box-shadow: 0 var(--tab__button-box-shadow) var(--accent-color) inset;
+      box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
       padding: 0 0 8px;
 
       &:hover {
         --tab__button-box-shadow: -2px;
-        box-shadow: 0 var(--tab__button-box-shadow) var(--accent-color-400) inset;
-        color: var(--color-gray-900);
+        box-shadow: 0 var(--tab__button-box-shadow) var(-color-turquoise) inset;
+        color: var(--color-turquoise);
       }
     }
 
     &.-selected {
       display: block;
-      --tab__button-box-shadow: -8px;
-      color: var(--color-gray-900);
+      color: var(--color-dark-blue);
+      font-weight: bold;
+      --tab__button-box-shadow: -2px;
+      @include at(md) {
+        --tab__button-box-shadow: -4px;
+        font-weight:normal;
+      }
     }
   }
 
   &__panel {
-    padding: 1rem 0;
+    
+    
+
+  }
+
+  &__content {
+    display:  grid;
+    //grid-template-columns: minmax(0, 25%) auto;
+    transition: grid-template-columns 400ms;
+    &.open { 
+      grid-template-columns: max(25%) auto;
+    }
+    &.closed {
+      grid-template-columns: 0% 1fr;
+    }
   }
 
   &__prev,

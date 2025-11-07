@@ -54,6 +54,8 @@
   --color-white: #ffffff;
   --color-mid-blue: #12305A;
   --color-light-gray: #F5F5F5;
+  --color-light-gold: #FBF4EF;
+  --color-dark-gray: #686F73;
   --color-turquoise: #01ABE6;
   --color-black:#000000;
 
@@ -177,32 +179,32 @@
   // Configure other --root- properties here.
   //
 
-  @font-face {
-    font-family: Aeonik;
-    src: url('/fonts/aeonik/aeonik-regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
+  // @font-face {
+  //   font-family: Aeonik;
+  //   src: url('/fonts/aeonik/aeonik-regular.woff') format('woff');
+  //   font-weight: 400;
+  //   font-style: normal;
+  // }
 
-  @font-face {
-    font-family: Aeonik;
-    src: url('/fonts/aeonik/aeonik-regular-italic.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
-  }
+  // @font-face {
+  //   font-family: Aeonik;
+  //   src: url('/fonts/aeonik/aeonik-regular-italic.woff') format('woff');
+  //   font-weight: 400;
+  //   font-style: italic;
+  // }
 
-  @font-face {
-    font-family: Aeonik;
-    src: url('/fonts/aeonik/aeonik-bold.woff') format('woff');
-    font-weight: 700;
-    font-style: bold;
-  }
+  // @font-face {
+  //   font-family: Aeonik;
+  //   src: url('/fonts/aeonik/aeonik-bold.woff') format('woff');
+  //   font-weight: 700;
+  //   font-style: bold;
+  // }
 
-  @font-face {
-    font-family: Aeonik;
-    src: url('/fonts/aeonik/aeonik-bold-italic.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
-  }
+  // @font-face {
+  //   font-family: Aeonik;
+  //   src: url('/fonts/aeonik/aeonik-bold-italic.woff') format('woff');
+  //   font-weight: 700;
+  //   font-style: italic;
+  // }
 
 }
