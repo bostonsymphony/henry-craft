@@ -49,15 +49,22 @@
 
     color: var(--color-turquoise);
     cursor: pointer;
-    display: none;
     font: inherit;
     white-space: nowrap;
     outline-offset: 2px;
     font-size: 1rem;
     font-weight: 200;
+    box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
+    padding: 0;
     @include at(md) {
       font-size: 1.5rem;
     }
+
+    &:hover {
+        --tab__button-box-shadow: -2px;
+        box-shadow: 0 var(--tab__button-box-shadow) var(-color-turquoise) inset;
+        color: var(--color-turquoise);
+      }
     
     transition:
       color var(--root-duration-fast) var(--root-ease-out),
@@ -66,7 +73,6 @@
 
     @include at(md) {
       display: block;
-      box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
       padding: 0 0 8px;
 
       &:hover {
@@ -98,12 +104,16 @@
     display:  grid;
     //grid-template-columns: minmax(0, 25%) auto;
     transition: grid-template-columns 400ms;
-    &.open { 
-      grid-template-columns: max(25%) auto;
+    grid-template-columns: 0% 1fr;
+    @include at(md) {
+      &.open { 
+        grid-template-columns: max(25%) auto;
+      }
+      &.closed {
+        grid-template-columns: 0% 1fr;
+      }
     }
-    &.closed {
-      grid-template-columns: 0% 1fr;
-    }
+   
   }
 
   &__prev,

@@ -86,10 +86,15 @@
       border-left: thin solid var(--color-gray-200);
     }
     &.-header {
-      border-top: thin solid var(--color-gray-200);
-      border-bottom: thin solid var(--color-gray-200);
-      font-weight:100;
-      color: var(--color-gray-400);
+      display: none;
+      @include at(md) {
+        display: inline;
+        border-top: thin solid var(--color-gray-200);
+        border-bottom: thin solid var(--color-gray-200);
+        font-weight:100;
+        color: var(--color-gray-400);
+      }
+      
     }
     &.-last {
       border-bottom: thin solid var(--color-gray-200);
@@ -135,18 +140,16 @@
     box-sizing: border-box;
     
     padding: 1rem 1.5rem;
-    @media screen and (min-width: 768px) {
+    @include at(md) {
       padding: 2rem 4rem;
     }
 
-    @media screen and (max-width: 768px) {
+     @include at(lg) {
       flex-direction: column;
       gap: 1rem;
-    }
-
-    @media screen and (min-width: 1070px) {
       padding: 2rem 4rem 2rem 8rem;
     }
+
   }
 
   &__header {
@@ -155,7 +158,7 @@
       display:inline;
     }
     flex-shrink: 0;
-    min-width: 200px;
+    //min-width: 200px;
     margin-bottom: .5rem;
   }
 
@@ -258,7 +261,7 @@
       "title actions"
       "filters filters";
 
-    @media screen and (min-width: 1070px) {
+    @include at(md) {
       grid-template-columns: 1fr auto;
       grid-template-rows: auto auto;
       grid-template-areas:
@@ -282,15 +285,7 @@
       "search search search"
       "date date button";
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-      "search search"
-      "date date"
-      "button button";
-    }
-
-    @media screen and (min-width: 1070px) {
+    @include at(lg) {
       grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 1fr) 18rem;
       grid-template-areas:
       "search date button";
@@ -318,21 +313,16 @@
     padding-top: 3rem;
     background-color:#ffffff;
     transition: width 400ms, padding-left 400ms;
-    width: 26rem;
+    width: 0;
     &.closed {
       width: 0;
       padding-left: 6rem;
     }
-    @media screen and (min-width: 768px) {
-      padding-left: 80px;
-    }
 
-    @media screen and (max-width: 768px) {
+    @include at(md) {
+      width: 26rem;
       flex-direction: column;
       gap: 1rem;
-    }
-
-    @media screen and (min-width: 1070px) {
       padding-left: 8rem;
     }
   }
@@ -371,7 +361,7 @@
           color: #666;
         }
 
-        @media screen and (min-width: 1070px) {
+        @include at(md) {
           font-size: 16px !important;
           padding: 0 2.75rem !important;
         }
@@ -383,158 +373,156 @@
       }
 
       // Mobile fullscreen date picker styles
-      @media screen and (max-width: 767px) {
-        .dp__menu {
-          position: fixed !important;
-          top: 60px !important; // Leave space for custom header
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          width: 100vw !important;
-          height: calc(100vh - 60px) !important; // Adjust for header
-          max-width: none !important;
-          max-height: none !important;
-          border-radius: 0 !important;
-          z-index: 9999 !important;
-          background: white !important;
-          box-shadow: none !important;
-          border: none !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          display: flex !important;
-          flex-direction: column !important;
-        }
+      .dp__menu {
+        position: fixed !important;
+        top: 60px !important; // Leave space for custom header
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: calc(100vh - 60px) !important; // Adjust for header
+        max-width: none !important;
+        max-height: none !important;
+        border-radius: 0 !important;
+        z-index: 9999 !important;
+        background: white !important;
+        box-shadow: none !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
 
+      .dp__menu_inner {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 1rem !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
+      }
 
-        .dp__menu_inner {
-          flex: 1 !important;
-          display: flex !important;
-          flex-direction: column !important;
-          padding: 1rem !important;
-          height: 100% !important;
-          box-sizing: border-box !important;
-        }
+      .dp__calendar_header {
+        padding: 1rem 0 !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+        margin-bottom: 1rem !important;
+      }
 
-        .dp__calendar_header {
-          padding: 1rem 0 !important;
-          border-bottom: 1px solid #e0e0e0 !important;
-          margin-bottom: 1rem !important;
-        }
+      .dp__calendar_header_item {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+      }
 
-        .dp__calendar_header_item {
-          font-size: 18px !important;
-          font-weight: 600 !important;
-        }
+      .dp__calendar_wrap {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        overflow: hidden !important;
+      }
 
-        .dp__calendar_wrap {
-          flex: 1 !important;
-          display: flex !important;
-          flex-direction: column !important;
-          justify-content: flex-start !important;
-          overflow: hidden !important;
-        }
+      .dp__calendar {
+        width: 100% !important;
+        max-width: none !important;
+      }
 
-        .dp__calendar {
-          width: 100% !important;
-          max-width: none !important;
-        }
+      // Force single month display
+      .dp__instance_calendar {
+        width: 100% !important;
 
-        // Force single month display
-        .dp__instance_calendar {
-          width: 100% !important;
-
-          &:not(:first-child) {
-            display: none !important;
-          }
-        }
-
-        // Hide multi-calendar controls if they exist
-        .dp__calendar_header_separator,
-        .dp__calendar_next,
-        .dp__calendar_prev {
+        &:not(:first-child) {
           display: none !important;
         }
+      }
 
-        .dp__calendar_row {
-          margin-bottom: 0.5rem !important;
-        }
+      // Hide multi-calendar controls if they exist
+      .dp__calendar_header_separator,
+      .dp__calendar_next,
+      .dp__calendar_prev {
+        display: none !important;
+      }
 
-        .dp__calendar_item {
-          height: 48px !important;
-          width: 48px !important;
-          font-size: 16px !important;
-          margin: 2px !important;
-        }
+      .dp__calendar_row {
+        margin-bottom: 0.5rem !important;
+      }
 
-        // Essential dp__ button styles for functionality
-        .dp__action_button {
-          cursor: pointer !important;
-          border: none !important;
-          padding: 0.75rem 1.5rem !important;
-          border-radius: 0.375rem !important;
-          font-weight: 500 !important;
-          transition: all 0.2s ease !important;
-        }
+      .dp__calendar_item {
+        height: 48px !important;
+        width: 48px !important;
+        font-size: 16px !important;
+        margin: 2px !important;
+      }
 
-        .dp__action_select,
-        .dp__select {
-          background: var(--c-brand, #007bff) !important;
-          color: white !important;
-          border: none !important;
+      // Essential dp__ button styles for functionality
+      .dp__action_button {
+        cursor: pointer !important;
+        border: none !important;
+        padding: 0.75rem 1.5rem !important;
+        border-radius: 0.375rem !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+      }
 
-          &:hover {
-            background: var(--c-brand-dark, #0056b3) !important;
-          }
-        }
+      .dp__action_select,
+      .dp__select {
+        background: var(--c-brand, #007bff) !important;
+        color: white !important;
+        border: none !important;
 
-        .dp__action_cancel {
-          background: var(--color-light-gray) !important;
-          color: #333 !important;
-          border: 1px solid #ddd !important;
-
-          &:hover {
-            background: #e8e8e8 !important;
-          }
-        }
-
-        // Hide original action row positioning to prevent flash
-        .dp__action_row {
-          &:not(.dp__action_row--repositioned) {
-            opacity: 0 !important;
-            transition: opacity 0.1s ease !important;
-          }
-        }
-
-        // Note: CSS styles don't work for modals inserted outside component scope
-        // Using inline styles in JavaScript instead
-
-        // Add overlay backdrop
-        .dp__overlay {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          background: rgba(0, 0, 0, 0.5) !important;
-          z-index: 9998 !important;
+        &:hover {
+          background: var(--c-brand-dark, #0056b3) !important;
         }
       }
-    }
 
-    &--venue {
-      grid-area: venue;
-    }
+      .dp__action_cancel {
+        background: var(--color-light-gray) !important;
+        color: #333 !important;
+        border: 1px solid #ddd !important;
 
-    &--ensemble {
-      grid-area: ensemble;
-    }
+        &:hover {
+          background: #e8e8e8 !important;
+        }
+      }
 
-    .button {
-      padding: 0;
-      height: 100%;
-      width: 100%;
+      // Hide original action row positioning to prevent flash
+      .dp__action_row {
+        &:not(.dp__action_row--repositioned) {
+          opacity: 0 !important;
+          transition: opacity 0.1s ease !important;
+        }
+      }
+
+      // Note: CSS styles don't work for modals inserted outside component scope
+      // Using inline styles in JavaScript instead
+
+      // Add overlay backdrop
+      .dp__overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 9998 !important;
+      }
     }
   }
+
+  &--venue {
+    grid-area: venue;
+  }
+
+  &--ensemble {
+    grid-area: ensemble;
+  }
+
+  .button {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
 
   &__filtersControls {
     display: flex;
@@ -545,11 +533,11 @@
     font-size: 14px;
     padding: 0 20px;
 
-    @media screen and (min-width: 768px) {
+    @include at(md) {
       padding: 0 80px;
     }
 
-    @media screen and (min-width: 1070px) {
+    @include at(md) {
       margin-top: 3rem;
       margin-left: 60px;
       padding: 0 80px;
@@ -563,7 +551,7 @@
     grid-area: title;
     margin-bottom: .5rem;
 
-    @media screen and (min-width: 1070px) {
+    @include at(md) {
       font-size: 50px;
       margin-bottom: 0;
     }
@@ -652,7 +640,7 @@
      font-size: 14px;
      transition: background-color 0.2s, color 0.2s;
 
-     @media screen and (min-width: 1070px) {
+     @include at(md) {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -683,290 +671,22 @@
      background: white;
    }
 
-   &__radioOption {
-     position: relative;
-     cursor: pointer;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     padding: 8px 16px;
-     background: white;
-     color: #686F73;
-     font-size: 14px;
-     font-weight: 500;
-     transition: all 0.2s ease;
-     border: none;
-     min-width: 80px;
 
-     &:first-child {
-       border-right: 1px solid var(--brand-200, var(--c-theme-200));
-     }
-
-     &:hover {
-       background-color: #f8f8f8;
-       color: var(--c-theme-800);
-     }
-
-     &.-selected {
-      background-color: var(--brand-200, var(--c-theme-200));
-      color: var(--brand-800, var(--c-theme-800));
-
-      &:hover {
-        background-color: var(--brand-200, var(--c-theme-200));
-        color: var(--brand-800, var(--c-theme-800));
-      }
-     }
-   }
 
    &__results {
     grid-column-start: 2;
     padding-top:3rem;
     padding-right:4rem;
     transition: padding-left 400ms;
+    padding-left: 2rem;
     &.closed {
       padding-left: 8rem;
     }
    }
-
-   &__radioInput {
-     position: absolute;
-     opacity: 0;
-     width: 0;
-     height: 0;
-     pointer-events: none;
-   }
-
-   &__radioLabel {
-     white-space: nowrap;
-     user-select: none;
-   }
-
    &__printButton {
      color: #686F73;
    }
 
-  // Dropdown styles
-  &__vueSelectWrapper {
-    position: relative;
-
-    // On mobile, add pointer cursor to indicate clickability
-    @media screen and (max-width: 767px) {
-      cursor: pointer;
-
-      // Add a pseudo-element to capture clicks
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 10;
-        background: transparent;
-      }
-    }
-  }
-
-  &__vueSelect {
-    &.v-select {
-      min-height: auto;
-      border: 0;
-      padding: 0;
-    }
-
-    // On mobile, style disabled state to look normal and clickable
-    @media screen and (max-width: 767px) {
-      &.vs--disabled {
-        opacity: 1 !important;
-
-        .vs__dropdown-toggle {
-          cursor: pointer !important;
-          background: #FDF9F7 !important;
-          border-color: #D6D6D6 !important;
-        }
-
-        .vs__selected {
-          display: none !important;
-        }
-
-        .vs__search {
-          cursor: pointer !important;
-        }
-      }
-    }
-
-    .vs__dropdown-toggle {
-      border-radius: 5px !important;
-      border: 1px solid #D6D6D6 !important;
-      background: #FDF9F7 !important;
-      padding: 0 12px 0 12px !important;
-      height: 40px !important;
-      min-height: 40px !important;
-      max-height: 40px !important;
-      max-width: 100% !important;
-      display: flex !important;
-      align-items: center !important;
-      box-sizing: border-box !important;
-      outline: none !important;
-      overflow: hidden !important;
-    }
-
-    &.vs--focused .vs__dropdown-toggle {
-      border: 1px solid var(--c-brand) !important;  // Keep original border
-      outline: none !important;
-      box-sizing: border-box !important;
-    }
-
-    &.vs--open .vs__dropdown-toggle {
-      border: 1px solid var(--c-brand) !important;  // Keep original border
-      outline: none !important;
-      box-sizing: border-box !important;
-    }
-
-    .vs__selected-options {
-      padding: 0;
-      flex-wrap: wrap;
-      gap: 4px;
-      max-width: calc(100% - 32px) !important; // Reserve space for dropdown arrow
-      overflow: hidden !important;
-    }
-
-    .vs__search {
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      font-size: 14px !important;
-      flex: 1 !important;
-      position: relative !important;
-      top: 0 !important;
-      left: 0 !important;
-
-      @media screen and (min-width: 1070px) {
-        font-size: 16px !important;
-      }
-
-      &::placeholder {
-        color: #666;
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-      }
-    }
-
-    &.vs--open {
-      border: none !important;
-      .vs__search {
-        margin: 0 !important;
-        padding: 0 !important;
-        position: relative !important;
-        top: 0 !important;
-        left: 0 !important;
-
-        &::placeholder {
-          position: relative !important;
-          top: 0 !important;
-          left: 0 !important;
-        }
-      }
-
-      .vs__dropdown-toggle {
-        padding: 0 12px 0 12px !important;
-      }
-
-      .vs__selected-options {
-        padding: 0 !important;
-      }
-    }
-
-    .vs__selected {
-      display: none !important;
-
-      .vs__deselect {
-        color: white;
-        position: absolute !important;
-        right: 4px !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        margin: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 16px !important;
-        height: 16px !important;
-      }
-    }
-
-    .vs__dropdown-menu {
-      border: 1px solid #D6D6D6;
-      border-radius: 5px;
-      box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.12);
-      max-height: 200px;
-      overflow-y: auto;
-      padding: 8px 0;
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .vs__dropdown-option {
-      padding: 12px 16px;
-      cursor: pointer;
-      font-size: 17px !important;
-      margin: 0 16px;
-      border-radius: 4px;
-      white-space: normal !important;
-      word-wrap: break-word !important;
-      overflow-wrap: break-word !important;
-      line-height: 1.4 !important;
-
-      &:hover,
-      &--highlight {
-        color: var(--c-theme-400) !important;
-      }
-    }
-
-    .vs__actions {
-      padding: 0 12px 0 8px !important;
-      margin: 0 !important;
-      display: flex !important;
-      position: relative !important;
-      align-items: center !important;
-      justify-content: center !important;
-      height: 38px !important;
-      min-width: 32px !important;
-      flex-shrink: 0 !important;
-
-      &::after {
-        content: '' !important;
-        border: 1px solid var(--c-theme-800) !important;
-        border-width: 0 1.5px 1.5px 0 !important;
-        display: inline-block !important;
-        padding: 4px !important;
-        transform: rotate(45deg) !important;
-        transition: transform 0.3s ease !important;
-        position: absolute !important;
-        top: 50% !important;
-        right: 0 !important;
-        margin-top: -6px !important;
-        z-index: 10 !important;
-        pointer-events: none !important;
-
-        @media screen and (min-width: 768px) {
-          right: 12px !important;
-        }
-      }
-    }
-
-    .vs__open-indicator {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
-
-    &.vs--open .vs__actions::after {
-      transform: rotate(-135deg) !important;
-    }
-
-  }
 
   &__selectOption {
     display: flex;
@@ -1006,433 +726,6 @@
     padding: 0;
   }
 
-  &__venueIcon,
-  &__ensembleIcon {
-    flex-shrink: 0;
-    color: #666;
-    width: 19px;
-    height: 18px;
-    max-height: 18px;
-  }
-
-    // Search Results
-    &__resultsByDate,
-    &__resultsByEvent {
-      padding: 0 20px;
-
-      @media screen and (min-width: 768px) {
-        padding: 0 80px;
-      }
-
-      @media screen and (min-width: 1070px) {
-        margin-left: 60px;
-        padding: 0 80px;
-      }
-    }
-
-
-    &__resultsCount {
-      color: #686F73;
-      display: inline-block;
-      font-size: var(--font-size-3);
-      font-weight: var(--font-weight-bold);
-      margin-bottom: .75rem;
-    }
-
-  // Results by Date View
-  &__resultsByDate {
-    .eventsSearch__eventImage {
-      width: 222px;
-      height: 139px;
-      margin-left: 0;
-
-      @media screen and (min-width: 768px) {
-        margin-left: auto;
-      }
-    }
-
-    .eventsSearch__eventTitle {
-      font-size: 18px;
-
-      @media screen and (min-width: 1070px) {
-        font-size: 22px;
-      }
-    }
-
-    .eventsSearch__eventDate,
-    .eventsSearch__eventVenue,
-    .eventsSearch__eventActions {
-      font-size: var(--font-size-1);
-
-      @media screen and (min-width: 1070px) {
-        font-size: var(--font-size-2);
-      }
-    }
-
-    .eventsSearch__eventCard {
-      @media screen and (min-width: 1070px) {
-        grid-template-columns: 1fr 2fr 1fr;
-        grid-template-areas: "status content image";
-      }
-    }
-
-    .eventsSearch__eventDetails {
-      margin-top: .5rem;
-
-      @media screen and (min-width: 1070px) {
-        margin-top: 1rem;
-      }
-    }
-  }
-
-  // Results by Event View
-  &__resultsByEvent {
-    .eventsSearch__eventImage {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      margin-left: 0;
-
-      @media screen and (min-width: 768px) {
-        max-width: 580px;
-        height: 360px;
-        margin-left: auto;
-      }
-    }
-
-    .eventsSearch__eventImg {
-      height: auto;
-      aspect-ratio: 16 / 10;
-
-      @media screen and (min-width: 768px) {
-        height: 360px;
-        aspect-ratio: 580 / 360;
-      }
-    }
-
-    .eventsSearch__eventTitle {
-      font-size: var(--font-size-3);
-
-      @media screen and (min-width: 1070px) {
-        font-size: 40px;
-      }
-    }
-
-    .eventsSearch__eventDetails {
-      margin-top: 1rem;
-
-      @media screen and (min-width: 1070px) {
-        margin-top: 1.5rem;
-      }
-    }
-
-    .eventsSearch__eventDate,
-    .eventsSearch__eventVenue,
-    .eventsSearch__eventActions {
-      font-size: var(--font-size-2);
-
-      @media screen and (min-width: 1070px) {
-        font-size: 22px;
-      }
-    }
-
-    .eventsSearch__eventCard {
-      .eventsSearch__eventMeta {
-        display: none;
-      }
-
-      @media screen and (min-width: 1070px) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "content image";
-      }
-    }
-  }
-
-  &__eventDetails {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  &__eventActions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-
-    @media screen and (min-width: 1070px) {
-      margin-top: 1.5rem;
-    }
-  }
-
-  &__ticketLink {
-    color: var(--brand-600, var(--c-theme-600));
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s, text-decoration 0.2s;
-
-    &:hover {
-      color: var(--brand-800, var(--c-theme-800));
-      text-decoration: underline;
-    }
-  }
-
-  &__eventLink {
-    color: #686F73;
-    transition: color 0.2s, text-decoration 0.2s;
-
-    &:hover {
-      color: var(--c-theme-800);
-      text-decoration: underline;
-    }
-  }
-
-  &__monthTitle {
-    font-size: var(--font-size-3);
-    font-weight: 700;
-    border-bottom: 1px solid #D3D0CD;
-    border-top: 1px solid #D3D0CD;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    margin-bottom: .5rem;
-  }
-
-  &__eventCard {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 1rem;
-    border-bottom: 1px solid #D3D0CD;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-
-    @media screen and (min-width: 1070px) {
-      gap: 2rem;
-      align-items: start;
-      margin-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    &:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-    }
-  }
-
-  &__eventMeta {
-    justify-self: start;
-
-    @media screen and (min-width: 1070px) {
-      grid-area: status;
-    }
-  }
-
-  &__eventStatus {
-    font-size: var(--font-size-1);
-    padding: 9px 12px;
-    border-radius: 5px;
-    border: 1px solid var(--status-border-default);
-    background-color: transparent;
-    color: var(--status-color-default);
-
-    // Import status styles from Dropdown component
-    &.-status {
-      background-color: var(--status-border-default);
-      color: var(--status-color-default);
-    }
-
-    &.-cancelled {
-      background-color: transparent;
-      border: 1px solid var(--status-border-cancelled);
-      color: var(--status-color-cancelled);
-    }
-
-    &.-rescheduled {
-      background-color: transparent;
-      border: 1px solid var(--status-border-rescheduled);
-      color: var(--status-color-rescheduled);
-    }
-
-    &.-postponed {
-      background-color: transparent;
-      border: 1px solid var(--status-border-postponed);
-      color: var(--status-color-postponed);
-    }
-
-    &.-sold-out {
-      background-color: transparent;
-      border: 1px solid var(--status-border-sold-out);
-      color: var(--status-color-sold-out);
-    }
-
-    &.-best-availability {
-      background-color: transparent;
-      border-color: var(--status-border-best-availability);
-      color: var(--status-color-best-availability);
-    }
-
-    &.-limited-availability {
-      background-color: transparent;
-      border: 1px solid var(--status-border-limited-availability);
-      color: var(--status-color-limited-availability);
-    }
-
-    &.-coming-soon {
-      background-color: transparent;
-      border: 1px solid var(--status-border-coming-soon);
-      color: var(--status-color-coming-soon);
-    }
-
-    &.-past-date {
-      background-color: transparent;
-      border: 1px solid var(--status-border-default);
-      color: var(--status-color-default);
-    }
-
-    &.-free {
-      background-color: transparent;
-      border: 1px solid var(--c-theme-400);
-      color: var(--c-theme-600);
-    }
-  }
-
-  &__eventContent {
-    @media screen and (min-width: 1070px) {
-      grid-area: content;
-    }
-  }
-
-  &__eventImage {
-    width: 222px;
-    height: 139px;
-    overflow: hidden;
-    border-radius: 4px;
-    flex-shrink: 0;
-
-    @media screen and (min-width: 1070px) {
-      grid-area: image;
-    }
-
-    @media screen and (max-width: 767px) {
-      width: 100%;
-      max-width: 222px;
-      height: 139px;
-    }
-  }
-
-  &__eventImg {
-    border-radius: 4px;
-    width: 100%;
-    height: 139px;
-    object-fit: cover;
-    object-position: center;
-    aspect-ratio: 222 / 139;
-  }
-
-  &__eventTitle {
-    font-weight: 700;
-  }
-
-  &__eventNotice {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    font-weight: 500;
-  }
-
-  &__eventNote {
-    margin-top: 0.75rem;
-  }
-
-  &__noticeIcon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-  }
-
-  &__noticeIconSvg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    fill: currentColor;
-    stroke: currentColor;
-
-    use {
-      fill: inherit;
-      stroke: inherit;
-    }
-  }
-
-  &__eventNote,
-  &__noticeText {
-    font-size: var(--font-size-1);
-    font-weight: var(--font-weight-bold);
-    line-height: 1.4;
-  }
-
-  &__noticeText {
-    flex: 1;
-  }
-
-  &__categories {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  &__category {
-    background-color: var(--brand-600, var(--c-theme-600));
-    color: white;
-    padding: .5rem .75rem;
-    border-radius: 3px;
-    font-size: var(--font-size-1);
-    font-weight: 500;
-
-    // Second sibling and beyond get lighter styling
-    &:nth-child(n+2) {
-      background-color: var(--brand-200, var(--c-theme-200));
-      color: var(--brand-800, var(--c-theme-800));
-    }
-  }
-
-  &__eventDate {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--font-size-1);
-
-    @media screen and (min-width: 1070px) {
-      font-size: var(--font-size-2);
-    }
-  }
-
-  &__eventVenue {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: var(--font-size-1);
-
-    @media screen and (min-width: 1070px) {
-      font-size: var(--font-size-2);
-    }
-  }
-
-  &__venueLink {
-    text-decoration: underline;
-    transition: text-decoration 0.2s, color 0.2s;
-
-    &:hover {
-      color: var(--c-brand);
-      text-decoration: underline;
-    }
-  }
 
   // Pagination styles
   &__pagination {
@@ -1441,11 +734,11 @@
     justify-content: space-between;
     //padding: 0 20px;
 
-    // @media screen and (min-width: 768px) {
+    // @include at(md) {
     //   padding: 0 80px;
     // }
 
-    // @media screen and (min-width: 1070px) {
+    // @include at(md) {
     //   margin-left: 60px;
     //   padding: 0 80px;
     // }
@@ -1542,347 +835,154 @@
     }
   }
 
-  // Filter modal styles (venue and ensemble)
-  .venue__mobile_modal,
-  .ensemble__mobile_modal {
-    .eventsModal__venueContainer,
-    .eventsModal__ensembleContainer {
-      padding: 1rem;
-      max-height: 60vh;
-      overflow-y: auto;
-    }
-
-    // Ensure checkboxes are visible in modals
-    // input[type="checkbox"] {
-    //   display: block !important;
-    //   opacity: 1 !important;
-    //   visibility: visible !important;
-    //   width: 20px !important;
-    //   height: 20px !important;
-    //   margin: 0 !important;
-    //   padding: 0 !important;
-    //   border: 2px solid #ccc !important;
-    //   border-radius: 3px !important;
-    //   background: white !important;
-    //   appearance: checkbox !important;
-    //   -webkit-appearance: checkbox !important;
-    //   -moz-appearance: checkbox !important;
-
-    //   &:checked {
-    //     background: var(--c-brand, #007bff) !important;
-    //     border-color: var(--c-brand, #007bff) !important;
-    //   }
-    // }
-  }
-
-  // Desktop dropdown checkbox styles (matching mobile modal)
-  // .eventsSearch__checkbox {
-  //   margin: 0 12px 0 0 !important;
-  //   flex-shrink: 0;
-  //   width: 20px !important;
-  //   height: 20px !important;
-  //   min-width: 20px !important;
-  //   min-height: 20px !important;
-  //   accent-color: var(--c-brand, #007bff) !important;
-  //   appearance: checkbox !important;
-  //   -webkit-appearance: checkbox !important;
-  //   -moz-appearance: checkbox !important;
-  //   display: block !important;
-  //   opacity: 1 !important;
-  //   visibility: visible !important;
-  //   position: relative !important;
-  //   z-index: 1 !important;
-  //   background: white !important;
-  //   border: 2px solid #ccc !important;
-  //   border-radius: 3px !important;
-  //   cursor: pointer;
-
-  //   &:checked {
-  //     background: var(--c-brand, #007bff) !important;
-  //     border-color: var(--c-brand, #007bff) !important;
-  //   }
-  // }
-
-  // Desktop venue dropdown styles
-  .eventsSearch__selectOption--venue {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .eventsSearch__venueInfo {
-      flex: 1;
-    }
-
-    .eventsSearch__venueName {
-      display: block;
-      font-weight: 500;
-    }
-
-    .eventsSearch__venueCity {
-      display: block;
-      font-size: 14px;
-      color: #686F73;
-      font-weight: 400;
-    }
-  }
-
-  // Desktop ensemble dropdown styles
-  .eventsSearch__selectOption--ensemble {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    span:not(.eventsSearch__selectCount) {
-      flex: 1;
-    }
-  }
-
   // Make dropdown menus span across both venue and ensemble filters
   .eventsSearch__filtersRow {
     position: relative;
   }
 
-  .eventsSearch__filterGroup--venue,
-  .eventsSearch__filterGroup--ensemble {
-    .vs__dropdown-menu {
-      position: absolute;
-      left: 0;
-      right: 0;
-      width: auto !important;
-      min-width: 100%;
-      z-index: 1000;
-
-      // Calculate width to span both filter groups plus gap
-      // Assuming the filters row has the two filter groups side by side
-      @media (min-width: 768px) {
-        width: calc(200% + 1rem) !important; // 200% for both filters + gap between them
-      }
-    }
-  }
-
-  // Ensure the ensemble dropdown menu aligns to the left edge of the filters row
-  .eventsSearch__filterGroup--ensemble {
-    .vs__dropdown-menu {
-      // Position the ensemble dropdown to start from the venue filter position
-      left: calc(-100% - 1rem); // Move left by the width of venue filter + gap
-    }
-  }
+  
 
   // Modal styles moved outside .eventsSearch scope
 
-  // Ensure modal button styles are applied globally
-  .event__buy-button-wrapper {
-    display: flex !important;
-    gap: 1rem !important;
-    justify-content: center !important;
-    width: 100% !important;
-  }
 
-  .event__buy-button--secondary {
-    background: var(--color-light-gray) !important;
-    color: #333 !important;
-    border: 1px solid #ddd !important;
-
-    &:hover {
-      background: #e5e5e5 !important;
-    }
-  }
 
   .tabs {
     grid-column: 1 / span 2;
   }
-}
 
-/* Filter modal styles - outside eventsSearch scope since modals are in document.body */
-.eventsModal .filterModal__items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
 
-.eventsModal .filterModal__item:has(input:checked) {
-  border-color: var(--c-brand, #007bff);
-  background-color: #f0f8ff;
-}
 
-.eventsModal .filterModal__itemLabel {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 0.75rem;
-  width: 100%;
-  margin: 0;
-}
 
-// .eventsModal .filterModal__itemLabel input[type="checkbox"] {
-//   margin: 0 !important;
-//   flex-shrink: 0;
-//   width: 20px !important;
-//   height: 20px !important;
-//   min-width: 20px !important;
-//   min-height: 20px !important;
-//   accent-color: var(--c-brand, #007bff) !important;
-//   appearance: checkbox !important;
-//   -webkit-appearance: checkbox !important;
-//   -moz-appearance: checkbox !important;
-//   display: block !important;
-//   opacity: 1 !important;
-//   visibility: visible !important;
-//   position: relative !important;
-//   z-index: 1 !important;
-//   background: white !important;
-//   border: 2px solid #ccc !important;
-//   border-radius: 3px !important;
-// }
+  // Calendar styles
+  .dp__menu {
 
-// .eventsModal .filterModal__itemLabel input[type="checkbox"]:checked {
-//   background: var(--c-brand, #007bff) !important;
-//   border-color: var(--c-brand, #007bff) !important;
-// }
-
-.eventsModal .filterModal__itemText {
-  flex: 1;
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--c-theme-800, #333);
-}
-
-.eventsModal .filterModal__venueName {
-  display: block;
-}
-
-.eventsModal .filterModal__venueCity {
-  display: block;
-  font-size: 14px;
-  color: #686F73;
-  font-weight: 400;
-}
-
-// Calendar styles
-.dp__menu {
-  @media (max-width: 768px) {
     border: none !important;
-  }
-}
 
-// Desktop positioning for date picker to span across Date and Venue inputs
-.eventsSearch__filterGroup--date {
-  @media (min-width: 769px) {
-    position: relative;
   }
 
-  .dp__outer_menu_wrap {
-    @media (min-width: 769px) {
-      position: absolute !important;
-      left: 0 !important;
-      top: calc(100% + .5rem)  !important;
-      //width: calc(200% + 1rem) !important;
-      z-index: 1000 !important;
+  // Desktop positioning for date picker to span across Date and Venue inputs
+  .eventsSearch__filterGroup--date {
+    @include at(md) {
+      position: relative;
     }
 
-    .dp__menu {
-      @media (min-width: 769px) {
-        width: 100% !important;
+    .dp__outer_menu_wrap {
+      @include at(md) {
+        position: absolute !important;
         left: 0 !important;
+        top: calc(100% + .5rem)  !important;
+        //width: calc(200% + 1rem) !important;
+        z-index: 1000 !important;
+      }
+
+      .dp__menu {
+        @include at(md) {
+          width: 100% !important;
+          left: 0 !important;
+        }
       }
     }
   }
-}
 
-.dp__menu_inner {
-  --dp-menu-padding: 16px 8px;
-  @media (max-width: 769px) {
+  .dp__menu_inner {
     --dp-menu-padding: 0 !important;
-  }
-}
-
-.dp__cell_inner.dp__today {
-  border-radius: 50% !important;
-  border-color: var(--c-brand) !important;
-  color: var(--c-brand) !important;
-}
-
-.dp__cell_inner {
-  --dp-cell-border-radius: 16px !important;
-  --dp-font-size: 14px !important;
-  --dp-cell-size: 48px;
-  font-size: var(--dp-font-size);
-}
-
-.dp__range_start,
-.dp__range_end {
-  --dp-cell-border-radius: 32px !important;
-  --dp-primary-color: var(--c-brand) !important;
-}
-
-.dp__range_between {
-  --dp-range-between-dates-background-color: var(--c-theme-200) !important;
-  --dp-range-between-dates-text-color: var(--c-theme-400) !important;
-  border: none !important;
-}
-
-.dp__calendar_item,
-.dp__calendar_header_item {
-  flex-grow: 0 !important;
-  --dp-cell-size: 48px;
-}
-
-.dp--year-select, .dp__month_year_select {
-  font-size: 22px !important;
-  font-weight: 800 !important;
-  --dp-text-color: var(--c-theme-800) !important;
-}
-
-.dp__calendar_header_item {
-  color: #686F73 !important;
-}
-
-// Date picker action buttons to match mobile modal buttons
-.dp__action_buttons {
-  gap: 12px !important;
-}
-
-.dp__action_button {
-  padding: 16px 24px !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  font-size: 17px !important;
-  border: none !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-
-  &.dp__action_select {
-    background: var(--c-brand, #007bff) !important;
-    color: white !important;
-
-    &:hover {
-      background: var(--c-brand-dark, #0056b3) !important;
+    @include at(md) {
+      --dp-menu-padding: 16px 8px;
     }
+    
+    
+
+    }
+
+
+  .dp__cell_inner.dp__today {
+    border-radius: 50% !important;
+    border-color: var(--c-brand) !important;
+    color: var(--c-brand) !important;
   }
 
-  &.dp__action_cancel {
-    background: var(--color-light-gray) !important;
-    color: #333 !important;
+  .dp__cell_inner {
+    --dp-cell-border-radius: 16px !important;
+    --dp-font-size: 14px !important;
+    --dp-cell-size: 48px;
+    font-size: var(--dp-font-size);
+  }
+
+  .dp__range_start,
+  .dp__range_end {
+    --dp-cell-border-radius: 32px !important;
+    --dp-primary-color: var(--c-brand) !important;
+  }
+
+  .dp__range_between {
+    --dp-range-between-dates-background-color: var(--c-theme-200) !important;
+    --dp-range-between-dates-text-color: var(--c-theme-400) !important;
     border: none !important;
-    font-weight: 400 !important;
+  }
 
-    &:hover {
-      background: #e8e8e8 !important;
+  .dp__calendar_item,
+  .dp__calendar_header_item {
+    flex-grow: 0 !important;
+    --dp-cell-size: 48px;
+  }
+
+  .dp--year-select, .dp__month_year_select {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    --dp-text-color: var(--c-theme-800) !important;
+  }
+
+  .dp__calendar_header_item {
+    color: #686F73 !important;
+  }
+
+  // Date picker action buttons to match mobile modal buttons
+  .dp__action_buttons {
+    gap: 12px !important;
+  }
+
+  .dp__action_button {
+    padding: 16px 24px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+
+    &.dp__action_select {
+      background: var(--c-brand, #007bff) !important;
+      color: white !important;
+
+      &:hover {
+        background: var(--c-brand-dark, #0056b3) !important;
+      }
+    }
+
+    &.dp__action_cancel {
+      background: var(--color-light-gray) !important;
+      color: #333 !important;
+      border: none !important;
+      font-weight: 400 !important;
+
+      &:hover {
+        background: #e8e8e8 !important;
+      }
     }
   }
-}
-.dp__calendar_header_separator{
-  height: 0 !important;
-}
+  .dp__calendar_header_separator{
+    height: 0 !important;
+  }
 
-.dp__month_year_wrap {
-  margin-bottom: .5rem !important;
-}
+  .dp__month_year_wrap {
+    margin-bottom: .5rem !important;
+  }
 
-.dp__action_row {
-  border-top: 1px solid #D6D6D6 !important;
-}
+  .dp__action_row {
+    border-top: 1px solid #D6D6D6 !important;
+  }
 
-.dp__input_icon {
-  --dp-icon-color: var(--color-dark-blue);
+  .dp__input_icon {
+    --dp-icon-color: var(--color-dark-blue);
+  }
 }
