@@ -6,7 +6,9 @@
 {% block content %}
 
     <div class="details">
-        <search-history/>
+        <search-history
+            performance-index="{{ craft.utility.getPerformanceArchive }}"
+         />
 
     </div>
 

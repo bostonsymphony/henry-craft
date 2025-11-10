@@ -25,6 +25,8 @@ use modules\Module;
 
 return [
     'id' => App::env('CRAFT_APP_ID') ?: 'CraftCMS', 
-    'modules' => ['csvexport' => \csvexport\Module::class], 
+    'modules' => [
+        'csvexport' => \csvexport\Module::class,
+    ],
     'bootstrap' => ['csvexport'],
 ];

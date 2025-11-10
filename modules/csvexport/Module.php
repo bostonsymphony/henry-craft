@@ -4,7 +4,11 @@ namespace csvexport;
 
 use Craft;
 use yii\base\Module as BaseModule;
+use craft\web\twig\variables\CraftVariable;
 
+use yii\base\Event;
+
+use csvexport\variables\UtilityVariable;
 /**
  * csvexport module
  *
@@ -36,7 +40,15 @@ class Module extends BaseModule
 
     private function attachEventHandlers(): void
     {
-        // Register event handlers here ...
-        // (see https://craftcms.com/docs/5.x/extend/events.html to get started)
+        Event::on(
+            CraftVariable::class,
+            CraftVariable::EVENT_INIT,
+            function (Event $event) {
+                /** @var CraftVariable $variable */
+                $variable = $event->sender;
+                $variable->set('utility', UtilityVariable::class);
+            }
+        );
+
     }
 }

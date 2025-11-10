@@ -3,6 +3,7 @@
 namespace csvexport\controllers;
 
 use Craft;
+use craft\helpers\App;
 use craft\web\Controller;
 
 use Typesense\Client;
@@ -13,23 +14,21 @@ class CsvExportController extends Controller
 {
     protected array|int|bool $allowAnonymous = true;
 
-
     public function actionIndex() {
+        $perfArchive = App::parseEnv('$PERFORMANCE_ARCHIVE') ?? 'performances';
         if ($this->request->getQueryParams()) {
             $params = $this->request->getQueryParams();
-            //return json_encode($params);
-            $indexName = 'archived_performances';
-            $query = array_key_exists('query', $params[$indexName]) ? $params[$indexName]['query'] : null;
+            $query = array_key_exists('query', $params[$perfArchive]) ? $params[$perfArchive]['query'] : null;
             $searchParams = [];
-            $searchParams['query_by'] = 'work, season, orchestra, venue, event_types, notes, event_title';
+            $searchParams['query_by'] = 'works, season, orchestra, venue, event_types, notes, event_title';
             $filterArray = [];
             if ($query) {
                 $searchParams['q'] = $query;
                 $filterArray[] = $query;
             }
-            $refinementList = array_key_exists('refinementList', $params[$indexName]) ? $params[$indexName]['refinementList'] : null;
+            $refinementList = array_key_exists('refinementList', $params[$perfArchive]) ? $params[$perfArchive]['refinementList'] : null;
             //return json_encode($refinementList);
-            $range = array_key_exists('range', $params[$indexName]) ? $params[$indexName]['range'] : null;
+            $range = array_key_exists('range', $params[$perfArchive]) ? $params[$perfArchive]['range'] : null;
             if ($refinementList || $range) {
                 $searchParams['filter_by'] = "";
                 if ($refinementList) {
@@ -81,7 +80,7 @@ class CsvExportController extends Controller
             );
 
 
-            $result = $client->collections[$indexName]->documents->search($searchParams);
+            $result = $client->collections[$perfArchive]->documents->search($searchParams);
 
             $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
             $shownWorks = [];
@@ -114,7 +113,7 @@ class CsvExportController extends Controller
 
                         $row[1] = $event['venue'] . " " . $event['location']['city'] . ", " . $event['location']['state'] . ", " . $event['location']['country'];
                         
-                        $works = array_key_exists('work', $event) ? $event['work'] : null;
+                        $works = array_key_exists('works', $event) ? $event['works'] : null;
 
                         if (array_key_exists('orchestra', $event) && $event['orchestra']) {
                             $row[2] = implode("; ", $event['orchestra']);
@@ -127,7 +126,7 @@ class CsvExportController extends Controller
                         if ($works && $refinementList) {
                             foreach ($works as $work) {
                                 if ($work && is_array($work)) {
-                                    $flatArray = $this->flatten($work, "work");
+                                    $flatArray = $this->flatten($work, "works");
                                     $workAdded = false;
                                     if ($refinementList) {
                                         $flatRefinement = $this->flatten($refinementList, '');
