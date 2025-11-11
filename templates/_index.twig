@@ -9,7 +9,10 @@
     {{ macros.renderAllBlocks(entry.contentDesigner) }}
 
         <div class="calendar" >
-            <search performance-index="{{ craft.utility.getPerformanceArchive }}"></search>
+            <search performance-index="{{ craft.utility.getPerformanceArchive }}"
+                artist-index="{{ craft.utility.getArtistArchive }}"
+                work-index="{{ craft.utility.getWorkArchive }}" >
+            </search>
         </div>
 
 {% endblock %}
