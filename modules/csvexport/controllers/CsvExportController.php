@@ -53,57 +53,6 @@ class CsvExportController extends Controller
 
     }
 
-    function exportWorks($params, $workArchive) {
-        $query = array_key_exists('query', $params[$workArchive]) ? $params[$workArchive]['query'] : null;
-        $refinementList = array_key_exists('refinementList', $params[$workArchive]) ? $params[$workArchive]['refinementList'] : null;
-        $searchParams = $this->getSearchParams($params, $workArchive, 'commission, composers, title', $query, $refinementList);
-        $result = $this->client->collections[$workArchive]->documents->search($searchParams);
-        $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
-
-        $returnInfo = "";
-
-        if ($hits) {
-            $filename = $this->getFileName("Works", $query, $refinementList);
-            header('Content-Type: text/csv; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $filename);
-            $file = fopen('php://output', 'w');
-            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
-            fputcsv($file, $headers);
-            foreach ($hits as $hit) {
-                 if (array_key_exists('document', $hit)) {
-                    $work = $hit['document'];
-                    $row = array_fill(0, 4, "");
-                    if (array_key_exists("composers", $work)) {
-                        $row[0] = implode("; ", $work["composers"]);
-                    }
-                    if (array_key_exists("title", $work)) {
-                        $row[1] = implode("; ", $work["title"]);
-                    }
-                    if (array_key_exists("creators", $work) && count($work["creators"])) {
-                        foreach ($work["creators"] as $creator) {
-                            if (array_key_exists("name", $creator) && array_key_exists("role", $creator)) {
-                                if ($row[2] != "") {
-                                    $row[2] .= "; ";
-                                }
-                                $row[2] .= $creator["name"] . "/" . $creator["role"];
-                            }
-                        }
-                    }
-                    if (array_key_exists("num_performances", $work)) {
-                        $row[3] = $work["num_performances"];
-                    }
-                    fputcsv($file, $row);
-                    $returnInfo .= json_encode($row) . "<br/><br/>";
-                }
-            }
-        }
-
-        //return $returnInfo;
-        fclose($file);
-        exit;
-
-    }
-
     function exportArtists($params, $artistArchive) {
 
         $query = array_key_exists('query', $params[$artistArchive]) ? $params[$artistArchive]['query'] : null;
@@ -154,62 +103,7 @@ class CsvExportController extends Controller
         exit;
     }
 
-    function getFilename(string $searchType, $query, $refinementList) {
-        $filename = $searchType . "_";
-        if ($query) {
-            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $query)));
-        } elseif ($refinementList) {
-            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', array_values($refinementList)[0][0])));
-        }
-        $filename .= "-" . date('Y-m-d') . ".csv";
-        return $filename;
-    
-    }
-
-    function getSearchParams(array $params, string $indexName, string $queryBy, string|null $query, array|null $refinementList) {
-        $searchParams = [];
-        $searchParams['query_by'] = $queryBy;
-        if ($query) {
-            $searchParams['q'] = $query;
-        }
-       
-        $range = array_key_exists('range', $params[$indexName]) ? $params[$indexName]['range'] : null;
-        if ($refinementList || $range) {
-            $searchParams['filter_by'] = "";
-            if ($refinementList) {
-                foreach ($refinementList as $key => $value) {
-                    foreach ($value as $refinement) {
-                        if ($searchParams['filter_by'] != "") {
-                            $searchParams['filter_by'] .= " && ";
-                        }
-                        $searchParams['filter_by'] .= $key . ":=" . $refinement;
-                    }                    
-                }
-            }
-            if ($range) {
-                foreach ($range as $key => $value) {
-                    $values = explode(":", $value);
-                    $rangeFilter = null;
-                    if ($values[1] == "") {
-                        $rangeFilter = $key . ":>=" . $values[0];
-                    } elseif ($values[0] == "") {
-                        $rangeFilter = $key . ":<=" . $values[1];
-                    } elseif (count($values) == 2) { 
-                        $rangeFilter = $key . ":[" . $values[0] . ".." . $values[1] . "]";
-                    } 
-                    if ($searchParams['filter_by'] != "") {
-                        $searchParams['filter_by'] .= " && ";
-                    }
-                    $searchParams['filter_by'] .= $rangeFilter;
-                }
-            }
-        }
-        $searchParams['per_page'] = 250;
-        return $searchParams;
-
-    }
-
-    function exportPerformances($params, $perfArchive) {
+        function exportPerformances($params, $perfArchive) {
         
         $query = array_key_exists('query', $params[$perfArchive]) ? $params[$perfArchive]['query'] : null;
         $refinementList = array_key_exists('refinementList', $params[$perfArchive]) ? $params[$perfArchive]['refinementList'] : null;
@@ -322,6 +216,111 @@ class CsvExportController extends Controller
         
     } 
     
+    function exportWorks($params, $workArchive) {
+        $query = array_key_exists('query', $params[$workArchive]) ? $params[$workArchive]['query'] : null;
+        $refinementList = array_key_exists('refinementList', $params[$workArchive]) ? $params[$workArchive]['refinementList'] : null;
+        $searchParams = $this->getSearchParams($params, $workArchive, 'commission, composers, title', $query, $refinementList);
+        $result = $this->client->collections[$workArchive]->documents->search($searchParams);
+        $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
+
+        $returnInfo = "";
+
+        if ($hits) {
+            $filename = $this->getFileName("Works", $query, $refinementList);
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $filename);
+            $file = fopen('php://output', 'w');
+            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
+            fputcsv($file, $headers);
+            foreach ($hits as $hit) {
+                 if (array_key_exists('document', $hit)) {
+                    $work = $hit['document'];
+                    $row = array_fill(0, 4, "");
+                    if (array_key_exists("composers", $work)) {
+                        $row[0] = implode("; ", $work["composers"]);
+                    }
+                    if (array_key_exists("title", $work)) {
+                        $row[1] = implode("; ", $work["title"]);
+                    }
+                    if (array_key_exists("creators", $work) && count($work["creators"])) {
+                        foreach ($work["creators"] as $creator) {
+                            if (array_key_exists("name", $creator) && array_key_exists("role", $creator)) {
+                                if ($row[2] != "") {
+                                    $row[2] .= "; ";
+                                }
+                                $row[2] .= $creator["name"] . "/" . $creator["role"];
+                            }
+                        }
+                    }
+                    if (array_key_exists("num_performances", $work)) {
+                        $row[3] = $work["num_performances"];
+                    }
+                    fputcsv($file, $row);
+                    $returnInfo .= json_encode($row) . "<br/><br/>";
+                }
+            }
+        }
+
+        //return $returnInfo;
+        fclose($file);
+        exit;
+
+    }
+
+    function getFilename(string $searchType, $query, $refinementList) {
+        $filename = $searchType . "_";
+        if ($query) {
+            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $query)));
+        } elseif ($refinementList) {
+            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', array_values($refinementList)[0][0])));
+        }
+        $filename .= "-" . date('Y-m-d') . ".csv";
+        return $filename;
+    
+    }
+
+    function getSearchParams(array $params, string $indexName, string $queryBy, string|null $query, array|null $refinementList) {
+        $searchParams = [];
+        $searchParams['query_by'] = $queryBy;
+        if ($query) {
+            $searchParams['q'] = $query;
+        }
+       
+        $range = array_key_exists('range', $params[$indexName]) ? $params[$indexName]['range'] : null;
+        if ($refinementList || $range) {
+            $searchParams['filter_by'] = "";
+            if ($refinementList) {
+                foreach ($refinementList as $key => $value) {
+                    foreach ($value as $refinement) {
+                        if ($searchParams['filter_by'] != "") {
+                            $searchParams['filter_by'] .= " && ";
+                        }
+                        $searchParams['filter_by'] .= $key . ":=" . $refinement;
+                    }                    
+                }
+            }
+            if ($range) {
+                foreach ($range as $key => $value) {
+                    $values = explode(":", $value);
+                    $rangeFilter = null;
+                    if ($values[1] == "") {
+                        $rangeFilter = $key . ":>=" . $values[0];
+                    } elseif ($values[0] == "") {
+                        $rangeFilter = $key . ":<=" . $values[1];
+                    } elseif (count($values) == 2) { 
+                        $rangeFilter = $key . ":[" . $values[0] . ".." . $values[1] . "]";
+                    } 
+                    if ($searchParams['filter_by'] != "") {
+                        $searchParams['filter_by'] .= " && ";
+                    }
+                    $searchParams['filter_by'] .= $rangeFilter;
+                }
+            }
+        }
+        $searchParams['per_page'] = 250;
+        return $searchParams;
+
+    }
 
     function getWorkFilters($refinementList) {
         $returnFilters = [];

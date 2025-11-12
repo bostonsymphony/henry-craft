@@ -1,9 +1,9 @@
 
 {% import "/_macros" as macros %}
 {% set performanceId = craft.app.request.getQueryParam('performanceId') %}
-{% if not performanceId %}
+{# {% if not performanceId %}
     {% redirect '404' %}
-{% endif %}
+{% endif %} #}
 {% set section = 'home' %}
 {% extends "_layouts/main" %}
 {% block content %}
@@ -11,7 +11,7 @@
     <div class="performance__breadCrumb"><a onclick="history.back()">Back to Search Results</a></div>
     <div class="details">
         <search-detail
-                :performance-id="{{ performanceId }}"
+                :performance-id="'{{ performanceId }}'"
                 index-name="{{ craft.utility.getPerformanceArchive }}">
             </search-detail>
     </div>
