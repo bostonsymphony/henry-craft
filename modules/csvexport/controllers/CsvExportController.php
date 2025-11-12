@@ -48,29 +48,75 @@ class CsvExportController extends Controller
     }
 
     function exportArtists($params, $artistArchive) {
-        $query = array_key_exists('query', $params[$artistArchive]) ? $params[$artistArchive]['query'] : null;
-            
-        $searchParams = [];
-       
-       
-        $filterArray = [];
-        if ($query) {
-            $filterArray[] = $query;
-        }
-        $searchParams = $this->getSearchParams($params, $artistArchive, 'artist_name, artist_role, work_title', $query);
 
+        $query = array_key_exists('query', $params[$artistArchive]) ? $params[$artistArchive]['query'] : null;
+        $refinementList = array_key_exists('refinementList', $params[$artistArchive]) ? $params[$artistArchive]['refinementList'] : null;
+        $searchParams = $this->getSearchParams($params, $artistArchive, 'artist_name, artist_role, work_title', $query, $refinementList);
         $result = $this->client->collections[$artistArchive]->documents->search($searchParams);
-        return json_encode($result);
+        $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
+
+        $returnInfo = "";
+
+        if ($hits) {
+            $filename = $this->getFileName("Artists", $query, $refinementList);
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $filename);
+            $file = fopen('php://output', 'w');
+            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
+            fputcsv($file, $headers);
+            foreach ($hits as $hit) {
+                if (array_key_exists('document', $hit)) {
+                    $artist = $hit['document'];
+                    $row = array_fill(0, 4, "");
+                    if (array_key_exists("artist_name", $artist)) {
+                        $row[0] = $artist["artist_name"];
+                    }
+                    if (array_key_exists("artist_role", $artist)) {
+                        $row[1] = $artist["artist_role"];
+                    }
+                    if (array_key_exists("composer", $artist)) {
+                        $row[2] = $artist["composer"];
+                    }
+                    if (array_key_exists("work_title", $artist)) {
+                        if ($row[2] != "") {
+                            $row[2] .= "/";
+                        }
+                        $row[2] .= $artist["work_title"];
+                    }
+                    if (array_key_exists("num_performances", $artist)) {
+                        $row[3] = $artist["num_performances"];
+                    }
+                    fputcsv($file, $row);
+                    $returnInfo .= json_encode($row) . "<br/><br/>";
+                }
+            }
+        }
+            
+        //return $returnInfo;
+        fclose($file);
+        exit;
     }
 
-    function getSearchParams(array $params, string $indexName, string $queryBy, string|null $query) {
+    function getFilename(string $searchType, $query, $refinementList) {
+        $filename = $searchType;
+        if ($query) {
+            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $query)));
+        } elseif ($refinementList) {
+            $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', array_values($refinementList)[0][0])));
+        }
+        $filename .= "-" . date('Y-m-d') . ".csv";
+        return $filename;
+    
+    }
+
+    function getSearchParams(array $params, string $indexName, string $queryBy, string|null $query, array|null $refinementList) {
         $searchParams = [];
         $searchParams['query_by'] = $queryBy;
         $filterArray = [];
         if ($query) {
             $searchParams['q'] = $query;
         }
-        $refinementList = array_key_exists('refinementList', $params[$indexName]) ? $params[$indexName]['refinementList'] : null;
+       
         $range = array_key_exists('range', $params[$indexName]) ? $params[$indexName]['range'] : null;
         if ($refinementList || $range) {
             $searchParams['filter_by'] = "";
