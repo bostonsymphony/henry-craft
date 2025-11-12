@@ -19,8 +19,8 @@ class CsvExportController extends Controller
     public function actionIndex() {
         $perfArchive = App::parseEnv('$PERFORMANCE_ARCHIVE') ?? 'performances';
         $artistArchive = App::parseEnv('$ARTIST_ARCHIVE') ?? 'artists';
-        $worksArchive = App::parseEnv('$WORK_ARCHIVE') ?? 'works';
-        $this->client = $client = new Client(
+        $workArchive = App::parseEnv('$WORK_ARCHIVE') ?? 'works';
+        $this->client = new Client(
             [
                 'api_key'         => 'qoWHCTjesGfIaxdXbw9vOgod1VToEXNI',
                 'nodes'           => [
@@ -39,11 +39,68 @@ class CsvExportController extends Controller
         if ($this->request->getQueryParams()) {
             $params = $this->request->getQueryParams();
             if (array_key_exists($perfArchive, $params)) {
-                $this->exportPerformances($params, $perfArchive);
+                //return "Perf archive found";
+                return $this->exportPerformances($params, $perfArchive);
             } elseif (array_key_exists($artistArchive, $params)) {
                 return $this->exportArtists($params, $artistArchive);
+            } elseif (array_key_exists($workArchive, $params)) {
+                return $this->exportWorks($params, $workArchive);
+            }
+            return json_encode($params) . "<br/><br/>" . $perfArchive;
+        } 
+
+        return "Houston we have a problem";
+
+    }
+
+    function exportWorks($params, $workArchive) {
+        $query = array_key_exists('query', $params[$workArchive]) ? $params[$workArchive]['query'] : null;
+        $refinementList = array_key_exists('refinementList', $params[$workArchive]) ? $params[$workArchive]['refinementList'] : null;
+        $searchParams = $this->getSearchParams($params, $workArchive, 'commission, composers, title', $query, $refinementList);
+        $result = $this->client->collections[$workArchive]->documents->search($searchParams);
+        $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
+
+        $returnInfo = "";
+
+        if ($hits) {
+            $filename = $this->getFileName("Works", $query, $refinementList);
+            header('Content-Type: text/csv; charset=utf-8');
+            header('Content-Disposition: attachment; filename=' . $filename);
+            $file = fopen('php://output', 'w');
+            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
+            fputcsv($file, $headers);
+            foreach ($hits as $hit) {
+                 if (array_key_exists('document', $hit)) {
+                    $work = $hit['document'];
+                    $row = array_fill(0, 4, "");
+                    if (array_key_exists("composers", $work)) {
+                        $row[0] = implode("; ", $work["composers"]);
+                    }
+                    if (array_key_exists("title", $work)) {
+                        $row[1] = implode("; ", $work["title"]);
+                    }
+                    if (array_key_exists("creators", $work) && count($work["creators"])) {
+                        foreach ($work["creators"] as $creator) {
+                            if (array_key_exists("name", $creator) && array_key_exists("role", $creator)) {
+                                if ($row[2] != "") {
+                                    $row[2] .= "; ";
+                                }
+                                $row[2] .= $creator["name"] . "/" . $creator["role"];
+                            }
+                        }
+                    }
+                    if (array_key_exists("num_performances", $work)) {
+                        $row[3] = $work["num_performances"];
+                    }
+                    fputcsv($file, $row);
+                    $returnInfo .= json_encode($row) . "<br/><br/>";
+                }
             }
         }
+
+        //return $returnInfo;
+        fclose($file);
+        exit;
 
     }
 
@@ -98,7 +155,7 @@ class CsvExportController extends Controller
     }
 
     function getFilename(string $searchType, $query, $refinementList) {
-        $filename = $searchType;
+        $filename = $searchType . "_";
         if ($query) {
             $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $query)));
         } elseif ($refinementList) {
@@ -112,7 +169,6 @@ class CsvExportController extends Controller
     function getSearchParams(array $params, string $indexName, string $queryBy, string|null $query, array|null $refinementList) {
         $searchParams = [];
         $searchParams['query_by'] = $queryBy;
-        $filterArray = [];
         if ($query) {
             $searchParams['q'] = $query;
         }
@@ -127,7 +183,6 @@ class CsvExportController extends Controller
                             $searchParams['filter_by'] .= " && ";
                         }
                         $searchParams['filter_by'] .= $key . ":=" . $refinement;
-                        $filterArray[] = $refinement;
                     }                    
                 }
             }
@@ -155,65 +210,17 @@ class CsvExportController extends Controller
     }
 
     function exportPerformances($params, $perfArchive) {
+        
         $query = array_key_exists('query', $params[$perfArchive]) ? $params[$perfArchive]['query'] : null;
-            
-        $searchParams = [];
-        $searchParams['query_by'] = 'works, season, ensembles, venue, event_types, notes, event_title';
-        $filterArray = [];
-        if ($query) {
-            $searchParams['q'] = $query;
-            $filterArray[] = $query;
-        }
         $refinementList = array_key_exists('refinementList', $params[$perfArchive]) ? $params[$perfArchive]['refinementList'] : null;
-        $workFilters = $this->getWorkFilters($refinementList);
-        $range = array_key_exists('range', $params[$perfArchive]) ? $params[$perfArchive]['range'] : null;
-        if ($refinementList || $range) {
-            $searchParams['filter_by'] = "";
-            if ($refinementList) {
-                foreach ($refinementList as $key => $value) {
-                    foreach ($value as $refinement) {
-                        if ($searchParams['filter_by'] != "") {
-                            $searchParams['filter_by'] .= " && ";
-                        }
-                        $searchParams['filter_by'] .= $key . ":=" . $refinement;
-                        $filterArray[] = $refinement;
-                    }                    
-                }
-            }
-            if ($range) {
-                foreach ($range as $key => $value) {
-                    $values = explode(":", $value);
-                    $rangeFilter = null;
-                    if ($values[1] == "") {
-                        $rangeFilter = $key . ":>=" . $values[0];
-                    } elseif ($values[0] == "") {
-                        $rangeFilter = $key . ":<=" . $values[1];
-                    } elseif (count($values) == 2) { 
-                        $rangeFilter = $key . ":[" . $values[0] . ".." . $values[1] . "]";
-                    } 
-                    if ($searchParams['filter_by'] != "") {
-                        $searchParams['filter_by'] .= " && ";
-                    }
-                    $searchParams['filter_by'] .= $rangeFilter;
-                }
-            }
-        }
-        $searchParams['per_page'] = 250;
-    
+        $searchParams = $this->getSearchParams($params, $perfArchive, 'works, season, ensembles, venue, event_types, notes, event_title', $query, $refinementList);
+       
         $result = $this->client->collections[$perfArchive]->documents->search($searchParams);
-
-
         $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
         $shownWorks = [];
         if ($hits) {
-            $returnInfo = "";
-            $filename = "Performance";
-            if ($query) {
-                $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $query)));
-            } elseif ($refinementList) {
-                $filename .= strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', array_values($refinementList)[0][0])));
-            }
-            $filename .= "-" . date('Y-m-d') . ".csv";
+            $returnInfo = "INFO";
+            $filename = $this->getFileName("Performance", $query, $refinementList);
 
             header('Content-Type: text/csv; charset=utf-8');
             header('Content-Disposition: attachment; filename=' . $filename);
@@ -234,8 +241,11 @@ class CsvExportController extends Controller
                     $row[0] .= array_key_exists('event_title', $event) ? " / " . $event['event_title'] : "";
 
                     $row[1] = $event['venue'];
-                    //Commented out until venues are populated in the index
-                    // . " " . $event['location']['city'] . ", " . $event['location']['state'] . ", " . $event['location']['country'];
+                    if ($event["location"]) {
+                        $row[1] .= array_key_exists("city", $event['location']) && $event['location']['city'] ? ", " . $event['location']['city'] : "";
+                        $row[1] .= array_key_exists('state', $event['location']) && $event['location']['state'] ? ", " . $event['location']['state'] : "";
+                        $row[1] .= array_key_exists('country', $event['location']) && $event['location']['country'] ? ", " . $event['location']['country'] : "";
+                    }
                     
                     $works = array_key_exists('works', $event) ? $event['works'] : null;
 
@@ -301,9 +311,10 @@ class CsvExportController extends Controller
                 }
                 
             }
+            //return $returnInfo;
         }
 
-        //return $returnInfo;
+        
 
         fclose($file);
 
