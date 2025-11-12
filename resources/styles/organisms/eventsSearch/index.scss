@@ -15,6 +15,35 @@
     border: none;
   }
 
+  .ais-MenuSelect {
+    .multiselect {
+      border: thin solid var(--color-gray-400);
+      margin-bottom: 0.3rem;
+      &.is-open {
+        border: thin solid var(--color-turquoise);
+        box-shadow: none;
+      } 
+    }
+    .multiselect-caret {
+      width: 0.5rem;
+    }
+    .multiselect-placeholder {
+      color: var(--color-dark-blue);
+      font-weight: 100;
+    }
+    .multiselect-dropdown {
+      border: thin solid var(--color-gray-400);
+      box-shadow: var(--color-gray-400);
+      margin-top: 0.5rem;
+      margin-left: 0.1rem;
+    }
+    .multiselect-option {
+      border-bottom: thin solid var(--color-gray-400);
+      font-size: 0.9rem;
+      padding-left: 1.5rem;
+    }
+  }
+
   .ais-RangeInput {
     display: flex;
     gap: 1rem;
