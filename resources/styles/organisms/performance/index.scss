@@ -1,6 +1,15 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
 .performance {
     &__breadCrumb {
         background-color: var(--color-light-gold);
+        padding: 0.5rem 1.5rem;
+        @include at(md) {
+            padding: 0.5rem 2rem 0.5rem 4rem;
+        }
+        @include at(lg) {
+            padding: 0.5rem 4rem 0.5rem 8rem;
+        }
     }
     &__cell {
         padding: 1rem;
@@ -38,6 +47,15 @@
         font-weight: 100;
         color: var(--color-dark-gray);
     }
+    &__details {
+        padding: 0.5rem 1.5rem;
+        @include at(md) {
+            padding: 0.5rem 2rem 0.5rem 4rem;
+        }
+        @include at(lg) {
+            padding: 0.5rem 4rem 0.5rem 8rem;
+        }
+    }
     &__grid {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -45,8 +63,15 @@
     
     &__header {
         border-bottom: 1px solid var(--color-light-gray);
+        h2 {
+            font-weight: 600;
+            font-size: 3.5rem;
+            padding: 0.75rem 0;
+        }
         h3 {
             font-weight: 100;
+            font-size: 2.5rem;
+            padding-bottom: 0.75rem;
         }
     }
     &__headerData {

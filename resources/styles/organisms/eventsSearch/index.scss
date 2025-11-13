@@ -7,7 +7,12 @@
   overflow-x: hidden;
 
   .ais-CurrentRefinements {
-    border-top: thin solid var(--color-gray-200);
+    border: none;
+    padding: 0 1.5rem;
+    @include at(md) {
+      padding: 0;
+      border-top: thin solid var(--color-gray-200);
+    }
     grid-area: filters;
   }
 
@@ -52,14 +57,23 @@
   }
 
   &__actions {
-    display:flex;
-    flex-wrap: nowrap;
+    display: none;
+    @include at(md) {
+      display:flex;
+      flex-wrap: nowrap;
+    }
+    
   }
 
   &__actionButtons {
-    border-left: thin solid var(--color-gray-400);
-    height: 1.75rem;
-    padding-left: .25rem;
+    
+    @include at(md) {
+      display: inline;
+      border-left: thin solid var(--color-gray-400);
+      height: 1.75rem;
+      padding-left: .25rem;
+    }
+
   }
 
   &__actionIcon {
@@ -93,6 +107,7 @@
   }
 
   &__activeFiltersList {
+    grid-column: 1/span 2;
     display: flex;
     gap: .75rem;
     margin-bottom: 1rem;
@@ -130,8 +145,13 @@
 
   .button {
     padding: 0;
+    width: 2.5rem;
     height: 100%;
-    width: 100%;
+    @include at(md) {
+      height: 100%;
+      width: 100%;
+    }
+    
   }
 
   &__checkBoxes {
@@ -232,7 +252,12 @@
   &__filtersRow {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 4fr 4fr 1fr;
+    justify-content: space-between;
+    @include at(md) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    
     grid-template-areas:
       "search search search"
       "date date button";
@@ -246,6 +271,7 @@
 
   &__filterGroup {
     flex: 1;
+    
 
     &--search {
       grid-area: search;
@@ -421,6 +447,28 @@
         }
       }
     }
+
+    &--button {
+      justify-self: end;
+      @include at(md) {
+        justify-self: stretch;
+      }
+      .searchButton {
+        display: none;
+        @include at(md) {
+          display: inline;
+        }
+      }
+
+      .mobileSearch {
+        display: inline;
+        @include at(md) {
+          display: none;
+        }
+      }
+    }
+
+    
   }
 
   &__filterHeader {
@@ -578,6 +626,12 @@
   &__perfDetails {
     display: flex;
     gap: 0.1rem;
+    &.-detailsMobile {
+      display: inline;
+      @include at(md) {
+        display: none;
+      }
+    }
   }
 
   &__perfLinks {
@@ -587,10 +641,12 @@
   
 
   &__resultCell {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     grid-column: 1/span 2;
-    border: 1px solid red;
+    border-left: thin solid var(--color-gray-200);
+    border-right: thin solid var(--color-gray-200);
     @include at(md) {
+      padding: 1rem;
       grid-column: auto;
       border: none;
       border-right: thin solid var(--color-gray-200);
@@ -612,6 +668,10 @@
         display: inline;
       }
     }
+    &.-detailsMobile {
+      padding-bottom: 1rem;
+    }
+    
     &.-empty {
       display:none;
       @include at(md) {
@@ -625,7 +685,12 @@
 
     }
     &.-first {
-      border-left: thin solid var(--color-gray-200);
+      border-top: thin solid var(--color-gray-200);
+      padding-top: 1rem;
+      @include at(md) {
+        border-top: none;
+        border-left: thin solid var(--color-gray-200);
+      }
     }
     &.-header {
       display: none;
@@ -638,9 +703,52 @@
       }
       
     }
-    &.-last {
-      border-bottom: thin solid var(--color-gray-200);
+    &.-hideMobile {
+      display: none;
+      @include at(md) {
+        display: inline;
+      }
     }
+
+    &.-last {
+      border-bottom: none;
+      @include at(md) {
+        border-bottom: thin solid var(--color-gray-200);
+      }
+    }
+
+    &.-lastMobile {
+      border-bottom: thin solid var(--color-gray-200);
+      @include at(md) {
+        border-bottom: none;
+      }
+    }
+    &.-left {
+      border-left: thin solid var(--color-gray-200);
+      border-right: none;
+      @include at(md) {
+        border: none;
+        border-right: thin solid var(--color-gray-200);
+      }
+    }
+    &.-right {
+      border-right: thin solid var(--color-gray-200);
+      border-left: none;
+      @include at(md) {
+        border: none;
+        border-right: thin solid var(--color-gray-200);
+      }
+    }
+
+    .mobileHeader {
+      display: block;
+      font-weight:100;
+      color: var(--color-gray-400);
+      @include at(md) {
+        display: none;
+      }
+    }
+    
     &.-work {
       grid-column: auto;
     }
@@ -648,10 +756,16 @@
 
   &__results {
     grid-column-start: 2;
-    padding-top:3rem;
-    padding-right:4rem;
+    padding-top: 0.75rem;
+
+    @include at(md) {
+      padding-top:3rem;
+      padding-right:4rem;
+      padding-left: 2rem;
+    }
+    
     transition: padding-left 400ms;
-    padding-left: 2rem;
+    
     &.closed {
       padding-left: 8rem;
     }
@@ -660,7 +774,9 @@
   &__resultsGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 0 1.5rem;
     @include at(md) {
+      padding: 0;
       grid-template-columns: repeat(7, 1fr);
     }
   }
@@ -668,6 +784,37 @@
   &__resultsHeader {
     display: flex;
     justify-content: space-between;
+    padding: 1rem 1.5rem 0;
+    border-bottom: thin solid var(--color-gray-200);
+    @include at(md) {
+      padding: 0;
+      border-bottom: none;
+    }
+    &.-mobile {
+      display: flex;
+      padding-bottom: 0.75rem;
+      @include at(md) {
+        display: none;
+      }
+      .eventsSearch__filterToggle {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        
+      }
+      .eventsSearch__resultsSort {
+        display: flex;
+        align-items: center;
+        select {
+          margin-bottom: 0;
+        }
+      }
+      .filterButton {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+      }
+    }
   }
 
   &__resultsSort {
