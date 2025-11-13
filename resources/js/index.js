@@ -4,6 +4,7 @@ import scrolllock from './directives/vScrolllock.js'
 import { Search, SearchDetail, SearchHistory } from 'henry-search'
 import '@vuepic/vue-datepicker/dist/main.css'
 import 'vue-select/dist/vue-select.css'
+import '@vueform/multiselect/themes/default.css'
 
 // Necessary for Craft vite plugin
 import '../styles/index.scss'
