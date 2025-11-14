@@ -87,6 +87,7 @@
   &__worksGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 0 1.5rem;
     @include at(md) {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -550,16 +551,10 @@
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-    //padding: 0 20px;
-
-    // @include at(md) {
-    //   padding: 0 80px;
-    // }
-
-    // @include at(md) {
-    //   margin-left: 60px;
-    //   padding: 0 80px;
-    // }
+    padding: 1rem 1.5rem;
+    @include at(md) {
+      padding: 2rem  0;
+    }
   }
 
   &__paginationComponent {
@@ -627,10 +622,12 @@
     display: flex;
     gap: 0.1rem;
     &.-detailsMobile {
-      display: inline;
       @include at(md) {
         display: none;
       }
+    }
+    .detailsLink {
+      color: var(--color-turquoise);
     }
   }
 
@@ -641,10 +638,13 @@
   
 
   &__resultCell {
-    padding: 0.5rem 1rem;
-    grid-column: 1/span 2;
     border-left: thin solid var(--color-gray-200);
     border-right: thin solid var(--color-gray-200);
+    color: var(--color-dark-blue);
+    font-size: 0.9rem;
+    font-weight: bold;
+    grid-column: 1/span 2;
+    padding: 0.5rem 1rem;
     @include at(md) {
       padding: 1rem;
       grid-column: auto;
@@ -652,9 +652,10 @@
       border-right: thin solid var(--color-gray-200);
     }
     
-    color: var(--color-dark-blue);
-    font-weight: bold;
-    font-size: 0.9rem;
+    
+    a {
+      color: var(--color-dark-blue);
+    }
     
     &.-artist {
       display: none;
@@ -710,7 +711,7 @@
       }
     }
 
-    &.-last {
+    &.-last, &.-last.-right {
       border-bottom: none;
       @include at(md) {
         border-bottom: thin solid var(--color-gray-200);
@@ -719,9 +720,6 @@
 
     &.-lastMobile {
       border-bottom: thin solid var(--color-gray-200);
-      @include at(md) {
-        border-bottom: none;
-      }
     }
     &.-left {
       border-left: thin solid var(--color-gray-200);

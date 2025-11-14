@@ -14,7 +14,42 @@
     &__cell {
         padding: 1rem;
         border-right: thin solid var(--color-gray-200);
-        color: var(--color-dark-blue);
+        border-left: thin solid var(--color-gray-200);
+        grid-column: 1/span 2;
+        display: grid;
+        @include at(md) {
+            border-left: none;
+            grid-column: auto;
+        }
+        a{
+            color: var(--color-dark-blue);
+        }
+
+        &.-artist {
+            grid-column: auto;
+            border-right:none;
+            border-bottom: thin solid var(--color-gray-200);
+            @include at(md) {
+                border-right: thin solid var(--color-gray-200);
+                border-bottom: none;
+            }
+        }
+         &.-artist.-last {
+            border-bottom: thin solid var(--color-gray-200);
+         }
+        &.-role {
+            grid-column: auto;
+            border-right: thin solid var(--color-gray-200);
+            border-bottom: thin solid var(--color-gray-200);
+            border-left: none;
+            @include at(md) {
+               border-bottom: none;
+            }
+        }
+        &.-role.-last {
+            border-bottom: thin solid var(--color-gray-200);
+        }
+        
         font-weight: bold;
         font-size: 0.9rem;
         &.-even {
@@ -24,31 +59,67 @@
 
         }
         &.-first {
-            border-left: thin solid var(--color-gray-200);
+            //border-left: none;
+            @include at(md) {
+                border-left: thin solid var(--color-gray-200);
+            }
         }
         &.-header {
-            border-top: thin solid var(--color-gray-200);
-            border-bottom: thin solid var(--color-gray-200);
-            font-weight:100;
-            color: var(--color-gray-400);
+            display: none;
+            @include at(md) {
+                display: inline;
+                border-top: thin solid var(--color-gray-200);
+                border-bottom: thin solid var(--color-gray-200);
+                font-weight:100;
+                color: var(--color-gray-400);
+            }
+           
         }
-        &.-last {
-            border-bottom: thin solid var(--color-gray-200);
+        &.-last, &.-top.-last {
+            border-bottom: none;
+            @include at(md) {
+                border-bottom: thin solid var(--color-gray-200);
+            }
+            
         }
-        //.workInfo {
+        &.-top {
+            border-top:  thin solid var(--color-gray-200);
+            border-bottom: none;
+            @include at(md) {
+                border-top: none;
+            }
+        }
+        .workItem {
             display:grid;
             grid-template-rows: auto;
-            .infoItem {
-                min-height: 3rem;
+            height: fit-content;
+            
+        }
+        .infoItem {
+            min-height: 3rem;
+        }
+        .mobileHeader {
+            display: block;
+            font-weight:100;
+            color: var(--color-gray-400);
+            @include at(md) {
+                display: none;
             }
-        //}
+        }
+
     }
     &__dataTitle {
         font-weight: 100;
+        font-size: 0.9rem;
         color: var(--color-dark-gray);
+        
     }
     &__details {
         padding: 0.5rem 1.5rem;
+        h4 {
+            padding: 2rem 0 0.25rem;
+            font-size: 1.25rem;
+        }
         @include at(md) {
             padding: 0.5rem 2rem 0.5rem 4rem;
         }
@@ -58,7 +129,12 @@
     }
     &__grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: 1fr 1fr;
+        @include at(md) {
+            grid-template-columns: repeat(5, 1fr);
+            margin-bottom: 6rem;
+        }
+        
     }
     
     &__header {
@@ -79,8 +155,13 @@
         display: grid;
         font-weight: bold;
         color: var(--color-dark-blue);
+        padding: 1.5rem 0;
         @media screen and (min-width: 768px) {
             grid-template-columns: repeat(5, 1fr) max(300px);
+        }
+        a {
+            font-size: 0.9rem;
+            color: var(--color-dark-blue);
         }
     }
     &__headerLinks {
@@ -88,11 +169,24 @@
         justify-content: space-between;
         width: 100%;
         border-bottom:1px solid var(--color-light-gray);
-    }
-
-    &__mediaLinks {
-        display: flex;
-        justify-content: left;
+        padding: 1.5rem 0;
+        .media {
+            display: flex;
+            justify-content: left;
+            background-color: white;
+            margin-bottom: 0;
+            gap: 2rem;
+            
+        }
+        a {
+                font-size: 1.25rem;
+                font-weight: 600;
+                gap: 0.2rem;
+            }
+        .icon {
+            height: 1.5rem;
+            width: 1.5rem;
+        }
     }
 
     &__program {
