@@ -1,3 +1,5 @@
+@use "@imarc/pronto/resources/styles/imported" as *;
+
 .container {
   --columns: 1;
   --gap: var(--root-gap, 16px);
@@ -33,4 +35,5 @@
   @media (min-width: 808px) {
     --container-width: 1300px;
   }
+  
 }

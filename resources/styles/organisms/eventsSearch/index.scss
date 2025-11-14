@@ -49,6 +49,13 @@
     }
   }
 
+  .ais-RefinementList {
+    padding: 0 0.5rem;
+    @include at(md) {
+      padding: 0;
+    }
+  }
+
   .ais-RangeInput {
     display: flex;
     gap: 1rem;
@@ -497,6 +504,79 @@
       gap: 1rem;
       padding-left: 8rem;
     }
+
+    .actionBar {
+      display: none;
+    }
+
+    .hideButton {
+      display: none;
+      @include at(md) {
+        display: inline;
+      }
+    }
+
+    .hideMobile {
+      display: inline;
+      @include at(md) {
+        display: none;
+      }
+    }
+
+    &.openMobile {
+      display: flex;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index:100;
+      width: 100%;
+      height: 100%;
+      padding-right: 0;
+      .label {
+        font-weight: 700;
+        color: var(--color-dark-blue);
+        @include at(md) {
+          font-weight: normal;
+          color: var(--color-gray-500);
+        }
+      }
+      .location {
+        padding: 0 0.5rem;
+        @include at(md) {
+          padding: 0;
+        }
+      }
+      .filterIcon {
+        display: none;
+        @include at(md) {
+          display:inline;
+        }
+      }
+      .actionBar {
+        display:inline;
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        height: 30px;
+        width: 100vw;
+        background: yellow;
+        @include at(md) {
+          display: none;
+        }
+      }
+      @include at(md) {
+        display:inline;
+        position:relative;
+        width: 28rem;
+        flex-direction: column;
+        gap: 1rem;
+        padding-left: 8rem;
+        height: auto;
+        padding-right: 2rem;
+        padding-top: 3rem;
+      }
+    }
   }
 
   &__filtersTitle {
@@ -526,14 +606,23 @@
     margin-right: 1rem;
     transition: display 400ms;
     &.closed {
-      display: inline;
+      display: none;
+      @include at(md) {
+        display: inline;
+      }
     }
   }
 
   &__filterWrapper {
-    display: grid;
-    overflow: hidden;
     
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    @include at(md) {
+      overflow: hidden;
+      display: grid;
+      height: auto;
+    }
   }
 
   &__header {
@@ -765,7 +854,16 @@
     transition: padding-left 400ms;
     
     &.closed {
-      padding-left: 8rem;
+      @include at(md) {
+        padding-left: 8rem;
+      }
+      
+    }
+    &.openMobile {
+      display: none;
+      @include at(md) {
+        display: inline;
+      }
     }
    }
 
