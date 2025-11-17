@@ -19,36 +19,15 @@
         CTA: null
     }|merge(hero) %}
 
-    {% set background = null %}
-    {% if hero['background'] is defined and hero.background|length %}
-        {% set background = hero.background.value %}
-    {% endif %}
 
-    <section class="section container hero {{ background }}">
+    <section class="section hero -gray">
         <div class="hero__content">
             <div class="hero__text">
-                {% if hero.heroEyebrow %}
-                    <div class="eyebrow {{ (not background) ? 'accent-primary' : 'accent-white' }}">{{ hero.heroEyebrow }}</div>
-                {% endif %}
 
                 <h1 class="hero__heading">{{ hero.heroHeadline|default(entry.title) }}</h1>
                  
-                {% if hero.heroContent %}
-                    <p class="hero__introduction">
-                        {{ hero.heroContent|striptags('<br><strong><b><em><i><del><span>')|raw }}
-                    </p>
-                {% endif %}
-                {% if hero.ctaLink is defined and hero.ctaLink|length %}
-                    <div class="actions">
-                        {{ macros.renderLink (hero.ctaLink, { class: 'button' })}}
-                    </div>
-                {% endif %}
             </div>
-            {% if hero.image|length %}
-                <div class="hero__image">
-                    {{ macros.responsiveImage(hero.image.one, { pictureClass: 'hero__asset' }) }}
-                </div>
-            {% endif %}
+
         </div>
     </section>
 

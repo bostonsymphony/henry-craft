@@ -74,46 +74,6 @@ fieldLayouts:
         name: Content
         uid: 4d40d210-4a1e-4552-9bc0-f8dff519ba8f
         userCondition: null
-      -
-        elementCondition: null
-        elements:
-          -
-            dateAdded: '2025-09-23T13:52:42+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 1d7fd420-3fd4-4dc0-afca-1833e0d9a05c # SEOMatic Fields
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 027ad39f-029e-4307-a0aa-32ba3265bcb4
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-09-23T13:52:42+00:00'
-            editCondition: null
-            elementCondition: null
-            fieldUid: 678939a0-3ca0-4044-b263-e25151ebb1df # Additional Header Code
-            handle: null
-            includeInCards: false
-            instructions: null
-            label: null
-            providesThumbs: false
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: 8a98776f-6ff4-493d-9d92-29fe9e188970
-            userCondition: null
-            warning: null
-            width: 100
-        name: SEO
-        uid: 2bce0792-e341-472b-85cb-e574e20f3861
-        userCondition: null
 handle: henryPage
 hasTitleField: true
 icon: null

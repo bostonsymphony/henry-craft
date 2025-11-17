@@ -17,7 +17,9 @@ settings:
         -
           - uid
           - 976d4ccf-4988-4c36-968c-53f396dce7f2 # Blog Article
+  expandEntryButtons: false
   fullGraphqlData: false
+  parseEmbeds: false
   purifierConfig: null
   purifyHtml: true
   showUnpermittedFiles: false

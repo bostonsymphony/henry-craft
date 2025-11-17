@@ -1,7 +1,8 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - c59ecd1c-c856-4983-96da-bbbac954eab0 # Basic Page
+  -
+    uid: c59ecd1c-c856-4983-96da-bbbac954eab0 # Basic Page
 handle: notFoundPage
 maxAuthors: 1
 name: '404 Page'

@@ -6,8 +6,6 @@
 
     {% include '_partials/globalHero' with { hero: {heroHeadline: globalHero.heroHeadline} } %}
 
-    {{ macros.renderAllBlocks(entry.contentDesigner) }}
-
         <div class="calendar" >
             <search performance-index="{{ craft.utility.getPerformanceArchive }}"
                 artist-index="{{ craft.utility.getArtistArchive }}"

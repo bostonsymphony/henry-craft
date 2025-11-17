@@ -2,11 +2,13 @@
 
 .hero {
   $b: &;
-
-  background: var(--accent-color);
-  color: var(--accent-color-contrast);
   position: relative;
   z-index: 0;
+
+  padding: 0;
+  background-color:var(--color-mid-blue);
+  color:var(--color-white);
+  
 
   &__bg {
     container-type: size;
@@ -139,6 +141,14 @@
     }
   }
 
+  &.-gray {
+    background-color: var(--color-light-gray);
+    .hero__heading {
+      color: var(--color-dark-blue);
+      font-weight: 600;
+      font-size: 2.75rem;
+    }
+  }
 
   // Natural content order for mobile
   &__image {

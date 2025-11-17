@@ -176,7 +176,7 @@
     }
     .-boxChecked {
       background-color: var(--color-turquoise);
-      border: thin solid var(--color-turqoise);
+      border: thin solid var(--color-turquoise);
       &::before {
         display: block;
         background: var(--color-gray-200);
@@ -376,7 +376,10 @@
 
         // Force single month display
         .dp__instance_calendar {
-          width: 100% !important;
+          width: 95% !important;
+          @include at(md) {
+            width: 100% !important;
+          }
 
           &:not(:first-child) {
             display: none !important;
@@ -403,6 +406,7 @@
 
         // Essential dp__ button styles for functionality
         .dp__action_button {
+          height: 200%;
           cursor: pointer !important;
           border: none !important;
           padding: 0.75rem 1.5rem !important;
@@ -413,12 +417,12 @@
 
         .dp__action_select,
         .dp__select {
-          background: var(--c-brand, #007bff) !important;
+          background: var(--color-turquoise) !important;
           color: white !important;
           border: none !important;
 
           &:hover {
-            background: var(--c-brand-dark, #0056b3) !important;
+            background: var(--c-brand-dark, var(--color-dark-blue)) !important;
           }
         }
 
@@ -435,8 +439,8 @@
         // Hide original action row positioning to prevent flash
         .dp__action_row {
           &:not(.dp__action_row--repositioned) {
-            opacity: 0 !important;
-            transition: opacity 0.1s ease !important;
+            //opacity: 0 !important;
+            //transition: opacity 0.1s ease !important;
           }
         }
 
@@ -760,6 +764,10 @@
     }
     &.-detailsMobile {
       padding-bottom: 1rem;
+    }
+
+    &.-detailsMobile.-last {
+      border-bottom: thin solid var(--color-gray-200);
     }
     
     &.-empty {
@@ -1131,6 +1139,7 @@
 
   // Desktop positioning for date picker to span across Date and Venue inputs
   .eventsSearch__filterGroup--date {
+    --dp-menu-width: 300px;
   @media (min-width: 769px) {
       position: relative;
     }
@@ -1140,7 +1149,7 @@
         position: absolute !important;
         left: 0 !important;
         top: calc(100% + .5rem)  !important;
-        width: calc(200% + 1rem) !important;
+        width: calc(150% + 1rem) !important;
         z-index: 1000 !important;
       }
 
@@ -1206,8 +1215,15 @@
     gap: 12px !important;
   }
 
+  .dp__active_date {
+    background-color: var(--color-turquoise);
+  }
+
   .dp__action_button {
-    padding: 16px 24px !important;
+    @include at(md) {
+      padding: 16px 24px !important;
+    }
+    
     border-radius: 8px !important;
     font-weight: 600 !important;
     font-size: var(--font-size-2) !important;
@@ -1216,19 +1232,19 @@
     transition: all 0.2s ease !important;
 
     &.dp__action_select {
-      background: var(--c-brand, #007bff) !important;
-      color: white !important;
+      background: var(--color-turquoise) !important;
+      color: var(--color-dark-blue);
 
       &:hover {
-        background: var(--c-brand-dark, #0056b3) !important;
+        background: var(--color-turquoise) !important;
       }
     }
 
     &.dp__action_cancel {
-      background: #F5F5F5 !important;
-      color: #333 !important;
+      background: var(--color-gray-100) !important;
+      color: var(--color-dark-blue) !important;
       border: none !important;
-      font-weight: 400 !important;
+      font-weight: 200 !important;
 
       &:hover {
         background: #e8e8e8 !important;
@@ -1247,6 +1263,10 @@
     border-top: 1px solid #D6D;
   }
   .dp__action_row {
+    width: 95%;
+    @include at(md) {
+      width: 100% !important;
+    }
     border-top: 1px solid #D6D6D6 !important;
   }
 
