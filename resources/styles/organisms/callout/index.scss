@@ -3,6 +3,7 @@
 .callout {
   background: var(--color-light-gray);
   padding: 2rem 1.5rem;
+  margin-top: 2rem;
   @include at(md) {
       padding: 4rem 2rem 4rem 4rem;
   }

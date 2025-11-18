@@ -130,8 +130,9 @@
     align-items: center;
     display: grid;
     gap: 1rem var(--root-gap);
+    padding-top: 0.5rem;
     @include at(md) {
-      padding-top: 2rem;
+      padding-top: 1rem;
     }
     grid: auto / subgrid;
     z-index: 1;
@@ -190,7 +191,7 @@
   }
   &__text {
     order: 4;
-    padding: 2rem 0 0 0;
+    padding: 0;
   }
   &__cta {
     order: 5;

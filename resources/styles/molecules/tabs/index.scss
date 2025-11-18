@@ -102,12 +102,11 @@
 
   &__content {
     display:  grid;
-    //grid-template-columns: minmax(0, 25%) auto;
     transition: grid-template-columns 400ms;
     grid-template-columns: 0% 1fr;
-    @include at(md) {
+    @include at(lg) {
       &.open { 
-        grid-template-columns: max(25%) auto;
+        grid-template-columns: 27.5rem auto;
       }
       &.closed {
         grid-template-columns: 0% 1fr;
