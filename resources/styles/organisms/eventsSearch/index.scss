@@ -9,7 +9,7 @@
   .ais-CurrentRefinements {
     border: none;
     padding: 0 1.5rem;
-    @include at(md) {
+    @include at(lg) {
       padding: 0;
       border-top: thin solid var(--color-gray-200);
     }
@@ -49,6 +49,13 @@
     }
   }
 
+  .ais-RefinementList {
+    padding: 0 0.5rem;
+    @include at(lg) {
+      padding: 0;
+    }
+  }
+
   .ais-RangeInput {
     display: flex;
     gap: 1rem;
@@ -58,7 +65,7 @@
 
   &__actions {
     display: none;
-    @include at(md) {
+    @include at(lg) {
       display:flex;
       flex-wrap: nowrap;
     }
@@ -67,7 +74,7 @@
 
   &__actionButtons {
     
-    @include at(md) {
+    @include at(lg) {
       display: inline;
       border-left: thin solid var(--color-gray-400);
       height: 1.75rem;
@@ -87,7 +94,9 @@
   &__worksGrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    @include at(md) {
+    padding: 0 1.5rem;
+    @include at(lg) {
+      padding: 0;
       grid-template-columns: repeat(4, 1fr);
     }
   }
@@ -138,7 +147,7 @@
   &__boxLabel {
     align-items: top;
     display: grid;
-    grid-template-columns: 10% 70% 20%;
+    grid-template-columns: 1.5rem auto max(4rem);
     padding-bottom: .5rem;
     color: var(--color-dark-blue);
   }
@@ -168,7 +177,7 @@
     }
     .-boxChecked {
       background-color: var(--color-turquoise);
-      border: thin solid var(--color-turqoise);
+      border: thin solid var(--color-turquoise);
       &::before {
         display: block;
         background: var(--color-gray-200);
@@ -215,11 +224,11 @@
     font-size: 14px;
     padding: 0 20px;
 
-    @include at(md) {
+    @include at(lg) {
       padding: 0 80px;
     }
 
-    @include at(md) {
+    @include at(lg) {
       margin-top: 3rem;
       margin-left: 60px;
       padding: 0 80px;
@@ -233,7 +242,7 @@
       "title actions"
       "filters filters";
 
-    @include at(md) {
+    @include at(lg) {
       grid-template-columns: 1fr auto;
       grid-template-rows: auto auto;
       grid-template-areas:
@@ -250,11 +259,12 @@
   }
 
   &__filtersRow {
+    width: 100%;
     display: grid;
     gap: 1rem;
     grid-template-columns: 4fr 4fr 1fr;
     justify-content: space-between;
-    @include at(md) {
+    @include at(lg) {
       grid-template-columns: 1fr 1fr 1fr;
     }
     
@@ -263,7 +273,8 @@
       "date date button";
 
     @include at(lg) {
-      grid-template-columns: minmax(18rem, 1fr) minmax(18rem, 1fr) 18rem;
+     grid-template-columns: minmax(18rem, 2fr) minmax(24rem, 1fr) 18rem;
+     //grid-template-columns: 100% rem 18rem;
       grid-template-areas:
       "search date button";
     }
@@ -368,7 +379,10 @@
 
         // Force single month display
         .dp__instance_calendar {
-          width: 100% !important;
+          width: 95% !important;
+          @include at(lg) {
+            width: 100% !important;
+          }
 
           &:not(:first-child) {
             display: none !important;
@@ -395,6 +409,7 @@
 
         // Essential dp__ button styles for functionality
         .dp__action_button {
+          height: 200%;
           cursor: pointer !important;
           border: none !important;
           padding: 0.75rem 1.5rem !important;
@@ -405,12 +420,12 @@
 
         .dp__action_select,
         .dp__select {
-          background: var(--c-brand, #007bff) !important;
+          background: var(--color-turquoise) !important;
           color: white !important;
           border: none !important;
 
           &:hover {
-            background: var(--c-brand-dark, #0056b3) !important;
+            background: var(--c-brand-dark, var(--color-dark-blue)) !important;
           }
         }
 
@@ -427,8 +442,8 @@
         // Hide original action row positioning to prevent flash
         .dp__action_row {
           &:not(.dp__action_row--repositioned) {
-            opacity: 0 !important;
-            transition: opacity 0.1s ease !important;
+            //opacity: 0 !important;
+            //transition: opacity 0.1s ease !important;
           }
         }
 
@@ -474,6 +489,7 @@
   &__filterHeader {
     align-items: center;
     display: flex;
+    padding-top:0.85rem;
     width: 100%;
     justify-content: space-between;
   }
@@ -490,12 +506,126 @@
       padding-left: 6rem;
     }
 
-    @include at(md) {
+    @include at(lg) {
       width: 28rem;
       flex-direction: column;
       gap: 1rem;
       padding-left: 8rem;
     }
+
+    .actionBar {
+      display: none;
+    }
+
+    .hideButton {
+      display: none;
+      @include at(lg) {
+        display: inline;
+      }
+    }
+
+    .hideMobile {
+      display: inline;
+      padding-right: 1rem;
+      svg {
+        height: auto;
+      }
+      @include at(lg) {
+        display: none;
+      }
+    }
+
+    &.openMobile {
+      display: flex;
+      flex-wrap: wrap;
+      position: absolute;
+      top: -50px;
+      left: 0px;
+      z-index:100;
+      width: 100vw;
+      height: 100%;
+      padding-right: 0;
+      .label {
+        font-weight: 700;
+        color: var(--color-dark-blue);
+        @include at(lg) {
+          font-weight: normal;
+          color: var(--color-gray-500);
+        }
+      }
+      .location {
+        padding: 0 0.5rem;
+        @include at(lg) {
+          padding: 0;
+        }
+      }
+      .filterIcon {
+        display: none;
+        @include at(lg) {
+          display:inline;
+        }
+      }
+      .actionBar {
+        display:inline;
+       
+        //padding: 1rem 2rem 0 1rem;
+        
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        height: 100px;
+        width: 100vw;
+        box-shadow: 0 -30px 30px var(--color-gray-100);
+        background-color: white;
+        @include at(lg) {
+          display: none;
+        }
+        .ais-ClearRefinements {
+          width: 100%;
+          height: 100%;
+          a {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            justify-content: space-around;
+            padding: .5rem 2rem 0.5rem 1rem;
+            width: 100%;
+            height: 100%;
+          }
+          button {
+             align-self: top;
+            width: 100%;
+          }
+        } 
+        button {
+          width: 100%;
+          height: 80%;
+          justify-self: center;
+          border: 0;
+          border-radius: 5px;
+          &.filterApply {
+            background-color: var(--color-turquoise);
+            color: var(--color-dark-blue);
+            font-weight: 600;
+          }
+        }
+      }
+      @include at(lg) {
+        display:inline;
+        position:relative;
+        width: 28rem;
+        flex-direction: column;
+        gap: 1rem;
+        padding-left: 8rem;
+        height: auto;
+        padding-right: 2rem;
+        padding-top: 3rem;
+      }
+    }
+  }
+
+  &__filters {
+    width: 100%;
   }
 
   &__filtersTitle {
@@ -505,7 +635,7 @@
     grid-area: title;
     margin-bottom: .5rem;
 
-    @include at(md) {
+    @include at(lg) {
       font-size: 50px;
       margin-bottom: 0;
     }
@@ -525,19 +655,28 @@
     margin-right: 1rem;
     transition: display 400ms;
     &.closed {
-      display: inline;
+      display: none;
+      @include at(lg) {
+        display: inline;
+      }
     }
   }
 
   &__filterWrapper {
-    display: grid;
-    overflow: hidden;
     
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    @include at(lg) {
+      overflow: hidden;
+      display: grid;
+      height: auto;
+    }
   }
 
   &__header {
     display: none;
-    @include at(md) {
+    @include at(lg) {
       display:inline;
     }
     flex-shrink: 0;
@@ -545,92 +684,64 @@
     margin-bottom: .5rem;
   }
 
+  &__lightLink {
+    color: var(--color-turquoise);
+  }
+
     // Pagination styles
   &__pagination {
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-    //padding: 0 20px;
-
-    // @include at(md) {
-    //   padding: 0 80px;
-    // }
-
-    // @include at(md) {
-    //   margin-left: 60px;
-    //   padding: 0 80px;
-    // }
+    padding: 1rem 1.5rem;
+    @include at(lg) {
+      padding: 2rem  0;
+    }
   }
 
   &__paginationComponent {
 
-      //&-list {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      //}
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-      &-item {
-        &--firstPage,
-        &--previousPage,
-        &--page,
-        &--nextPage,
-        &--lastPage {
-          .ais-Pagination-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 0 12px;
-            border: 1px solid #D6D6D6;
-            border-radius: 4px;
-            background: white;
-            color: #333;
-            text-decoration: none;
-            font-size: var(--font-size-1);
-            transition: all 0.2s;
-
-            &:hover {
-              background: var(--color-light-gray);
-              border-color: #999;
-            }
-          }
-        }
-
-        &--selected {
-          .ais-Pagination-link {
-            background: var(--c-brand, #007bff);
-            color: white;
-            border-color: var(--c-brand, #007bff);
-          }
-        }
-
-        &--disabled {
-          .ais-Pagination-link {
-            opacity: 0.5;
-            cursor: not-allowed;
-
-            &:hover {
-              background: white;
-              border-color: #D6D6D6;
-            }
-          }
-        }
+      li {
+        padding: 0 .2rem;
+        height: 1.5rem;
       }
+      li.arrow a{
+        color: var(--color-turquoise);
+      }
+
+      li:hover {
+        border-bottom: 2px solid var(--color-turquoise);
+      }
+
+      a {
+        font-size: 1.1rem;
+        color: var(--color-gray-500);
+       
+      }
+      // a:hover {
+      //     text-decoration: underline;
+      // }
+
+      
   }
 
   &__perfDetails {
     display: flex;
     gap: 0.1rem;
     &.-detailsMobile {
-      display: inline;
-      @include at(md) {
+      @include at(lg) {
         display: none;
       }
+    }
+    .detailsLink {
+      color: var(--color-turquoise);
     }
   }
 
@@ -641,41 +752,55 @@
   
 
   &__resultCell {
-    padding: 0.5rem 1rem;
-    grid-column: 1/span 2;
     border-left: thin solid var(--color-gray-200);
     border-right: thin solid var(--color-gray-200);
-    @include at(md) {
+    color: var(--color-dark-blue);
+    font-size: 0.9rem;
+    font-weight: bold;
+    grid-column: 1/span 2;
+    padding: 0.5rem 1rem;
+    @include at(lg) {
       padding: 1rem;
       grid-column: auto;
       border: none;
       border-right: thin solid var(--color-gray-200);
     }
     
-    color: var(--color-dark-blue);
-    font-weight: bold;
-    font-size: 0.9rem;
+    
+    a {
+      color: var(--color-dark-blue);
+    }
     
     &.-artist {
       display: none;
-      @include at(md) {
+      @include at(lg) {
         display: inline;
       }
     }
     &.-details {
       display: none;
-      @include at(md) {
+      @include at(lg) {
         display: inline;
       }
     }
     &.-detailsMobile {
       padding-bottom: 1rem;
     }
+
+    &.-detailsMobile.-last {
+      border-bottom: thin solid var(--color-gray-200);
+    }
     
     &.-empty {
       display:none;
-      @include at(md) {
+      @include at(lg) {
         display:inline;
+      }
+    }
+    &.-emptyMobile {
+      display:inline;
+      @include at(lg) {
+        display:none;
       }
     }
     &.-even {
@@ -687,14 +812,14 @@
     &.-first {
       border-top: thin solid var(--color-gray-200);
       padding-top: 1rem;
-      @include at(md) {
+      @include at(lg) {
         border-top: none;
         border-left: thin solid var(--color-gray-200);
       }
     }
     &.-header {
       display: none;
-      @include at(md) {
+      @include at(lg) {
         display: inline;
         border-top: thin solid var(--color-gray-200);
         border-bottom: thin solid var(--color-gray-200);
@@ -705,28 +830,27 @@
     }
     &.-hideMobile {
       display: none;
-      @include at(md) {
+     
+      
+      @include at(lg) {
         display: inline;
       }
     }
 
-    &.-last {
+    &.-last, &.-last.-right, &.-last.-work {
       border-bottom: none;
-      @include at(md) {
+      @include at(lg) {
         border-bottom: thin solid var(--color-gray-200);
       }
     }
 
     &.-lastMobile {
       border-bottom: thin solid var(--color-gray-200);
-      @include at(md) {
-        border-bottom: none;
-      }
     }
     &.-left {
       border-left: thin solid var(--color-gray-200);
       border-right: none;
-      @include at(md) {
+      @include at(lg) {
         border: none;
         border-right: thin solid var(--color-gray-200);
       }
@@ -734,7 +858,7 @@
     &.-right {
       border-right: thin solid var(--color-gray-200);
       border-left: none;
-      @include at(md) {
+      @include at(lg) {
         border: none;
         border-right: thin solid var(--color-gray-200);
       }
@@ -744,7 +868,7 @@
       display: block;
       font-weight:100;
       color: var(--color-gray-400);
-      @include at(md) {
+      @include at(lg) {
         display: none;
       }
     }
@@ -758,7 +882,7 @@
     grid-column-start: 2;
     padding-top: 0.75rem;
 
-    @include at(md) {
+    @include at(lg) {
       padding-top:3rem;
       padding-right:4rem;
       padding-left: 2rem;
@@ -767,7 +891,16 @@
     transition: padding-left 400ms;
     
     &.closed {
-      padding-left: 8rem;
+      @include at(lg) {
+        padding-left: 8rem;
+      }
+      
+    }
+    &.openMobile {
+      display: none;
+      @include at(lg) {
+        display: inline;
+      }
     }
    }
 
@@ -775,7 +908,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 1.5rem;
-    @include at(md) {
+    @include at(lg) {
       padding: 0;
       grid-template-columns: repeat(7, 1fr);
     }
@@ -786,14 +919,14 @@
     justify-content: space-between;
     padding: 1rem 1.5rem 0;
     border-bottom: thin solid var(--color-gray-200);
-    @include at(md) {
+    @include at(lg) {
       padding: 0;
       border-bottom: none;
     }
     &.-mobile {
       display: flex;
       padding-bottom: 0.75rem;
-      @include at(md) {
+      @include at(lg) {
         display: none;
       }
       .eventsSearch__filterToggle {
@@ -885,7 +1018,7 @@
           width: 100%;
        }
        &.-filter::placeholder {
-        color:#AFAFAF;
+        color: var(--color-gray-100);
        }
      }
 
@@ -956,7 +1089,7 @@
     box-sizing: border-box;
     
     padding: 1rem 1.5rem;
-    @include at(md) {
+    @include at(lg) {
       padding: 2rem 4rem;
     }
 
@@ -1035,6 +1168,7 @@
 
   // Desktop positioning for date picker to span across Date and Venue inputs
   .eventsSearch__filterGroup--date {
+    --dp-menu-width: 300px;
   @media (min-width: 769px) {
       position: relative;
     }
@@ -1044,7 +1178,7 @@
         position: absolute !important;
         left: 0 !important;
         top: calc(100% + .5rem)  !important;
-        width: calc(200% + 1rem) !important;
+        //width: calc(150% + 1rem) !important;
         z-index: 1000 !important;
       }
 
@@ -1110,29 +1244,37 @@
     gap: 12px !important;
   }
 
+  .dp__active_date {
+    background-color: var(--color-turquoise);
+  }
+
   .dp__action_button {
-    padding: 16px 24px !important;
+    @include at(lg) {
+      padding: 16px 24px !important;
+    }
+    
     border-radius: 8px !important;
     font-weight: 600 !important;
     font-size: var(--font-size-2) !important;
     border: none !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
+    padding: 1rem;
 
     &.dp__action_select {
-      background: var(--c-brand, #007bff) !important;
-      color: white !important;
+      background: var(--color-turquoise) !important;
+      color: var(--color-dark-blue);
 
       &:hover {
-        background: var(--c-brand-dark, #0056b3) !important;
+        background: var(--color-turquoise) !important;
       }
     }
 
     &.dp__action_cancel {
-      background: #F5F5F5 !important;
-      color: #333 !important;
+      background: var(--color-gray-100) !important;
+      color: var(--color-dark-blue) !important;
       border: none !important;
-      font-weight: 400 !important;
+      font-weight: 200 !important;
 
       &:hover {
         background: #e8e8e8 !important;
@@ -1151,6 +1293,9 @@
     border-top: 1px solid #D6D;
   }
   .dp__action_row {
+    @include at(lg) {
+      width: 100% !important;
+    }
     border-top: 1px solid #D6D6D6 !important;
   }
 

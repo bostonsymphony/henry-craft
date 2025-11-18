@@ -1,4 +1,4 @@
-dateModified: 1759757262
+dateModified: 1763490335
 email:
   fromEmail: info@imarc.com
   fromName: 'Padstone Craft 5'
@@ -35,7 +35,6 @@ meta:
     4f264f7a-a063-4e9a-824d-4ba8018a6c27: 'Utility Nav Entry' # Utility Nav Entry
     5a53a4fd-6824-4729-9a20-006558d3e221: Link # Link
     5c34e4ac-c379-4915-ae75-4016817fe223: 'CTA Card' # CTA Card
-    6a005e55-a63c-448a-824a-d719b3f55f46: Events # Events
     6a91581a-a1ff-430b-bbeb-32b131747531: Video # Video
     6bbbf1c9-7abf-470b-aefc-dd2290683a72: 'Fake Tag Group' # Fake Tag Group
     6d180003-5ba0-4422-bebb-53f81069962e: '404 Page' # 404 Page
@@ -52,15 +51,11 @@ meta:
     52ff5c36-e87c-4674-8f10-76565b13abdf: 'Padstone Craft 5' # Padstone Craft 5
     77f762ab-419d-47e9-8b43-63754dafa72f: 'Call To Action' # Call To Action
     82fc6643-49ce-461f-b55b-af4e57933421: Code # Code
-    89dec5ed-967b-4adc-96f4-990fe7f52da5: 'Breadcrumb Title' # Breadcrumb Title
-    091ba845-021e-4b45-af8f-923cd0b13154: 'Blog Articles' # Blog Articles
     95bdff49-0896-47d2-86bc-9fd95e4ab8c5: 'Blog Categories' # Blog Categories
-    101d77f8-2e5b-44d4-9689-c44463856e1b: 'Hero Subheadline' # Hero Subheadline
     117e786c-b219-4920-ac84-48665d61a724: 'Contact Page' # Contact Page
     200bbebe-f7e1-4fbd-ba8a-6e07e14b4c8e: 'CTA Text' # CTA Text
     341a7fb3-3ede-4a66-8e32-25c38b986f8a: 'Event Start Date' # Event Start Date
     377e43f5-bfc9-462f-a0db-51f020707423: 'Background Image' # Background Image
-    458fef22-7128-4c44-80db-51f83af8dc3e: 'Hero Content' # Hero Content
     507a966d-0b69-4f8e-9d31-31b6528b14a0: Images # Images
     521b80c9-0597-4ac3-b521-5e25290be644: 'Team Page' # Team Page
     524e948c-591f-4e9e-a275-77e3e0709b86: Person # Person
@@ -72,17 +67,14 @@ meta:
     976d4ccf-4988-4c36-968c-53f396dce7f2: 'Blog Article' # Blog Article
     1734b2b5-03f5-435f-a92a-5b5e6125f9bc: Abstract # Abstract
     3546d0c2-4446-4f19-beb3-1e460aa375df: Eyebrow # Eyebrow
-    3644b740-3500-418e-a08f-7e66e4a2b99e: 'Show Breadcrumbs' # Show Breadcrumbs
     3984cd0f-a133-49ff-94d0-63730cf1bf51: Headline # Headline
     4536b6f0-b762-4abc-b6d1-a918619f8b4d: Testimonial # Testimonial
     6695f59b-2131-411b-9ed2-35f957256c1a: 'Event End Date' # Event End Date
-    8457c80e-39d8-4db2-8a6e-184dbf407cbe: Alerts # Alerts
     8678d5b0-ebe6-4da8-9111-e5ccf5c13386: 'General Toggle Off' # General Toggle Off
     8943bafd-8aa6-4449-8d82-21f319461410: 'Service Unavailable Page' # Service Unavailable Page
     35753bc4-1fe5-4dab-9b39-969e168d2c68: 'Alert Content' # Alert Content
     37581c39-ebd0-4472-aa61-c2f51a891535: 'Content (No Media)' # Content (No Media)
     56554df0-f81a-4c6a-b023-706d2789eaa9: Video # Video
-    89839c0a-8c2a-4ef9-900f-709a4c4b77c1: 'Shared Blocks' # Shared Blocks
     99552cc7-97e5-47f7-8587-b78478eed6fc: 'Navigation Items' # Navigation Items
     115744a1-512d-495b-ba38-959ebed6cec4: 'Job Title' # Job Title
     307187bf-968f-42da-b579-dbc76b7a9fa6: 'Shared Section' # Shared Section
@@ -97,10 +89,8 @@ meta:
     a5dace26-0a0c-4f88-a4ad-63c74c424a5e: 'Blog Page' # Blog Page
     a7b59ddf-b06d-4b04-8d73-c52609ae95d3: Anchor # Anchor
     a63c9e01-02f0-422a-b717-1a8c254b0231: 'Testimonial Slider' # Testimonial Slider
-    ab4da4c8-eed9-4c18-9a65-6cad926fcd59: Resources # Resources
     adcddd0f-78ee-4ed7-bd80-ee4a2ebf8094: 'Blog Authors' # Blog Authors
     ae7af0c4-5df7-45d3-aa71-3888882dd594: 'News Article' # News Article
-    af012389-66c1-47b3-ac35-1880759c37c5: Homepage # Homepage
     b017f5cc-01aa-4798-b11f-6ffa8126dc06: 'Site Tagline' # Site Tagline
     b017369d-2ebc-4b60-8af4-d1777deb0450: 'Press Mention URL' # Press Mention URL
     b4fd5d6c-8267-43f3-bfed-8defac06c057: 'Testimonial Slides' # Testimonial Slides
@@ -109,7 +99,6 @@ meta:
     b96a3c34-e3b4-46ee-9bfe-c53406033bf0: Card # Card
     b9887631-08f6-49cc-aa6f-0838021677d5: 'Footer Column' # Footer Column
     bd4fb97b-3b89-49bc-9fdb-c20917cb6776: 'Featured Image' # Featured Image
-    bda4be51-a390-429b-856f-8ebd7905b00a: 'Hero Eyebrow' # Hero Eyebrow
     bda481fe-9876-436b-80ba-07294176972e: Cards # Cards
     c2f04b66-544d-449f-a4de-c5605f121afd: 'Team Member' # Team Member
     c5febe1f-c523-44a4-894a-81eb0ea96691: 'Primary Navigation' # Primary Navigation
@@ -118,14 +107,12 @@ meta:
     c46e2b3b-387a-4540-9120-ab0a15b0bbae: Homepage # Homepage
     c59ecd1c-c856-4983-96da-bbbac954eab0: 'Basic Page' # Basic Page
     c76d791f-6a12-4609-94f8-66f12eb848fd: Quote # Quote
-    c98b12f3-a5c4-4329-b13c-d59e97981978: Team # Team
     c164bcf4-0226-4e9f-bfe0-ca08ad8056b5: Full # Full
     c42320a8-209b-458c-a104-5cb1015f0efc: Author # Author
     ca4795d4-4ac1-46d8-8a30-dea2b3369723: 'News Page' # News Page
     cb8e727f-8cfd-4234-a8aa-3e11420418cb: 'Resource Types' # Resource Types
     d6c3cdc6-9af4-4a8e-9008-56fc71426603: 'Padstone Craft 5' # Padstone Craft 5
     d26a5c7a-435f-4562-91fe-d168201e7bed: 'Footer Navigation Items' # Footer Navigation Items
-    d41feaed-9c5d-41dc-9629-8e9af1b89cbf: Authors # Authors
     d56b297b-0f38-4dee-abc3-57498c544f41: Hero # Hero
     d4966cae-3474-4ee8-92bd-7d511f1758d4: 'Standard Hero' # Standard Hero
     d69400d5-37c7-48ef-b143-e25cccdda2ac: Simple # Simple
@@ -142,7 +129,6 @@ meta:
     eed094b2-cdd9-4163-8ca6-fca978f404ad: 'Shared Sections' # Shared Sections
     eeef2caa-117b-428d-9f03-adb34907baec: 'Link Text' # Link Text
     f155fe39-4c36-418a-829b-8e9bfcd3fa1d: 'Event Location' # Event Location
-    f8914d2d-ddd0-4141-ba2d-c28214f54b2a: 'News Articles' # News Articles
     fb82e0a6-3ed1-4972-9882-da2431a7788b: Resources # Resources
     fcee80e9-4667-40be-9381-e2994ff56dc0: 'Hero Headline' # Hero Headline
     ff11a7ef-4804-4699-9e26-f9d531a7e760: Content # Content
@@ -191,16 +177,6 @@ plugins:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
-  retour:
-    edition: standard
-    enabled: true
-    licenseKey: CBA04ZCERGIMDHG32R27BO9X
-    schemaVersion: 3.0.12
-  seomatic:
-    edition: standard
-    enabled: true
-    licenseKey: ZRUZFKQ48F1MB4CZKMZIIHQU
-    schemaVersion: 3.0.13
   vite:
     edition: standard
     enabled: true

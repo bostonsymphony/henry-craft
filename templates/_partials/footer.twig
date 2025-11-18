@@ -1,9 +1,9 @@
 {% import "/_macros" as macros %}
 
 
-{% for sharedBlock in footerContent.sharedBlocks.all() %}
-    {{ macros.renderAllBlocks(sharedBlock.contentDesigner) }}
-{% endfor %}
+
+{{ macros.renderAllBlocks(footerContent.contentDesigner) }}
+
 
 <footer class="siteFooter container">
     

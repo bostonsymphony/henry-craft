@@ -1,9 +1,9 @@
 {% import "/_macros" as macros %}
 {% extends "_layouts/main" %}
 {% block content %}
-    {% include '_partials/hero' with { hero: entry.hero.one } %}
+    {% include '_partials/hero' with { hero: entry.hero.one} %}
 
-    <section class="section container basicSection -richText -oneColumn">
+    <section class="section basicSection -richText -oneColumn">
         <div class="basicSection__content">
             <div class="basicSection__text richText">
                 {{ entry.blockContent }}

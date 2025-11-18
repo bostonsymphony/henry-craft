@@ -1,7 +1,8 @@
 defaultPlacement: end
 enableVersioning: true
 entryTypes:
-  - c59ecd1c-c856-4983-96da-bbbac954eab0 # Basic Page
+  -
+    uid: 1c4ecae7-1e89-4a49-bbb5-0f581ff3c960 # HENRY Page
 handle: notFoundPage
 maxAuthors: 1
 name: '404 Page'

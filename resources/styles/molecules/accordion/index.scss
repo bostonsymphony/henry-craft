@@ -10,7 +10,7 @@
     height: var(--accordion-height-closed);
     overflow: hidden;
     transition: height var(--root-duration-moderate) var(--root-ease-out);
-    border-top: thin solid #AFAFAF;
+    border-top: thin solid var(--color-gray-300);
 
     &__summary {
         align-items: center;

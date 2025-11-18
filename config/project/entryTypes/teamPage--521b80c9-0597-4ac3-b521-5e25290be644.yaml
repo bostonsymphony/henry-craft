@@ -56,7 +56,7 @@ fieldLayouts:
             dateAdded: '2025-05-15T13:25:08+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 3644b740-3500-418e-a08f-7e66e4a2b99e # Show Breadcrumbs
+            fieldUid: 3644b740-3500-418e-a08f-7e66e4a2b99e
             handle: null
             includeInCards: false
             instructions: null
@@ -73,7 +73,7 @@ fieldLayouts:
             dateAdded: '2025-05-15T13:25:08+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: 89dec5ed-967b-4adc-96f4-990fe7f52da5 # Breadcrumb Title
+            fieldUid: 89dec5ed-967b-4adc-96f4-990fe7f52da5
             handle: null
             includeInCards: false
             instructions: null

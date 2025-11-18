@@ -7,9 +7,6 @@
   padding: 5rem 0;
 
   &.hero {
-    padding: 0;
-    background-color:var(--color-mid-blue);
-    color:var(--color-white);
     padding: 1rem 1.5rem;
 
      @include at(md) {
