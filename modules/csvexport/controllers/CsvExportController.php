@@ -103,112 +103,118 @@ class CsvExportController extends Controller
         exit;
     }
 
-        function exportPerformances($params, $perfArchive) {
+    function exportPerformances($params, $perfArchive) {
         
         $query = array_key_exists('query', $params[$perfArchive]) ? $params[$perfArchive]['query'] : null;
         $refinementList = array_key_exists('refinementList', $params[$perfArchive]) ? $params[$perfArchive]['refinementList'] : null;
         $searchParams = $this->getSearchParams($params, $perfArchive, 'works, season, ensembles, venue, event_types, notes, event_title', $query, $refinementList);
        
         $result = $this->client->collections[$perfArchive]->documents->search($searchParams);
-        $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
-        $shownWorks = [];
-        if ($hits) {
-            $returnInfo = "INFO";
-            $filename = $this->getFileName("Performance", $query, $refinementList);
+        $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
+        $pages = 1;
 
-            header('Content-Type: text/csv; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $filename);
-            $file = fopen('php://output', 'w');
-            $headers = ['Date/Season/Title', 'Venue', 'Ensemble', 'Conductor', 'Composer/Work', 'Artist/Role'];
-            fputcsv($file, $headers);
+        $filename = $this->getFileName("Performance", $query, $refinementList);
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=' . $filename);
+        $file = fopen('php://output', 'w');
+        $headers = ['Date/Season/Title', 'Venue', 'Ensemble', 'Conductor', 'Composer/Work', 'Artist/Role'];
+        fputcsv($file, $headers);
 
-            foreach ($hits as $hit) {
-                if (array_key_exists('document', $hit)) {
-                    $event = $hit['document'];
-                    $row = array_fill(0, 6, "");
-                    if (array_key_exists('performance_date', $event)) {
-                        $row[0] = gmdate("Y-m-d", $event['performance_date']);
-                    }
-                    if (array_key_exists('season', $event)) {
-                        $row[0] .= " / " . $event['season'];
-                    }
-                    $row[0] .= array_key_exists('event_title', $event) ? " / " . $event['event_title'] : "";
-
-                    $row[1] = $event['venue'];
-                    if ($event["location"]) {
-                        $row[1] .= array_key_exists("city", $event['location']) && $event['location']['city'] ? ", " . $event['location']['city'] : "";
-                        $row[1] .= array_key_exists('state', $event['location']) && $event['location']['state'] ? ", " . $event['location']['state'] : "";
-                        $row[1] .= array_key_exists('country', $event['location']) && $event['location']['country'] ? ", " . $event['location']['country'] : "";
-                    }
-                    
-                    $works = array_key_exists('works', $event) ? $event['works'] : null;
-
-                    if (array_key_exists('ensembles', $event) && $event['ensembles']) {
-                        $row[2] = implode("; ", $event['ensembles']);
-                    }
-
-                    //filter works as necessary if there are works filters
-                    $workFilters = $this->getWorkFilters($refinementList);
-                    $returnInfo = "<h2>Work Filters</h2>" . json_encode($workFilters) . "<br/><br/>";
-
-                    if ($works && is_array($workFilters) && count($workFilters)) {
-                        foreach ($works as $work) {
-                            if ($work && is_array($work)) {
-                                $workAdded = false;
-                                $returnInfo .= json_encode($work) . "<br/><br/><b>" . json_encode($workFilters) . "</b><br/><br/>";
-                                $intersectKeys = array_intersect_key($work, $workFilters);
-                                foreach ($intersectKeys as $key => $value) {
-                                    $tempValue = is_array($value) ? $value : [$value];
-                                    if (count(array_intersect($tempValue, $workFilters[$key]))) {
-                                            $shownWorks[] = $work;
-                                            $workAdded = true;
-                                    }
-                                    if (!$workAdded && $query && str_contains(strtolower(json_encode($work)), $query)) {
-                                        $shownWorks[] = $work;
-                                    }
-                                }
-                                
-                            }
+        while ($pages * 250 < $result["found"]) {
+            $shownWorks = [];
+            if (count($hits)) {
+                $returnInfo = "INFO";
+                foreach ($hits as $hit) {
+                    if (array_key_exists('document', $hit)) {
+                        $event = $hit['document'];
+                        $row = array_fill(0, 6, "");
+                        if (array_key_exists('performance_date', $event)) {
+                            $row[0] = gmdate("Y-m-d", $event['performance_date']);
                         }
-                    } elseif ($works) {
-                        $shownWorks = $works;
-                    }
-                    foreach ($shownWorks as $work) {
-                        if (array_key_exists('conductors', $work)) {
-                            $row[3] = implode("; ", $work['conductors']);
-                        } 
-                        if (array_key_exists('composers', $work)) {
-                            $row[4] = implode("; ", $work['composers']);
+                        if (array_key_exists('season', $event)) {
+                            $row[0] .= " / " . $event['season'];
                         }
-                        if (array_key_exists('title', $work)) {
-                            if ($row[4] != "") {
-                                $row[4] .= " / ";
-                            }
-                            $row[4] .= $work['title'];
+                        $row[0] .= array_key_exists('event_title', $event) ? " / " . $event['event_title'] : "";
+
+                        $row[1] = $event['venue'];
+                        if ($event["location"]) {
+                            $row[1] .= array_key_exists("city", $event['location']) && $event['location']['city'] ? ", " . $event['location']['city'] : "";
+                            $row[1] .= array_key_exists('state', $event['location']) && $event['location']['state'] ? ", " . $event['location']['state'] : "";
+                            $row[1] .= array_key_exists('country', $event['location']) && $event['location']['country'] ? ", " . $event['location']['country'] : "";
                         }
                         
-                        if (array_key_exists('artists', $work)) {
-                            foreach ($work['artists'] as $artist) {
-                                if ($row[5] != "") {
-                                    $row[5] .= "; ";
-                                }
-                                $row[5] = $artist['name'] . " / " . $artist['role'];
-                            }                                
+                        $works = array_key_exists('works', $event) ? $event['works'] : null;
+
+                        if (array_key_exists('ensembles', $event) && $event['ensembles']) {
+                            $row[2] = implode("; ", $event['ensembles']);
                         }
+
+                        //filter works as necessary if there are works filters
+                        $workFilters = $this->getWorkFilters($refinementList);
+                        $returnInfo = "<h2>Work Filters</h2>" . json_encode($workFilters) . "<br/><br/>";
+
+                        if ($works && is_array($workFilters) && count($workFilters)) {
+                            foreach ($works as $work) {
+                                if ($work && is_array($work)) {
+                                    $workAdded = false;
+                                    $returnInfo .= json_encode($work) . "<br/><br/><b>" . json_encode($workFilters) . "</b><br/><br/>";
+                                    $intersectKeys = array_intersect_key($work, $workFilters);
+                                    foreach ($intersectKeys as $key => $value) {
+                                        $tempValue = is_array($value) ? $value : [$value];
+                                        if (count(array_intersect($tempValue, $workFilters[$key]))) {
+                                                $shownWorks[] = $work;
+                                                $workAdded = true;
+                                        }
+                                        if (!$workAdded && $query && str_contains(strtolower(json_encode($work)), $query)) {
+                                            $shownWorks[] = $work;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        } elseif ($works) {
+                            $shownWorks = $works;
+                        }
+                        foreach ($shownWorks as $work) {
+                            if (array_key_exists('conductors', $work)) {
+                                $row[3] = implode("; ", $work['conductors']);
+                            } 
+                            if (array_key_exists('composers', $work)) {
+                                $row[4] = implode("; ", $work['composers']);
+                            }
+                            if (array_key_exists('title', $work)) {
+                                if ($row[4] != "") {
+                                    $row[4] .= " / ";
+                                }
+                                $row[4] .= $work['title'];
+                            }
+                            
+                            if (array_key_exists('artists', $work)) {
+                                foreach ($work['artists'] as $artist) {
+                                    if ($row[5] != "") {
+                                        $row[5] .= "; ";
+                                    }
+                                    $row[5] = $artist['name'] . " / " . $artist['role'];
+                                }                                
+                            }
+                        }
+                        
+                        if ($row[3] == "" && array_key_exists('conductor', $event) && $event['conductor']) {
+                            $row[3] = implode("; ", $event['conductor']);
+                        }
+                        $returnInfo .= json_encode($row) . "<br/>";
+                        fputcsv($file, $row);
                     }
                     
-                    if ($row[3] == "" && array_key_exists('conductor', $event) && $event['conductor']) {
-                        $row[3] = implode("; ", $event['conductor']);
-                    }
-                    $returnInfo .= json_encode($row) . "<br/>";
-                    fputcsv($file, $row);
                 }
-                
+                //return $returnInfo;
             }
-            //return $returnInfo;
-        }
+            $searchParams["offset"] = $pages * 250;
+            $result = $this->client->collections[$perfArchive]->documents->search($searchParams);
+            $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
+            $pages++;
 
-        
+        }
 
         fclose($file);
 
