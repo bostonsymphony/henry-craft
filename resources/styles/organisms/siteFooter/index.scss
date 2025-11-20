@@ -2,12 +2,16 @@
 
 .siteFooter {
   $b: &;
+  background-image: url('/media/Henry Lee Higginson_2x.png');
+  background-size:contain;
   background-color: var(--color-black);
+  background-repeat: no-repeat;
+  background-position-y: bottom;
   padding:5rem 0;
 
   &__col {
     &.-first {
-      @include at(md) {
+      @include at(lg) {
         grid-column-start: 2;
       }
       
@@ -119,6 +123,7 @@
     color: var(--color-white);
     font-size: 1.15rem;
     padding-top: 1rem;
+    padding-bottom: 2rem;
     .-gray {
       color: var(--color-gray-500);
     }

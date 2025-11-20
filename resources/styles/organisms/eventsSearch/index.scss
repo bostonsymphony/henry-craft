@@ -795,6 +795,7 @@
     &.-empty {
       display:none;
       @include at(lg) {
+        border-bottom: none;
         display:inline;
       }
     }
@@ -838,15 +839,31 @@
       }
     }
 
+    &.-last.-empty.-lastMobile {
+      border-bottom: none;
+    }
+
     &.-last, &.-last.-right, &.-last.-work {
       border-bottom: none;
+      border-top: none;
       @include at(lg) {
         border-bottom: thin solid var(--color-gray-200);
       }
     }
 
+    &.-last.-perfs {
+      border-bottom: thin solid var(--color-gray-200);
+    }
+
     &.-lastMobile {
       border-bottom: thin solid var(--color-gray-200);
+    }
+
+    &.-emptyMobile {
+      display: inline;
+      @include at(lg) {
+        display:none;
+      }
     }
     &.-left {
       border-left: thin solid var(--color-gray-200);

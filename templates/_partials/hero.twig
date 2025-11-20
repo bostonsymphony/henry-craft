@@ -24,7 +24,7 @@
         <div class="hero__content">
             <div class="hero__text">
 
-                <h1 class="hero__heading">{{ hero.heroHeadline|default(entry.title) }}</h1>
+                <h1 class="hero__heading">{{ hero.heroHeadline|default(entry is defined ? entry.title : "") }}</h1>
                  
             </div>
 

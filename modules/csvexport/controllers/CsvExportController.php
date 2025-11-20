@@ -185,11 +185,14 @@ class CsvExportController extends Controller
                             $shownWorks = $works;
                         }
                         foreach ($shownWorks as $work) {
+                            if (array_key_exists('ensembles', $work)) {
+                                $row[3] .= implode("; ", $work['conductors']);
+                            } 
                             if (array_key_exists('conductors', $work)) {
-                                $row[3] = implode("; ", $work['conductors']);
+                                $row[3] .= implode("; ", $work['conductors']);
                             } 
                             if (array_key_exists('composers', $work)) {
-                                $row[4] = implode("; ", $work['composers']);
+                                $row[4] .= implode("; ", $work['composers']);
                             }
                             if (array_key_exists('title', $work)) {
                                 if ($row[4] != "") {
@@ -203,7 +206,7 @@ class CsvExportController extends Controller
                                     if ($row[5] != "") {
                                         $row[5] .= "; ";
                                     }
-                                    $row[5] = $artist['name'] . " / " . $artist['role'];
+                                    $row[5] .= $artist['name'] . " / " . $artist['role'];
                                 }                                
                             }
                         }
