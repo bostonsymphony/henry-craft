@@ -15,7 +15,7 @@ class CsvExportController extends Controller
     protected array|int|bool $allowAnonymous = true;
 
     private $client = null;
-
+ 
     public function actionIndex() {
         $perfArchive = App::parseEnv('$PERFORMANCE_ARCHIVE') ?? 'performances';
         $artistArchive = App::parseEnv('$ARTIST_ARCHIVE') ?? 'artists';
@@ -31,7 +31,7 @@ class CsvExportController extends Controller
                 ],
                 ],
                 'connection_timeout_seconds' => 2,
-            ]
+            ] 
         );
 
        
@@ -60,42 +60,50 @@ class CsvExportController extends Controller
         $searchParams = $this->getSearchParams($params, $artistArchive, 'artist_name, artist_role, work_title', $query, $refinementList);
         $result = $this->client->collections[$artistArchive]->documents->search($searchParams);
         $hits = array_key_exists('hits', $result) ? $result['hits'] : null;
+        $pages = 0;
 
         $returnInfo = "";
+        $filename = $this->getFileName("Artists", $query, $refinementList);
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=' . $filename);
+        $file = fopen('php://output', 'w');
+        $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
+        fputcsv($file, $headers);
 
-        if ($hits) {
-            $filename = $this->getFileName("Artists", $query, $refinementList);
-            header('Content-Type: text/csv; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $filename);
-            $file = fopen('php://output', 'w');
-            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
-            fputcsv($file, $headers);
-            foreach ($hits as $hit) {
-                if (array_key_exists('document', $hit)) {
-                    $artist = $hit['document'];
-                    $row = array_fill(0, 4, "");
-                    if (array_key_exists("artist_name", $artist)) {
-                        $row[0] = $artist["artist_name"];
-                    }
-                    if (array_key_exists("artist_role", $artist)) {
-                        $row[1] = $artist["artist_role"];
-                    }
-                    if (array_key_exists("composer", $artist)) {
-                        $row[2] = $artist["composer"];
-                    }
-                    if (array_key_exists("work_title", $artist)) {
-                        if ($row[2] != "") {
-                            $row[2] .= "/";
+        while ($pages * 250 <= $result["found"]) {
+            $pages++;
+            if ($hits) {
+                foreach ($hits as $hit) {
+                    if (array_key_exists('document', $hit)) {
+                        $artist = $hit['document'];
+                        $row = array_fill(0, 4, "");
+                        if (array_key_exists("artist_name", $artist)) {
+                            $row[0] = $artist["artist_name"];
                         }
-                        $row[2] .= $artist["work_title"];
+                        if (array_key_exists("artist_role", $artist)) {
+                            $row[1] = $artist["artist_role"];
+                        }
+                        if (array_key_exists("composer", $artist)) {
+                            $row[2] = $artist["composer"];
+                        }
+                        if (array_key_exists("work_title", $artist)) {
+                            if ($row[2] != "") {
+                                $row[2] .= "/";
+                            }
+                            $row[2] .= $artist["work_title"];
+                        }
+                        if (array_key_exists("num_performances", $artist)) {
+                            $row[3] = $artist["num_performances"];
+                        }
+                        fputcsv($file, $row);
+                        $returnInfo .= json_encode($row) . "<br/><br/>";
                     }
-                    if (array_key_exists("num_performances", $artist)) {
-                        $row[3] = $artist["num_performances"];
-                    }
-                    fputcsv($file, $row);
-                    $returnInfo .= json_encode($row) . "<br/><br/>";
                 }
             }
+            $searchParams["offset"] = $pages * 250;
+            $result = $this->client->collections[$artistArchive]->documents->search($searchParams);
+            $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
+            
         }
             
         //return $returnInfo;
@@ -111,7 +119,7 @@ class CsvExportController extends Controller
        
         $result = $this->client->collections[$perfArchive]->documents->search($searchParams);
         $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
-        $pages = 1;
+        $pages = 0;
 
         $filename = $this->getFileName("Performance", $query, $refinementList);
         header('Content-Type: text/csv; charset=utf-8');
@@ -120,7 +128,8 @@ class CsvExportController extends Controller
         $headers = ['Date/Season/Title', 'Venue', 'Ensemble', 'Conductor', 'Composer/Work', 'Artist/Role'];
         fputcsv($file, $headers);
 
-        while ($pages * 250 < $result["found"]) {
+        while ($pages * 250 <= $result["found"]) {
+            $pages++;
             $shownWorks = [];
             if (count($hits)) {
                 $returnInfo = "INFO";
@@ -212,7 +221,6 @@ class CsvExportController extends Controller
             $searchParams["offset"] = $pages * 250;
             $result = $this->client->collections[$perfArchive]->documents->search($searchParams);
             $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
-            $pages++;
 
         }
 
@@ -231,40 +239,49 @@ class CsvExportController extends Controller
 
         $returnInfo = "";
 
-        if ($hits) {
-            $filename = $this->getFileName("Works", $query, $refinementList);
-            header('Content-Type: text/csv; charset=utf-8');
-            header('Content-Disposition: attachment; filename=' . $filename);
-            $file = fopen('php://output', 'w');
-            $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
-            fputcsv($file, $headers);
-            foreach ($hits as $hit) {
-                 if (array_key_exists('document', $hit)) {
-                    $work = $hit['document'];
-                    $row = array_fill(0, 4, "");
-                    if (array_key_exists("composers", $work)) {
-                        $row[0] = implode("; ", $work["composers"]);
-                    }
-                    if (array_key_exists("title", $work)) {
-                        $row[1] = implode("; ", $work["title"]);
-                    }
-                    if (array_key_exists("creators", $work) && count($work["creators"])) {
-                        foreach ($work["creators"] as $creator) {
-                            if (array_key_exists("name", $creator) && array_key_exists("role", $creator)) {
-                                if ($row[2] != "") {
-                                    $row[2] .= "; ";
+        $pages = 0;
+        $filename = $this->getFileName("Works", $query, $refinementList);
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=' . $filename);
+        $file = fopen('php://output', 'w');
+        $headers = ['Artist', 'Instrument/Role', 'Composer/Work', '# of Performances'];
+        fputcsv($file, $headers);
+
+        while ($pages * 250 <= $result["found"]) {
+            $pages++;
+            if ($hits) {
+
+                foreach ($hits as $hit) {
+                    if (array_key_exists('document', $hit)) {
+                        $work = $hit['document'];
+                        $row = array_fill(0, 4, "");
+                        if (array_key_exists("composers", $work)) {
+                            $row[0] = implode("; ", $work["composers"]);
+                        }
+                        if (array_key_exists("title", $work)) {
+                            $row[1] = implode("; ", $work["title"]);
+                        }
+                        if (array_key_exists("creators", $work) && count($work["creators"])) {
+                            foreach ($work["creators"] as $creator) {
+                                if (array_key_exists("name", $creator) && array_key_exists("role", $creator)) {
+                                    if ($row[2] != "") {
+                                        $row[2] .= "; ";
+                                    }
+                                    $row[2] .= $creator["name"] . "/" . $creator["role"];
                                 }
-                                $row[2] .= $creator["name"] . "/" . $creator["role"];
                             }
                         }
+                        if (array_key_exists("num_performances", $work)) {
+                            $row[3] = $work["num_performances"];
+                        }
+                        fputcsv($file, $row);
+                        $returnInfo .= json_encode($row) . "<br/><br/>";
                     }
-                    if (array_key_exists("num_performances", $work)) {
-                        $row[3] = $work["num_performances"];
-                    }
-                    fputcsv($file, $row);
-                    $returnInfo .= json_encode($row) . "<br/><br/>";
                 }
             }
+            $searchParams["offset"] = $pages * 250;
+            $result = $this->client->collections[$workArchive]->documents->search($searchParams);
+            $hits = array_key_exists('hits', $result) ? $result['hits'] : [];
         }
 
         //return $returnInfo;
