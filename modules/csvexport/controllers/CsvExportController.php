@@ -20,12 +20,14 @@ class CsvExportController extends Controller
         $perfArchive = App::parseEnv('$PERFORMANCE_ARCHIVE') ?? 'performances';
         $artistArchive = App::parseEnv('$ARTIST_ARCHIVE') ?? 'artists';
         $workArchive = App::parseEnv('$WORK_ARCHIVE') ?? 'works';
+        $typesenseHost = App::parseEnv('$TYPESENSE_HOST') ?? '';
+        $apiKey = App::parseEnv('$TYPESENSE_SEARCH_KEY') ?? '';
         $this->client = new Client(
             [
-                'api_key'         => 'qoWHCTjesGfIaxdXbw9vOgod1VToEXNI',
+                'api_key'         => $apiKey,
                 'nodes'           => [
                 [
-                    'host' => 'go8f04wi19tuvlyrp-1.a1.typesense.net',
+                    'host' => $typesenseHost,
                     'port' => '443',      
                     'protocol' => 'https' 
                 ],

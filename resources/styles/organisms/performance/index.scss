@@ -13,12 +13,13 @@
         }
     }
     &__cell {
-        padding: 1rem;
+        padding: 0.5rem 1rem;
         border-right: thin solid var(--color-gray-200);
         border-left: thin solid var(--color-gray-200);
         grid-column: 1/span 2;
         display: grid;
         @include at(md) {
+            padding: 1rem;
             border-left: none;
             grid-column: auto;
         }
@@ -37,6 +38,9 @@
         }
          &.-artist.-last {
             border-bottom: thin solid var(--color-gray-200);
+         }
+         &.-composers {
+            display: inline;
          }
         &.-role {
             grid-column: auto;
@@ -97,7 +101,14 @@
             
         }
         .infoItem {
-            min-height: 3rem;
+            min-height: 2.5rem;
+            &.-small {
+                font-size: .8rem;
+                font-weight: 100;
+                a {
+                    font-weight: 600;
+                }
+            }
         }
         .mobileHeader {
             display: block;
