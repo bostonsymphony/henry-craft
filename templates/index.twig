@@ -9,7 +9,9 @@
         <div class="calendar" >
             <search performance-index="{{ craft.utility.getPerformanceArchive }}"
                 artist-index="{{ craft.utility.getArtistArchive }}"
-                work-index="{{ craft.utility.getWorkArchive }}" >
+                work-index="{{ craft.utility.getWorkArchive }}" 
+                search-key="{{ craft.utility.getSearchKey }}"
+                search-host="{{ craft.utility.getTypesenseHost }}">
             </search>
         </div>
 

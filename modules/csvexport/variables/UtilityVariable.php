@@ -20,4 +20,16 @@ class UtilityVariable
         return App::parseEnv('$WORK_ARCHIVE') ?? 'performances';
     }
 
+    public function getTypesenseHost() {
+        return App::parseEnv('$TYPESENSE_HOST') ?? '';
+    }
+
+    public function getSearchKey() {
+        return App::parseEnv('$TYPESENSE_SEARCH_KEY') ?? '';
+    }
+
+    public function getDocKey() {
+        return App::parseEnv('$TYPESENSE_DOC_KEY') ?? '';
+    }
+
 }
