@@ -773,9 +773,22 @@
     }
     
     &.-artist {
+      border-left: none;
+      border-right: thin solid var(--color-gray-200);
+      grid-column: auto;
+    }
+    .conductors,
+    .ensembles {
       display: none;
       @include at(lg) {
         display: inline;
+      }
+    }
+    .conductorsMobile,
+    .ensemblesMobile {
+      display: inline;
+      @include at(lg) {
+        display: none;
       }
     }
     &.-details {
@@ -865,22 +878,6 @@
         display:none;
       }
     }
-    &.-left {
-      border-left: thin solid var(--color-gray-200);
-      border-right: none;
-      @include at(lg) {
-        border: none;
-        border-right: thin solid var(--color-gray-200);
-      }
-    }
-    &.-right {
-      border-right: thin solid var(--color-gray-200);
-      border-left: none;
-      @include at(lg) {
-        border: none;
-        border-right: thin solid var(--color-gray-200);
-      }
-    }
 
     .mobileHeader {
       display: block;
@@ -893,6 +890,11 @@
     
     &.-work {
       grid-column: auto;
+      border-right: none;
+      border-left: thin solid var(--color-gray-200);
+      @include at(lg) {
+        border-right: thin solid var(--color-gray-200);
+      }
     }
   }
 

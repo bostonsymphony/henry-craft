@@ -102,6 +102,13 @@
         }
         .infoItem {
             min-height: 2.5rem;
+            &.-small {
+                font-size: .8rem;
+                font-weight: 100;
+                a {
+                    font-weight: 600;
+                }
+            }
         }
         .mobileHeader {
             display: block;
