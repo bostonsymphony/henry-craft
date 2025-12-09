@@ -1,4 +1,4 @@
-dateModified: 1763490335
+dateModified: 1765206929
 email:
   fromEmail: info@imarc.com
   fromName: 'Padstone Craft 5'
@@ -164,7 +164,7 @@ plugins:
   feed-me:
     edition: standard
     enabled: true
-    schemaVersion: 5.1.1
+    schemaVersion: 5.14.0
   field-manager:
     edition: standard
     enabled: true

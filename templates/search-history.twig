@@ -3,6 +3,11 @@
 
 {% set section = 'home' %}
 {% extends "_layouts/main" %}
+
+{% block title %}
+    <title>Search History</title>
+{% endblock %}
+
 {% block content %}
 
     {% include '_partials/hero' with { hero: { heroHeadline: "Search History" }} %}

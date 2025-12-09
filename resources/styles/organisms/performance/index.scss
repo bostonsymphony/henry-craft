@@ -151,12 +151,12 @@
     
     &__header {
         border-bottom: 1px solid var(--color-light-gray);
+        // h2 {
+        //     font-weight: 600;
+        //     font-size: 3.5rem;
+        //     padding: 0.75rem 0;
+        // }
         h2 {
-            font-weight: 600;
-            font-size: 3.5rem;
-            padding: 0.75rem 0;
-        }
-        h3 {
             font-weight: 100;
             font-size: 2.5rem;
             padding-bottom: 0.75rem;
@@ -207,6 +207,7 @@
                 font-size: 1.25rem;
                 font-weight: 600;
                 gap: 0.2rem;
+                cursor: pointer;
             }
         .icon {
             height: 1.5rem;

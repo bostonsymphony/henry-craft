@@ -6,6 +6,10 @@
   max-width: 100%;
   overflow-x: hidden;
 
+  label.hiddenLabel {
+    display: none;
+  }
+
   .ais-CurrentRefinements {
     border: none;
     padding: 0 1.5rem;
@@ -88,6 +92,7 @@
     padding: 10px;
     border-radius: 1rem;
     margin: 0 .5rem;
+    cursor: pointer;
   }
 
   &__artistsGrid,
@@ -518,10 +523,18 @@
       display: none;
     }
 
-    .hideButton {
+    button.hideButton {
       display: none;
       @include at(lg) {
-        display: inline;
+        --accent-color: var(--link-color, var(--color-turquoise));
+        align-items: center;
+        color: var(--accent-color);
+        display: inline-flex;
+        gap: 1em;
+        text-decoration: none;
+        transition: color var(--root-ease-out-fast);
+        background-color: var(--color-white);
+        border: none;
       }
     }
 
@@ -741,8 +754,14 @@
         display: none;
       }
     }
+    button.detailsLink,
     .detailsLink {
+      display: flex;
+      background-color: inherit;
+      padding: 0;
+      border: none;
       color: var(--color-turquoise);
+      font-weight: bold;
     }
   }
 
@@ -963,6 +982,8 @@
         }
       }
       .filterButton {
+        background-color: var(--color-white);
+        border: none;
         display: flex;
         align-items: center;
         gap: .75rem;

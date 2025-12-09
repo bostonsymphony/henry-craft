@@ -1,5 +1,10 @@
 {% import "/_macros" as macros %}
 {% extends "_layouts/main" %}
+
+{% block title %}
+    <title>{{ entry.title|default('BSO Henry') }}</title>
+{% endblock %}
+
 {% block content %}
     {% include '_partials/hero' with { hero: entry.hero.one} %}
 

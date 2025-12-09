@@ -6,16 +6,17 @@
 {% endif %} #}
 {% set section = 'home' %}
 {% extends "_layouts/main" %}
+
+{% block title %}
+    <title>Performance Detail</title>
+{% endblock %}
 {% block content %}
 
-    <div class="performance__breadCrumb"><a onclick="history.back()">Back to Search Results</a></div>
-    <div class="performance__details">
-        <search-detail
-                :performance-id="'{{ performanceId }}'"
-                index-name="{{ craft.utility.getPerformanceArchive }}"
-                doc-key="{{ craft.utility.getDocKey }}"
-                doc-host="{{ craft.utility.getTypesenseHost }}">
-            </search-detail>
-    </div>
+    <search-detail
+        :performance-id="'{{ performanceId }}'"
+        index-name="{{ craft.utility.getPerformanceArchive }}"
+        doc-key="{{ craft.utility.getDocKey }}"
+        doc-host="{{ craft.utility.getTypesenseHost }}">
+    </search-detail>
 
 {% endblock %}
