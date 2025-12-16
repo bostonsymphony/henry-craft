@@ -23,7 +23,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: var(--root-font-size-h2);
-  margin-bottom: #{fluid-rems(1, 1.5, 1.5)};
+  margin-bottom: 0;
 }
 
 h3, .h3 {
