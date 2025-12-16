@@ -10,7 +10,7 @@
     }
 
     @include at(lg) {
-      padding: 2rem 4rem 2rem 8rem;
+      padding: 1.65rem 6.25rem;
     }
 
 
@@ -95,5 +95,9 @@
       //       "logo primary-nav primary-nav" auto
       //       / auto 1fr auto;
     }
+  }
+
+  &__tagline {
+    font-weight: bold;
   }
 }
