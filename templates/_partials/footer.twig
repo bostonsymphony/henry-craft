@@ -45,10 +45,10 @@
                     <a href="{{ logo.ctaLink.url }}" class="siteFooter__sponsor-link">
                 {% endif %}
                 {% if logo.image|length %}
-                    {# <img src="{{ logo.image.one.url }}" alt="{{ logo.ctaLink and logo.ctaLink.label ? logo.ctaLink.label : logo.image.one.alt }}" class="siteFooter__logo" /> #}
-                        {{ macros.responsiveImage(logo.image.one, { 
+                    <img src="{{ logo.image.one.url }}" alt="{{ logo.ctaLink and logo.ctaLink.label ? logo.ctaLink.label : logo.image.one.alt }}" class="siteFooter__logo" />
+                        {# {{ macros.responsiveImage(logo.image.one, { 
                             alt: logo.ctaLink and logo.ctaLink.label ? logo.ctaLink.label : logo.image.one.alt,
-                            pictureClass: "siteFooter__logo" }) }}
+                            pictureClass: "siteFooter__logo" }) }} #}
                 {% endif %}
                 {% if logo.ctaLink and logo.ctaLink.label %}
                     </a>
