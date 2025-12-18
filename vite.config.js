@@ -43,5 +43,5 @@ export default defineConfig({
         cors: true,
         origin: 'https://padstone.imarc.io'
     },
-    base: '/dist/'
+    //base: '/dist/'
 })
