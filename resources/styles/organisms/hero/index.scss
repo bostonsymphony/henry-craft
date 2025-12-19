@@ -166,7 +166,7 @@
   }
 
   &__logos {
-    border-top: 1px solid var(--color-gray-600);
+    border-top: 1px solid var(  --color-slate-blue);
     display:none;
     padding-top: 0;
     padding-bottom: 0;
@@ -177,7 +177,7 @@
   }
 
   &__mobileLogos {
-    border-top: 1px solid var(--color-gray-600);
+    border-top: 1px solid var(  --color-slate-blue);
     display:grid;
     @include at(md) {
       display:none;

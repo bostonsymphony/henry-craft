@@ -62,4 +62,7 @@
       }
     }
   }
+  &__item a:hover {
+    text-decoration: underline;
+  }
 }
