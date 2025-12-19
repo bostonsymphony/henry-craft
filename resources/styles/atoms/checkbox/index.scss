@@ -40,12 +40,12 @@
     //   background: var(--color-gray-200);
     // }
 
-    @media (any-hover: hover) and (any-pointer: fine) {
-      &:hover {
-        background: var(--accent-color-600);
-        border-color: var(--accent-color-600);
-      }
-    }
+    // @media (any-hover: hover) and (any-pointer: fine) {
+    //   &:hover {
+    //     background: var(--accent-color-600);
+    //     border-color: var(--accent-color-600);
+    //   }
+    // }
   }
 
   &.-disabled,
@@ -58,11 +58,11 @@
       background-color: var(--color-gray-200);
     }
 
-    @media (any-hover: hover) and (any-pointer: fine) {
-      &:hover {
-        border-color: var(--color-gray-200);
-        background: var(--color-gray-50);
-      }
-    }
+    // @media (any-hover: hover) and (any-pointer: fine) {
+    //   &:hover {
+    //     border-color: var(--color-gray-200);
+    //     background: var(--color-gray-50);
+    //   }
+    // }
   }
 }
