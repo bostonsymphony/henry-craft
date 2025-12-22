@@ -50,6 +50,7 @@
         height: var(--root-font-size-h6);
         transition: transform var(--root-duration-moderate) var(--root-ease-out);
         padding: 0.15rem;
+        overflow: visible;
     }
     
     &__content {
