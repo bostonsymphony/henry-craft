@@ -44,7 +44,7 @@ export default defineConfig(async ({ command }) => {
             cors: true,
             origin: 'https://padstone.imarc.io'
         },
-        base: command === 'serve' ? '' : '/dist/',
+        base: '/dist/',
     }
     return config
 })
