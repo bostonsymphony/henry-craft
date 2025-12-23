@@ -1,6 +1,8 @@
 /**
  * @uses PAccordion
  */
+
+ @use "@imarc/pronto/resources/styles/imported" as *;
 .accordion {
     $b: &;
 
@@ -11,6 +13,23 @@
     overflow: hidden;
     transition: height var(--root-duration-moderate) var(--root-ease-out);
     border-top: thin solid var(--color-gray-200);
+    margin: 0 0.5rem;
+
+    &.-sub {
+        margin: 0;
+    }
+
+    @include at(md) {
+        margin:0;
+    }
+
+    .ais-RefinementList {
+        padding: 0;
+    }
+
+    &.ais-RefinementList {
+        padding: 0;
+    }
 
     &__summary {
         align-items: center;
@@ -20,7 +39,7 @@
         justify-items: start;
         list-style: none;
         outline-offset: -2px;
-        padding: .5rem 0 0 0;
+        padding: .5rem 0 0 .5rem;
         user-select: none;
 
         &::-webkit-details-marker {

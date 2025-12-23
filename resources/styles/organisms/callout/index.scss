@@ -1,20 +1,31 @@
 @use "@imarc/pronto/resources/styles/imported" as *;
 
-.callout {
+.callout, .callout.container {
   background: var(--color-light-gray);
-  padding: 2rem 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   margin-top: 2rem;
   @include at(md) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
       padding: 4rem 2rem 4rem 4rem;
   }
   @include at(lg) {
-      padding: 4rem 4rem 4rem 8rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
   text-align: center;
   
 
   .grid {
     align-items: center;
+  }
+
+  &.-right {
+    grid-column: main / span var(--cell-span);
+    @include at(md) {
+      grid-column: span var(--cell-span) / main;
+    }
   }
 
   &__title {
