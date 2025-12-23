@@ -31,14 +31,16 @@
       
     // }
 
-    @include at(md) {
-      gap: 2rem;
-      padding: 2rem 4rem;
-      justify-content: start;
-    }
+    // @include at(md) {
+    //   gap: 2rem;
+    //   padding: 2rem 4rem;
+    //   justify-content: start;
+    // }
 
     @include at(lg) {
+      gap: 2rem;
       padding: 2rem 6.25rem 0 6.25rem;
+      justify-content: start;
     }
 
   }
@@ -47,14 +49,14 @@
     background: #0000;
     border: 0;
 
-    color: var(--color-turquoise);
+    color: var(--color-dark-blue);
     cursor: pointer;
     font: inherit;
     white-space: nowrap;
     outline-offset: 2px;
     font-size: 1rem;
     font-weight: 200;
-    box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
+    //box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
     padding: 0;
     @include at(md) {
       font-size: 1.5rem;
@@ -62,8 +64,8 @@
 
     &:hover {
         --tab__button-box-shadow: -2px;
-        box-shadow: 0 var(--tab__button-box-shadow) var(-color-turquoise) inset;
-        color: var(--color-turquoise);
+        box-shadow: 0 var(--tab__button-box-shadow) var(--color-dark-blue) inset;
+        color: var(--color-dark-blue);
       }
     
     transition:
@@ -77,8 +79,6 @@
 
       &:hover {
         --tab__button-box-shadow: -2px;
-        box-shadow: 0 var(--tab__button-box-shadow) var(-color-turquoise) inset;
-        color: var(--color-turquoise);
       }
     }
 
@@ -87,6 +87,7 @@
       color: var(--color-dark-blue);
       font-weight: bold;
       --tab__button-box-shadow: -2px;
+      box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
       @include at(md) {
         --tab__button-box-shadow: -4px;
         font-weight:normal;

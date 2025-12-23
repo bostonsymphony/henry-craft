@@ -54,6 +54,10 @@
     gap: 1.5rem;
   }
 
+  &__navigation {
+    justify-self: right;
+  }
+
   &__primaryNav {
     display: none;
     grid-area: primary-nav;

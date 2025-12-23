@@ -1,18 +1,22 @@
 @use "@imarc/pronto/resources/styles/imported" as *;
 
-.callout, .callout.container {
+.callout {
   background: var(--color-light-gray);
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin-top: 2rem;
   @include at(md) {
     padding-top: 2rem;
     padding-bottom: 2rem;
-      padding: 4rem 2rem 4rem 4rem;
+    padding: 4rem 2rem 4rem 4rem;
   }
   @include at(lg) {
     padding-top: 4rem;
     padding-bottom: 4rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
   }
   text-align: center;
   
