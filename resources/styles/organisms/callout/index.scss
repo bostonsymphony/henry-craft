@@ -25,20 +25,33 @@
     align-items: center;
   }
 
-  &.-right {
-    grid-column: main / span var(--cell-span);
-    @include at(md) {
-      grid-column: span var(--cell-span) / main;
-    }
-  }
+  // &.-right {
+  //   grid-column: main / span var(--cell-span);
+  //   @include at(md) {
+  //     grid-column: span var(--cell-span) / main;
+  //   }
+  // }
 
   &__title {
     h3 {
        color: var(--color-dark-blue);
     }
-    justify-self: left;
-    text-align: left;
+    justify-self: center;
+    text-align: center;
+    @include at(md) {
+      justify-self: left;
+      text-align: left;
+    }
+
     vertical-align: middle;
+    &.-left {
+      grid-column-start: round(down, 1 + (var(--columns, 1) - var(--cell-span)) / 2, 1);
+      grid-column-end: span calc(var(--cell-span) + mod(var(--columns) - var(--cell-span), 2));
+      @include at(md) {
+        grid-column: main / span var(--cell-span);
+      }
+    }
+    
   }
 
   &__content {
@@ -51,5 +64,12 @@
     flex-flow: row wrap;
     justify-content: right;
     gap: 1rem;
+    &.-right {
+      grid-column-end: span calc(var(--cell-span) + mod(var(--columns) - var(--cell-span), 2));
+      @include at(md) {
+        grid-column: span var(--cell-span) / main;
+      }
+      
+    }
   }
 }
