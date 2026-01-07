@@ -1,7 +1,11 @@
 <nav class="siteHeader__mobileNav mobileNavigation">
     <p-openable class="mobileNavigation__button button -circle" label="menu">
         <template #toggle>
-            <svg class="button__icon icon"><use href="/main-icons-sprite.svg#bars" /></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0.600098H24" stroke-width="1.2"/>
+                <path d="M0 5.40015H24"  stroke-width="1.2"/>
+                <path d="M0 10.2002H24"  stroke-width="1.2"/>
+            </svg>
         </template>
         <template v-slot="{ click }">
             <div class="mobileNavigation__pane" v-scrolllock>

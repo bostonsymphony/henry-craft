@@ -23,8 +23,8 @@
 
       &:not(.-disabled, :disabled) {
         &::before {
-          display: block;
           background: var(--color-gray-200);
+          display:grid;
         }
       }
     }

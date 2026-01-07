@@ -100,11 +100,13 @@
 
   &__brands {
     align-items: center;
+    border-top: 1px solid var(  --color-slate-blue);
     color:var(--color-white); 
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
+    padding-top: 1.75rem;
     width:100%;
     @include at(md) {
       gap: 5rem;
@@ -143,6 +145,7 @@
 
   &.-gray {
     background-color: var(--color-light-gray);
+    padding-top: 0;
     .hero__heading {
       color: var(--color-dark-blue);
       font-weight: 600;
@@ -165,7 +168,6 @@
   }
 
   &__logos {
-    border-top: 1px solid var(  --color-slate-blue);
     display:none;
     padding-top: 0;
     padding-bottom: 0;
