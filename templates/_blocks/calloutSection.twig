@@ -6,11 +6,11 @@
 {% endif %}
 
  <div class="callout mobileHide" {{ block.anchor ? 'id="#' ~ block.anchor ~ "'" : ''}}>
-    <div class="grid -columns-12">
+    <div class="callout__block">
         {# {% if block.eyebrow %}
             <h2 class="h6 accent-primary cell -span-6 -center">{{ block.eyebrow }}</h2>
         {% endif %} #}
-        <div class="callout__title cell -span-6 -left">
+        <div class="callout__title cell">
             <h3>{{ block.headline }}</h3>
         </div>
         {# {% if block.blockContentNoMedia|length %}
@@ -18,7 +18,7 @@
                 {{ block.blockContentNoMedia }}
             </div>
         {% endif %} #}
-        <div class="callout__actions cell -span-6 -right">
+        <div class="callout__actions cell">
             {{ macros.renderLink (block.ctaLink, { class: 'button' })}}
         </div>
     </div>
