@@ -10,7 +10,7 @@
 
 {% block content %}
 
-    {% include '_partials/hero' with { hero: { heroHeadline: "Search History" }} %}
+    {% include '_partials/hero' with { hero: { heroHeadline: "My Search History" }} %}
     <div class="history">
         <search-history
             performance-index="{{ craft.utility.getPerformanceArchive }}"
