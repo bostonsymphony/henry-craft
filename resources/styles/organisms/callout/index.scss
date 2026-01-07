@@ -25,16 +25,19 @@
     align-items: center;
   }
 
-  // &.-right {
-  //   grid-column: main / span var(--cell-span);
-  //   @include at(md) {
-  //     grid-column: span var(--cell-span) / main;
-  //   }
-  // }
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @include at(md) {
+      flex-wrap: nowrap;
+    }
+  }
 
   &__title {
     h3 {
        color: var(--color-dark-blue);
+       max-width: 500px;
     }
     justify-self: center;
     text-align: center;
@@ -62,18 +65,12 @@
     justify-self: right;
     display: flex;
     flex-flow: row wrap;
-    justify-content: right;
+    flex-grow: 1;
+    justify-content: center;
+    align-self: center;
     gap: 1rem;
-    &.-right {
-      grid-column-start: 1;
-      grid-column-end: span calc(var(--cell-span) + mod(var(--columns) - var(--cell-span), 2));
-      @include at(sm) {
-        grid-column-start: round(down, 1 + (var(--columns, 1) - var(--cell-span)) / 2, 1);
-      }
-      @include at(md) {
-        grid-column: span var(--cell-span) / main;
-      }
-      
+    @include at(md) {
+      justify-content: right;
     }
   }
 }

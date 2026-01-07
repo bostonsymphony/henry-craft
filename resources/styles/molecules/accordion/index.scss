@@ -39,7 +39,7 @@
         justify-items: start;
         list-style: none;
         outline-offset: -2px;
-        padding: .5rem 0 0 .5rem;
+        padding: .5rem 0 0 0;
         user-select: none;
 
         &::-webkit-details-marker {
@@ -60,7 +60,7 @@
         background: var(--color-white);
         display: grid;
         justify-self: end;
-        padding: .5rem;
+        padding: .5rem 0;
     }
     
     &__icon {

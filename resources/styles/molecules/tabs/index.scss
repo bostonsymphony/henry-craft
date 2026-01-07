@@ -38,7 +38,6 @@
     // }
 
     @include at(lg) {
-      gap: 2rem;
       padding: 2rem 6.25rem 0 6.25rem;
       justify-content: start;
     }
@@ -85,12 +84,11 @@
     &.-selected {
       display: block;
       color: var(--color-dark-blue);
-      font-weight: bold;
+      font-weight: 200;
       --tab__button-box-shadow: -2px;
       box-shadow: 0 var(--tab__button-box-shadow) var(--color-turquoise) inset;
       @include at(md) {
         --tab__button-box-shadow: -4px;
-        font-weight:normal;
       }
     }
   }
