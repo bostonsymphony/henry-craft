@@ -42,7 +42,7 @@
 
             {% for logo in utilityNav.logosWithLinks.all %}
                 {% if logo.ctaLink and logo.ctaLink.label %}
-                    <a href="{{ logo.ctaLink.url }}" class="siteFooter__sponsor-link">
+                    <a href="{{ logo.ctaLink.url }}" target="{{ logo.ctaLink.target }}" class="siteFooter__sponsor-link">
                 {% endif %}
                 {% if logo.image|length %}
                     <img src="{{ logo.image.one.url }}" alt="{{ logo.ctaLink and logo.ctaLink.label ? logo.ctaLink.label : logo.image.one.alt }}" class="siteFooter__logo" />

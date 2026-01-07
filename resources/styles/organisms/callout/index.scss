@@ -65,7 +65,11 @@
     justify-content: right;
     gap: 1rem;
     &.-right {
+      grid-column-start: 1;
       grid-column-end: span calc(var(--cell-span) + mod(var(--columns) - var(--cell-span), 2));
+      @include at(sm) {
+        grid-column-start: round(down, 1 + (var(--columns, 1) - var(--cell-span)) / 2, 1);
+      }
       @include at(md) {
         grid-column: span var(--cell-span) / main;
       }

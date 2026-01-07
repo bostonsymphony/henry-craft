@@ -2,12 +2,15 @@
 
 .siteFooter {
   $b: &;
-  background-image: url('/media/Henry Lee Higginson_2x.png');
-  background-size:contain;
   background-color: var(--color-near-black);
-  background-repeat: no-repeat;
-  background-position-y: bottom;
   padding: 6.25rem 0 0 0;
+
+  @include at(lg) {
+    background-image: url('/media/Henry Lee Higginson_2x.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+  }
 
   &__col {
     &.-first {
