@@ -178,7 +178,6 @@
   }
 
   &__mobileLogos {
-    border-top: 1px solid var(  --color-slate-blue);
     display:grid;
     @include at(md) {
       display:none;
