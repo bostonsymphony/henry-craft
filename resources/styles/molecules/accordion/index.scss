@@ -16,7 +16,11 @@
     margin: 0 0.5rem;
 
     &.-sub {
-        margin: 0;
+        margin-left: 0.5rem;
+        @include at(lg) {
+            margin: 0;
+        }
+        
     }
 
     @include at(md) {
