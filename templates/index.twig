@@ -6,12 +6,14 @@
 
     {% include '_partials/globalHero' with { hero: {heroHeadline: globalHero.heroHeadline} } %}
 
+
         <div class="calendar" >
             <search performance-index="{{ craft.utility.getPerformanceArchive }}"
                 artist-index="{{ craft.utility.getArtistArchive }}"
                 work-index="{{ craft.utility.getWorkArchive }}" 
                 search-key="{{ craft.utility.getSearchKey }}"
-                search-host="{{ craft.utility.getTypesenseHost }}">
+                search-host="{{ craft.utility.getTypesenseHost }}"
+                @push="(obj) => pushDataLayer(obj)">
             </search>
         </div>
 

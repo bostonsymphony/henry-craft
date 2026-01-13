@@ -49,6 +49,7 @@
         "node": "^22"
     },
     "dependencies": {
+        "@gtm-support/vue-gtm": "^3.1.0",
         "@imarc/pronto": "^2.0.0-rc.6",
         "@vitejs/plugin-vue": "^5.2.3",
         "@vuepic/vue-datepicker": "^11.0.3",
