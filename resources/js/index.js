@@ -11,8 +11,6 @@ import { createGtm } from '@gtm-support/vue-gtm'
 // Necessary for Craft vite plugin
 import '../styles/index.scss'
 
-
-
 const app = createApp({
     components: {
         PAccordion: defineAsyncComponent(() => import('./components/PAccordion.vue')),
@@ -42,7 +40,8 @@ const app = createApp({
                 window.dataLayer?.push(obj)
                 console.log('pushed')
             }
-        }
+        },
+
     }
 })
 
