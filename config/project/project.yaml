@@ -1,4 +1,4 @@
-dateModified: 1767810079
+dateModified: 1769193096
 email:
   fromEmail: info@imarc.com
   fromName: 'Padstone Craft 5'
@@ -8,9 +8,9 @@ fs:
     hasUrls: true
     name: Images
     settings:
-      path: '@webroot/uploads/images'
+      path: $ASSET_PATH
     type: craft\fs\Local
-    url: /images
+    url: $ASSET_URL
   resources:
     hasUrls: true
     name: Resources
